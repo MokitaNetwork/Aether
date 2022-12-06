@@ -16,7 +16,7 @@
 
 <div align="center">
 
-### [Telegram](https://t.me/aethlabs) | [Medium](https://medium.com/aeth-labs) | [Discord](https://discord.gg/JJYnuCx)
+### [Telegram](https://t.me/aethlabs) | [Medium](https://medium.com/mokitanetwork) | [Discord](https://discord.gg/JJYnuCx)
 
 </div>
 
