@@ -1235,14 +1235,14 @@ paths:
   /vesting/circulatingsupply:
     get:
       deprecated: true
-      summary: Get the current circulating supply of KAVA
+      summary: Get the current circulating supply of AETH
       tags:
         - Vesting
       produces:
         - application/json
       responses:
         200:
-          description: KAVA circulating supply
+          description: AETH circulating supply
           schema:
             properties:
               height:
@@ -1256,14 +1256,14 @@ paths:
   /vesting/totalsupply:
     get:
       deprecated: true
-      summary: Get the total supply of KAVA
+      summary: Get the total supply of AETH
       tags:
         - Vesting
       produces:
         - application/json
       responses:
         200:
-          description: KAVA total supply
+          description: AETH total supply
           schema:
             properties:
               height:

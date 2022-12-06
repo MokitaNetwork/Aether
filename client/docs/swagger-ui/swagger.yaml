@@ -10818,7 +10818,7 @@ paths:
                         Period stores the specified start and end dates, and the
                         inflation, expressed as a decimal
 
-                        representing the yearly APR of KAVA tokens that will be
+                        representing the yearly APR of AETH tokens that will be
                         minted during that period
                   infrastructure_params:
                     type: object
@@ -10844,7 +10844,7 @@ paths:
                             Period stores the specified start and end dates, and
                             the inflation, expressed as a decimal
 
-                            representing the yearly APR of KAVA tokens that will
+                            representing the yearly APR of AETH tokens that will
                             be minted during that period
                       core_rewards:
                         type: array
@@ -12038,7 +12038,7 @@ paths:
       description: Information about the connected node
       summary: The properties of the connected node
       tags:
-        - KAVA Rest
+        - AETH Rest
       produces:
         - application/json
       responses:
@@ -48042,14 +48042,14 @@ paths:
   /vesting/circulatingsupply:
     get:
       deprecated: true
-      summary: Get the current circulating supply of KAVA
+      summary: Get the current circulating supply of AETH
       tags:
         - Vesting
       produces:
         - application/json
       responses:
         '200':
-          description: KAVA circulating supply
+          description: AETH circulating supply
           schema:
             properties:
               height:
@@ -48063,14 +48063,14 @@ paths:
   /vesting/totalsupply:
     get:
       deprecated: true
-      summary: Get the total supply of KAVA
+      summary: Get the total supply of AETH
       tags:
         - Vesting
       produces:
         - application/json
       responses:
         '200':
-          description: KAVA total supply
+          description: AETH total supply
           schema:
             properties:
               height:
@@ -56753,7 +56753,7 @@ definitions:
             Period stores the specified start and end dates, and the inflation,
             expressed as a decimal
 
-            representing the yearly APR of KAVA tokens that will be minted
+            representing the yearly APR of AETH tokens that will be minted
             during that period
       core_rewards:
         type: array
@@ -56821,7 +56821,7 @@ definitions:
             Period stores the specified start and end dates, and the inflation,
             expressed as a decimal
 
-            representing the yearly APR of KAVA tokens that will be minted
+            representing the yearly APR of AETH tokens that will be minted
             during that period
       infrastructure_params:
         type: object
@@ -56847,7 +56847,7 @@ definitions:
                 Period stores the specified start and end dates, and the
                 inflation, expressed as a decimal
 
-                representing the yearly APR of KAVA tokens that will be minted
+                representing the yearly APR of AETH tokens that will be minted
                 during that period
           core_rewards:
             type: array
@@ -56930,7 +56930,7 @@ definitions:
       Period stores the specified start and end dates, and the inflation,
       expressed as a decimal
 
-      representing the yearly APR of KAVA tokens that will be minted during that
+      representing the yearly APR of AETH tokens that will be minted during that
       period
   aeth.aethdist.v1beta1.QueryBalanceResponse:
     type: object
@@ -56981,7 +56981,7 @@ definitions:
                 Period stores the specified start and end dates, and the
                 inflation, expressed as a decimal
 
-                representing the yearly APR of KAVA tokens that will be minted
+                representing the yearly APR of AETH tokens that will be minted
                 during that period
           infrastructure_params:
             type: object
@@ -57007,7 +57007,7 @@ definitions:
                     Period stores the specified start and end dates, and the
                     inflation, expressed as a decimal
 
-                    representing the yearly APR of KAVA tokens that will be
+                    representing the yearly APR of AETH tokens that will be
                     minted during that period
               core_rewards:
                 type: array

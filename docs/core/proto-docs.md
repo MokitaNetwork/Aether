@@ -5538,7 +5538,7 @@ PartnerRewards defines the reward schedule for partner infrastructure providers.
 
 ### Period
 Period stores the specified start and end dates, and the inflation, expressed as a decimal
-representing the yearly APR of KAVA tokens that will be minted during that period
+representing the yearly APR of AETH tokens that will be minted during that period
 
 
 | Field | Type | Label | Description |

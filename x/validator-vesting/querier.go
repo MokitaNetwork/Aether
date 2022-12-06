@@ -12,7 +12,7 @@ import (
 	abci "github.com/tendermint/tendermint/abci/types"
 )
 
-const SafuFund int64 = 10000000 // 10 million KAVA
+const SafuFund int64 = 10000000 // 10 million AETH
 
 // NewQuerier is the module level router for state queries
 func NewQuerier(bk types.BankKeeper, legacyQuerierCdc *codec.LegacyAmino) sdk.Querier {

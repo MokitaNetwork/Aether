@@ -126,7 +126,7 @@ $ %s tx gov submit-proposal community-pool-deposit <path/to/proposal.json> --fro
 Where proposal.json contains:
 {
   "title": "Community Pool Deposit",
-  "description": "Deposit some KAVA from community pool!",
+  "description": "Deposit some AETH from community pool!",
   "amount": 
   	{
 			"denom": "uaeth",
@@ -184,7 +184,7 @@ $ %s tx gov submit-proposal community-pool-withdraw <path/to/proposal.json> --fr
 Where proposal.json contains:
 {
   "title": "Community Pool Withdraw",
-  "description": "Withdraw some KAVA from community pool!",
+  "description": "Withdraw some AETH from community pool!",
   "amount": 
   	{
 			"denom": "uaeth",

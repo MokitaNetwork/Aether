@@ -264,8 +264,8 @@ func TestAllowedPool_Validation(t *testing.T) {
 		},
 		{
 			name:        "invalid token order due to capitalization",
-			allowedPool: types.NewAllowedPool("uaeth", "UKAVA"),
-			expectedErr: "invalid token order: 'UKAVA' must come before 'uaeth'",
+			allowedPool: types.NewAllowedPool("uaeth", "UAETH"),
+			expectedErr: "invalid token order: 'UAETH' must come before 'uaeth'",
 		},
 	}
 
@@ -278,7 +278,7 @@ func TestAllowedPool_Validation(t *testing.T) {
 }
 
 func TestAllowedPool_TokenMatch_CaseSensitive(t *testing.T) {
-	allowedPool := types.NewAllowedPool("UKAVA", "uaeth")
+	allowedPool := types.NewAllowedPool("UAETH", "uaeth")
 	err := allowedPool.Validate()
 	assert.NoError(t, err)
 

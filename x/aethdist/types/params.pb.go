@@ -188,7 +188,7 @@ func (m *PartnerReward) XXX_DiscardUnknown() {
 var xxx_messageInfo_PartnerReward proto.InternalMessageInfo
 
 // Period stores the specified start and end dates, and the inflation, expressed as a decimal
-// representing the yearly APR of KAVA tokens that will be minted during that period
+// representing the yearly APR of AETH tokens that will be minted during that period
 type Period struct {
 	// example "2020-03-01T15:20:00Z"
 	Start time.Time `protobuf:"bytes,1,opt,name=start,proto3,stdtime" json:"start"`

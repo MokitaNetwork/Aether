@@ -31,7 +31,7 @@ Where proposal.json contains:
 
 {
   "title": "Community Pool Multi-Spend",
-  "description": "Pay many users some KAVA!",
+  "description": "Pay many users some AETH!",
   "recipient_list": [
 		{
 			"address": "aeth1mz2003lathm95n5vnlthmtfvrzrjkrr53j4464",

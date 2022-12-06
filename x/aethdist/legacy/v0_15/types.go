@@ -37,7 +37,7 @@ type Params struct {
 // Periods array of Period
 type Periods []Period
 
-// Period stores the specified start and end dates, and the inflation, expressed as a decimal representing the yearly APR of KAVA tokens that will be minted during that period
+// Period stores the specified start and end dates, and the inflation, expressed as a decimal representing the yearly APR of AETH tokens that will be minted during that period
 type Period struct {
 	Start     time.Time `json:"start" yaml:"start"`         // example "2020-03-01T15:20:00Z"
 	End       time.Time `json:"end" yaml:"end"`             // example "2020-06-01T15:20:00Z"

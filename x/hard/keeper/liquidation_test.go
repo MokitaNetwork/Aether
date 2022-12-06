@@ -65,11 +65,11 @@ func (suite *KeeperTestSuite) TestKeeperLiquidation() {
 				borrower:                   borrower,
 				keeper:                     keeper,
 				keeperRewardPercent:        sdk.MustNewDecFromStr("0.05"),
-				initialModuleCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
-				initialBorrowerCoins:       sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
-				initialKeeperCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
-				depositCoins:               sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(10*KAVA_CF))),
-				borrowCoins:                sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(8*KAVA_CF))),
+				initialModuleCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF))),
+				initialBorrowerCoins:       sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF))),
+				initialKeeperCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF))),
+				depositCoins:               sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(10*AETH_CF))),
+				borrowCoins:                sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(8*AETH_CF))),
 				liquidateAfter:             oneMonthDur,
 				expectedTotalSuppliedCoins: sdk.NewCoins(sdk.NewInt64Coin("uaeth", 100004118)),
 				expectedTotalBorrowedCoins: nil,
@@ -104,16 +104,16 @@ func (suite *KeeperTestSuite) TestKeeperLiquidation() {
 				borrower:                   borrower,
 				keeper:                     keeper,
 				keeperRewardPercent:        sdk.MustNewDecFromStr("0.0"),
-				initialModuleCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
-				initialBorrowerCoins:       sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
-				initialKeeperCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
-				depositCoins:               sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(10*KAVA_CF))),
-				borrowCoins:                sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(8*KAVA_CF))),
+				initialModuleCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF))),
+				initialBorrowerCoins:       sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF))),
+				initialKeeperCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF))),
+				depositCoins:               sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(10*AETH_CF))),
+				borrowCoins:                sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(8*AETH_CF))),
 				liquidateAfter:             oneMonthDur,
 				expectedTotalSuppliedCoins: sdk.NewCoins(sdk.NewInt64Coin("uaeth", 100_004_117)),
 				expectedTotalBorrowedCoins: sdk.NewCoins(sdk.NewInt64Coin("uaeth", 1)),
-				expectedKeeperCoins:        sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
-				expectedBorrowerCoins:      sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(98*KAVA_CF))), // initial - deposit + borrow + liquidation leftovers
+				expectedKeeperCoins:        sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF))),
+				expectedBorrowerCoins:      sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(98*AETH_CF))), // initial - deposit + borrow + liquidation leftovers
 				expectedAuctions: []auctiontypes.Auction{
 					&auctiontypes.CollateralAuction{
 						BaseAuction: auctiontypes.BaseAuction{
@@ -143,16 +143,16 @@ func (suite *KeeperTestSuite) TestKeeperLiquidation() {
 				borrower:                   borrower,
 				keeper:                     keeper,
 				keeperRewardPercent:        sdk.MustNewDecFromStr("1.0"),
-				initialModuleCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
-				initialBorrowerCoins:       sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
-				initialKeeperCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
-				depositCoins:               sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(10*KAVA_CF))),
-				borrowCoins:                sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(8*KAVA_CF))),
+				initialModuleCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF))),
+				initialBorrowerCoins:       sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF))),
+				initialKeeperCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF))),
+				depositCoins:               sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(10*AETH_CF))),
+				borrowCoins:                sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(8*AETH_CF))),
 				liquidateAfter:             oneMonthDur,
 				expectedTotalSuppliedCoins: sdk.NewCoins(sdk.NewInt64Coin("uaeth", 100_004_117)),
 				expectedTotalBorrowedCoins: sdk.NewCoins(sdk.NewInt64Coin("uaeth", 8_004_766)),
 				expectedKeeperCoins:        sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(110_000_411))),
-				expectedBorrowerCoins:      sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(98*KAVA_CF))), // initial - deposit + borrow + liquidation leftovers
+				expectedBorrowerCoins:      sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(98*AETH_CF))), // initial - deposit + borrow + liquidation leftovers
 				expectedAuctions:           nil,
 			},
 			errArgs{
@@ -166,11 +166,11 @@ func (suite *KeeperTestSuite) TestKeeperLiquidation() {
 				borrower:             borrower,
 				keeper:               keeper,
 				keeperRewardPercent:  sdk.MustNewDecFromStr("0.05"),
-				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdc", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("bnb", sdk.NewInt(1000*BNB_CF)), sdk.NewCoin("btc", sdk.NewInt(1000*BTCB_CF))),
-				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
-				initialKeeperCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
-				depositCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(50*KAVA_CF))),                                                                                                                                     // $100 * 0.8 = $80 borrowable
-				borrowCoins:          sdk.NewCoins(sdk.NewCoin("usdc", sdk.NewInt(20*KAVA_CF)), sdk.NewCoin("uaeth", sdk.NewInt(10*KAVA_CF)), sdk.NewCoin("bnb", sdk.NewInt(2*BNB_CF)), sdk.NewCoin("btc", sdk.NewInt(0.2*BTCB_CF))), // $20+$20+$20 = $80 borrowed
+				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(1000*AETH_CF)), sdk.NewCoin("usdc", sdk.NewInt(1000*AETH_CF)), sdk.NewCoin("bnb", sdk.NewInt(1000*BNB_CF)), sdk.NewCoin("btc", sdk.NewInt(1000*BTCB_CF))),
+				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF))),
+				initialKeeperCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF))),
+				depositCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(50*AETH_CF))),                                                                                                                                     // $100 * 0.8 = $80 borrowable
+				borrowCoins:          sdk.NewCoins(sdk.NewCoin("usdc", sdk.NewInt(20*AETH_CF)), sdk.NewCoin("uaeth", sdk.NewInt(10*AETH_CF)), sdk.NewCoin("bnb", sdk.NewInt(2*BNB_CF)), sdk.NewCoin("btc", sdk.NewInt(0.2*BTCB_CF))), // $20+$20+$20 = $80 borrowed
 				liquidateAfter:       oneMonthDur,
 				expectedTotalSuppliedCoins: sdk.NewCoins(
 					sdk.NewInt64Coin("uaeth", 1000000710),
@@ -180,7 +180,7 @@ func (suite *KeeperTestSuite) TestKeeperLiquidation() {
 				),
 				expectedTotalBorrowedCoins: nil,
 				expectedKeeperCoins:        sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(102500001))),
-				expectedBorrowerCoins:      sdk.NewCoins(sdk.NewCoin("usdc", sdk.NewInt(20*KAVA_CF)), sdk.NewCoin("uaeth", sdk.NewInt(60000002)), sdk.NewCoin("bnb", sdk.NewInt(2*BNB_CF)), sdk.NewCoin("btc", sdk.NewInt(0.2*BTCB_CF))), // initial - deposit + borrow + liquidation leftovers
+				expectedBorrowerCoins:      sdk.NewCoins(sdk.NewCoin("usdc", sdk.NewInt(20*AETH_CF)), sdk.NewCoin("uaeth", sdk.NewInt(60000002)), sdk.NewCoin("bnb", sdk.NewInt(2*BNB_CF)), sdk.NewCoin("btc", sdk.NewInt(0.2*BTCB_CF))), // initial - deposit + borrow + liquidation leftovers
 				expectedAuctions: []auctiontypes.Auction{
 					&auctiontypes.CollateralAuction{
 						BaseAuction: auctiontypes.BaseAuction{
@@ -255,18 +255,18 @@ func (suite *KeeperTestSuite) TestKeeperLiquidation() {
 				borrower:             borrower,
 				keeper:               keeper,
 				keeperRewardPercent:  sdk.MustNewDecFromStr("0.05"),
-				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(1000*KAVA_CF))),
-				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF)), sdk.NewCoin("bnb", sdk.NewInt(100*BNB_CF)), sdk.NewCoin("btc", sdk.NewInt(100*BTCB_CF))),
-				initialKeeperCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
-				depositCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(50*KAVA_CF)), sdk.NewCoin("bnb", sdk.NewInt(10*BNB_CF)), sdk.NewCoin("btc", sdk.NewInt(1*BTCB_CF))), // $100 + $100 + $100 = $300 * 0.8 = $240 borrowable                                                                                                                                       // $100 * 0.8 = $80 borrowable
-				borrowCoins:          sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(120*KAVA_CF))),                                                                                      // $240 borrowed
+				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(1000*AETH_CF))),
+				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF)), sdk.NewCoin("bnb", sdk.NewInt(100*BNB_CF)), sdk.NewCoin("btc", sdk.NewInt(100*BTCB_CF))),
+				initialKeeperCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF))),
+				depositCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(50*AETH_CF)), sdk.NewCoin("bnb", sdk.NewInt(10*BNB_CF)), sdk.NewCoin("btc", sdk.NewInt(1*BTCB_CF))), // $100 + $100 + $100 = $300 * 0.8 = $240 borrowable                                                                                                                                       // $100 * 0.8 = $80 borrowable
+				borrowCoins:          sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(120*AETH_CF))),                                                                                      // $240 borrowed
 				liquidateAfter:       oneMonthDur,
 				expectedTotalSuppliedCoins: sdk.NewCoins(
 					sdk.NewInt64Coin("uaeth", 1000101456),
 				),
 				expectedTotalBorrowedCoins: nil,
 				expectedKeeperCoins:        sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(102500253)), sdk.NewCoin("bnb", sdk.NewInt(0.5*BNB_CF)), sdk.NewCoin("btc", sdk.NewInt(0.05*BTCB_CF))), // 5% of each seized coin + initial balances
-				expectedBorrowerCoins:      sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(170.000001*KAVA_CF)), sdk.NewCoin("bnb", sdk.NewInt(90*BNB_CF)), sdk.NewCoin("btc", sdk.NewInt(99*BTCB_CF))),
+				expectedBorrowerCoins:      sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(170.000001*AETH_CF)), sdk.NewCoin("bnb", sdk.NewInt(90*BNB_CF)), sdk.NewCoin("btc", sdk.NewInt(99*BTCB_CF))),
 				expectedAuctions: []auctiontypes.Auction{
 					&auctiontypes.CollateralAuction{
 						BaseAuction: auctiontypes.BaseAuction{
@@ -327,11 +327,11 @@ func (suite *KeeperTestSuite) TestKeeperLiquidation() {
 				borrower:             borrower,
 				keeper:               keeper,
 				keeperRewardPercent:  sdk.MustNewDecFromStr("0.05"),
-				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("bnb", sdk.NewInt(1000*BNB_CF)), sdk.NewCoin("btc", sdk.NewInt(1000*BTCB_CF))),
-				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF)), sdk.NewCoin("usdc", sdk.NewInt(100*KAVA_CF)), sdk.NewCoin("usdt", sdk.NewInt(100*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(100*KAVA_CF))),
-				initialKeeperCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
-				depositCoins:         sdk.NewCoins(sdk.NewCoin("usdc", sdk.NewInt(100*KAVA_CF)), sdk.NewCoin("usdt", sdk.NewInt(100*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(100*KAVA_CF))), // $100 + $100 + $100 = $300 * 0.9 = $270 borrowable
-				borrowCoins:          sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(35*KAVA_CF)), sdk.NewCoin("bnb", sdk.NewInt(10*BNB_CF)), sdk.NewCoin("btc", sdk.NewInt(1*BTCB_CF))),       // $270 borrowed
+				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(1000*AETH_CF)), sdk.NewCoin("bnb", sdk.NewInt(1000*BNB_CF)), sdk.NewCoin("btc", sdk.NewInt(1000*BTCB_CF))),
+				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF)), sdk.NewCoin("usdc", sdk.NewInt(100*AETH_CF)), sdk.NewCoin("usdt", sdk.NewInt(100*AETH_CF)), sdk.NewCoin("usdx", sdk.NewInt(100*AETH_CF))),
+				initialKeeperCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF))),
+				depositCoins:         sdk.NewCoins(sdk.NewCoin("usdc", sdk.NewInt(100*AETH_CF)), sdk.NewCoin("usdt", sdk.NewInt(100*AETH_CF)), sdk.NewCoin("usdx", sdk.NewInt(100*AETH_CF))), // $100 + $100 + $100 = $300 * 0.9 = $270 borrowable
+				borrowCoins:          sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(35*AETH_CF)), sdk.NewCoin("bnb", sdk.NewInt(10*BNB_CF)), sdk.NewCoin("btc", sdk.NewInt(1*BTCB_CF))),       // $270 borrowed
 				liquidateAfter:       oneMonthDur,
 				expectedTotalSuppliedCoins: sdk.NewCoins(
 					sdk.NewInt64Coin("bnb", 100000078047),
@@ -340,8 +340,8 @@ func (suite *KeeperTestSuite) TestKeeperLiquidation() {
 					sdk.NewInt64Coin("usdx", 1),
 				),
 				expectedTotalBorrowedCoins: nil,
-				expectedKeeperCoins:        sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF)), sdk.NewCoin("usdc", sdk.NewInt(5*KAVA_CF)), sdk.NewCoin("usdt", sdk.NewInt(5*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(5*KAVA_CF))), // 5% of each seized coin + initial balances
-				expectedBorrowerCoins:      sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(135*KAVA_CF)), sdk.NewCoin("bnb", sdk.NewInt(10*BNB_CF)), sdk.NewCoin("btc", sdk.NewInt(1*BTCB_CF)), sdk.NewCoin("usdx", sdk.NewInt(0.000001*KAVA_CF))),
+				expectedKeeperCoins:        sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF)), sdk.NewCoin("usdc", sdk.NewInt(5*AETH_CF)), sdk.NewCoin("usdt", sdk.NewInt(5*AETH_CF)), sdk.NewCoin("usdx", sdk.NewInt(5*AETH_CF))), // 5% of each seized coin + initial balances
+				expectedBorrowerCoins:      sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(135*AETH_CF)), sdk.NewCoin("bnb", sdk.NewInt(10*BNB_CF)), sdk.NewCoin("btc", sdk.NewInt(1*BTCB_CF)), sdk.NewCoin("usdx", sdk.NewInt(0.000001*AETH_CF))),
 				expectedAuctions: []auctiontypes.Auction{
 					&auctiontypes.CollateralAuction{
 						BaseAuction: auctiontypes.BaseAuction{
@@ -431,11 +431,11 @@ func (suite *KeeperTestSuite) TestKeeperLiquidation() {
 				borrower:             borrower,
 				keeper:               keeper,
 				keeperRewardPercent:  sdk.MustNewDecFromStr("0.05"),
-				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdt", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("dai", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdc", sdk.NewInt(1000*KAVA_CF))),
-				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdt", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("dai", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdc", sdk.NewInt(1000*KAVA_CF))),
-				initialKeeperCoins:   sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdt", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("dai", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdc", sdk.NewInt(1000*KAVA_CF))),
-				depositCoins:         sdk.NewCoins(sdk.NewCoin("dai", sdk.NewInt(350*KAVA_CF)), sdk.NewCoin("usdc", sdk.NewInt(200*KAVA_CF))),
-				borrowCoins:          sdk.NewCoins(sdk.NewCoin("usdt", sdk.NewInt(250*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(245*KAVA_CF))),
+				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(1000*AETH_CF)), sdk.NewCoin("usdt", sdk.NewInt(1000*AETH_CF)), sdk.NewCoin("dai", sdk.NewInt(1000*AETH_CF)), sdk.NewCoin("usdc", sdk.NewInt(1000*AETH_CF))),
+				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(1000*AETH_CF)), sdk.NewCoin("usdt", sdk.NewInt(1000*AETH_CF)), sdk.NewCoin("dai", sdk.NewInt(1000*AETH_CF)), sdk.NewCoin("usdc", sdk.NewInt(1000*AETH_CF))),
+				initialKeeperCoins:   sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(1000*AETH_CF)), sdk.NewCoin("usdt", sdk.NewInt(1000*AETH_CF)), sdk.NewCoin("dai", sdk.NewInt(1000*AETH_CF)), sdk.NewCoin("usdc", sdk.NewInt(1000*AETH_CF))),
+				depositCoins:         sdk.NewCoins(sdk.NewCoin("dai", sdk.NewInt(350*AETH_CF)), sdk.NewCoin("usdc", sdk.NewInt(200*AETH_CF))),
+				borrowCoins:          sdk.NewCoins(sdk.NewCoin("usdt", sdk.NewInt(250*AETH_CF)), sdk.NewCoin("usdx", sdk.NewInt(245*AETH_CF))),
 				liquidateAfter:       oneMonthDur,
 				expectedTotalSuppliedCoins: sdk.NewCoins(
 					sdk.NewInt64Coin("dai", 1000000000),
@@ -444,8 +444,8 @@ func (suite *KeeperTestSuite) TestKeeperLiquidation() {
 					sdk.NewInt64Coin("usdx", 1000463500),
 				),
 				expectedTotalBorrowedCoins: nil,
-				expectedKeeperCoins:        sdk.NewCoins(sdk.NewCoin("dai", sdk.NewInt(1017.50*KAVA_CF)), sdk.NewCoin("usdt", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdc", sdk.NewInt(1010*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(1000*KAVA_CF))),
-				expectedBorrowerCoins:      sdk.NewCoins(sdk.NewCoin("dai", sdk.NewInt(650*KAVA_CF)), sdk.NewCoin("usdc", sdk.NewInt(800000001)), sdk.NewCoin("usdt", sdk.NewInt(1250*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(1245*KAVA_CF))),
+				expectedKeeperCoins:        sdk.NewCoins(sdk.NewCoin("dai", sdk.NewInt(1017.50*AETH_CF)), sdk.NewCoin("usdt", sdk.NewInt(1000*AETH_CF)), sdk.NewCoin("usdc", sdk.NewInt(1010*AETH_CF)), sdk.NewCoin("usdx", sdk.NewInt(1000*AETH_CF))),
+				expectedBorrowerCoins:      sdk.NewCoins(sdk.NewCoin("dai", sdk.NewInt(650*AETH_CF)), sdk.NewCoin("usdc", sdk.NewInt(800000001)), sdk.NewCoin("usdt", sdk.NewInt(1250*AETH_CF)), sdk.NewCoin("usdx", sdk.NewInt(1245*AETH_CF))),
 				expectedAuctions: []auctiontypes.Auction{
 					&auctiontypes.CollateralAuction{
 						BaseAuction: auctiontypes.BaseAuction{
@@ -505,15 +505,15 @@ func (suite *KeeperTestSuite) TestKeeperLiquidation() {
 				borrower:                   borrower,
 				keeper:                     keeper,
 				keeperRewardPercent:        sdk.MustNewDecFromStr("0.05"),
-				initialModuleCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
-				initialBorrowerCoins:       sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
-				initialKeeperCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
-				depositCoins:               sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(20*KAVA_CF))), // Deposit 20 KAVA
-				borrowCoins:                sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(5*KAVA_CF))),  // Borrow 5 KAVA
+				initialModuleCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF))),
+				initialBorrowerCoins:       sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF))),
+				initialKeeperCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF))),
+				depositCoins:               sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(20*AETH_CF))), // Deposit 20 AETH
+				borrowCoins:                sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(5*AETH_CF))),  // Borrow 5 AETH
 				liquidateAfter:             oneMonthDur,
 				expectedTotalSuppliedCoins: sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(120001624))),
 				expectedTotalBorrowedCoins: sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(5001709))),
-				expectedKeeperCoins:        sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100.5*KAVA_CF))),
+				expectedKeeperCoins:        sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100.5*AETH_CF))),
 				expectedBorrowerCoins:      sdk.NewCoins(),
 				expectedAuctions:           []auctiontypes.Auction{},
 			},
@@ -552,37 +552,37 @@ func (suite *KeeperTestSuite) TestKeeperLiquidation() {
 			hardGS := types.NewGenesisState(types.NewParams(
 				types.MoneyMarkets{
 					types.NewMoneyMarket("usdx",
-						types.NewBorrowLimit(false, sdk.NewDec(100000000*KAVA_CF), sdk.MustNewDecFromStr("0.9")), // Borrow Limit
+						types.NewBorrowLimit(false, sdk.NewDec(100000000*AETH_CF), sdk.MustNewDecFromStr("0.9")), // Borrow Limit
 						"usdx:usd",                   // Market ID
-						sdk.NewInt(KAVA_CF),          // Conversion Factor
+						sdk.NewInt(AETH_CF),          // Conversion Factor
 						model,                        // Interest Rate Model
 						reserveFactor,                // Reserve Factor
 						tc.args.keeperRewardPercent), // Keeper Reward Percent
 					types.NewMoneyMarket("usdt",
-						types.NewBorrowLimit(false, sdk.NewDec(100000000*KAVA_CF), sdk.MustNewDecFromStr("0.9")), // Borrow Limit
+						types.NewBorrowLimit(false, sdk.NewDec(100000000*AETH_CF), sdk.MustNewDecFromStr("0.9")), // Borrow Limit
 						"usdt:usd",                   // Market ID
-						sdk.NewInt(KAVA_CF),          // Conversion Factor
+						sdk.NewInt(AETH_CF),          // Conversion Factor
 						model,                        // Interest Rate Model
 						reserveFactor,                // Reserve Factor
 						tc.args.keeperRewardPercent), // Keeper Reward Percent
 					types.NewMoneyMarket("usdc",
-						types.NewBorrowLimit(false, sdk.NewDec(100000000*KAVA_CF), sdk.MustNewDecFromStr("0.9")), // Borrow Limit
+						types.NewBorrowLimit(false, sdk.NewDec(100000000*AETH_CF), sdk.MustNewDecFromStr("0.9")), // Borrow Limit
 						"usdc:usd",                   // Market ID
-						sdk.NewInt(KAVA_CF),          // Conversion Factor
+						sdk.NewInt(AETH_CF),          // Conversion Factor
 						model,                        // Interest Rate Model
 						reserveFactor,                // Reserve Factor
 						tc.args.keeperRewardPercent), // Keeper Reward Percent
 					types.NewMoneyMarket("dai",
-						types.NewBorrowLimit(false, sdk.NewDec(100000000*KAVA_CF), sdk.MustNewDecFromStr("0.9")), // Borrow Limit
+						types.NewBorrowLimit(false, sdk.NewDec(100000000*AETH_CF), sdk.MustNewDecFromStr("0.9")), // Borrow Limit
 						"dai:usd",                    // Market ID
-						sdk.NewInt(KAVA_CF),          // Conversion Factor
+						sdk.NewInt(AETH_CF),          // Conversion Factor
 						model,                        // Interest Rate Model
 						reserveFactor,                // Reserve Factor
 						tc.args.keeperRewardPercent), // Keeper Reward Percent
 					types.NewMoneyMarket("uaeth",
-						types.NewBorrowLimit(false, sdk.NewDec(100000000*KAVA_CF), sdk.MustNewDecFromStr("0.8")), // Borrow Limit
+						types.NewBorrowLimit(false, sdk.NewDec(100000000*AETH_CF), sdk.MustNewDecFromStr("0.8")), // Borrow Limit
 						"aeth:usd",                   // Market ID
-						sdk.NewInt(KAVA_CF),          // Conversion Factor
+						sdk.NewInt(AETH_CF),          // Conversion Factor
 						model,                        // Interest Rate Model
 						reserveFactor,                // Reserve Factor
 						tc.args.keeperRewardPercent), // Keeper Reward Percent

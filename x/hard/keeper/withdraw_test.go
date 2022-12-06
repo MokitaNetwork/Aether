@@ -243,11 +243,11 @@ func (suite *KeeperTestSuite) TestLtvWithdraw() {
 			"invalid: withdraw is outside loan-to-value range",
 			args{
 				borrower:             borrower,
-				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
-				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(100*KAVA_CF))),
-				depositCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))), // 100 * 2 = $200
-				borrowCoins:          sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(80*KAVA_CF))),  // 80 * 2 = $160
-				repayCoins:           sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(60*KAVA_CF))),  // 60 * 2 = $120
+				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF))),
+				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF)), sdk.NewCoin("usdx", sdk.NewInt(100*AETH_CF))),
+				depositCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*AETH_CF))), // 100 * 2 = $200
+				borrowCoins:          sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(80*AETH_CF))),  // 80 * 2 = $160
+				repayCoins:           sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(60*AETH_CF))),  // 60 * 2 = $120
 				futureTime:           oneMonthInSeconds,
 			},
 			errArgs{
@@ -274,16 +274,16 @@ func (suite *KeeperTestSuite) TestLtvWithdraw() {
 			harvestGS := types.NewGenesisState(types.NewParams(
 				types.MoneyMarkets{
 					types.NewMoneyMarket("uaeth",
-						types.NewBorrowLimit(false, sdk.NewDec(100000000*KAVA_CF), sdk.MustNewDecFromStr("0.8")), // Borrow Limit
+						types.NewBorrowLimit(false, sdk.NewDec(100000000*AETH_CF), sdk.MustNewDecFromStr("0.8")), // Borrow Limit
 						"aeth:usd",                     // Market ID
-						sdk.NewInt(KAVA_CF),            // Conversion Factor
+						sdk.NewInt(AETH_CF),            // Conversion Factor
 						model,                          // Interest Rate Model
 						reserveFactor,                  // Reserve Factor
 						sdk.MustNewDecFromStr("0.05")), // Keeper Reward Percent
 					types.NewMoneyMarket("usdx",
-						types.NewBorrowLimit(false, sdk.NewDec(100000000*KAVA_CF), sdk.MustNewDecFromStr("0.8")), // Borrow Limit
+						types.NewBorrowLimit(false, sdk.NewDec(100000000*AETH_CF), sdk.MustNewDecFromStr("0.8")), // Borrow Limit
 						"usdx:usd",                     // Market ID
-						sdk.NewInt(KAVA_CF),            // Conversion Factor
+						sdk.NewInt(AETH_CF),            // Conversion Factor
 						model,                          // Interest Rate Model
 						reserveFactor,                  // Reserve Factor
 						sdk.MustNewDecFromStr("0.05")), // Keeper Reward Percent

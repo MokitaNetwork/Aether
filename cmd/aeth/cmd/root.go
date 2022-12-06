@@ -26,7 +26,7 @@ import (
 )
 
 // EnvPrefix is the prefix environment variables must have to configure the app.
-const EnvPrefix = "KAVA"
+const EnvPrefix = "AETH"
 
 // NewRootCmd creates a new root command for the aeth blockchain.
 func NewRootCmd() *cobra.Command {
