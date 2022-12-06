@@ -4,8 +4,8 @@ import (
 	"errors"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/kava-labs/kava/x/pricefeed/keeper"
-	"github.com/kava-labs/kava/x/pricefeed/types"
+	"github.com/mokitanetwork/aether/x/pricefeed/keeper"
+	"github.com/mokitanetwork/aether/x/pricefeed/types"
 )
 
 // EndBlocker updates the current pricefeed

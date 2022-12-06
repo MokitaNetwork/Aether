@@ -11,10 +11,10 @@ import (
 	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
-	"github.com/kava-labs/kava/app"
-	"github.com/kava-labs/kava/x/committee/keeper"
-	"github.com/kava-labs/kava/x/committee/types"
-	swaptypes "github.com/kava-labs/kava/x/swap/types"
+	"github.com/mokitanetwork/aether/app"
+	"github.com/mokitanetwork/aether/x/committee/keeper"
+	"github.com/mokitanetwork/aether/x/committee/types"
+	swaptypes "github.com/mokitanetwork/aether/x/swap/types"
 )
 
 //NewDistributionGenesisWithPool creates a default distribution genesis state with some coins in the community pool.
@@ -62,7 +62,7 @@ func (suite *MsgServerTestSuite) SetupTest() {
 		[]types.Proposal{},
 		[]types.Vote{},
 	)
-	suite.communityPoolAmt = sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(1000)))
+	suite.communityPoolAmt = sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(1000)))
 	suite.app.InitializeFromGenesisStates(
 		app.GenesisState{types.ModuleName: cdc.MustMarshalJSON(testGenesis)},
 		// TODO: not used?

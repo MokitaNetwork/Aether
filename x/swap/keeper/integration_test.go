@@ -22,7 +22,7 @@ func cs(coins ...sdk.Coin) sdk.Coins { return sdk.NewCoins(coins...) }
 // 	swapGenesis := types.GenesisState{
 // 		Params: types.Params{
 // 			AllowedPools: types.AllowedPools{
-// 				types.NewAllowedPool("ukava", "usdx"),
+// 				types.NewAllowedPool("uaeth", "usdx"),
 // 			},
 // 			SwapFee: sdk.MustNewDecFromStr("0.03"),
 // 		},

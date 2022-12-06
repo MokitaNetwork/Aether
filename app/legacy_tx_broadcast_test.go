@@ -9,7 +9,7 @@ import (
 	"testing"
 
 	"github.com/golang/mock/gomock"
-	"github.com/kava-labs/kava/app"
+	"github.com/mokitanetwork/aether/app"
 
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/tests/mocks"
@@ -75,12 +75,12 @@ func (suite *LegacyTxBroadcastTestSuite) TearDownTest() {
 
 func (suite *LegacyTxBroadcastTestSuite) TestSimulateRequest() {
 	_, pk, fromAddr := testdata.KeyTestPubAddr()
-	toAddr, err := sdk.AccAddressFromBech32("kava1mq9qxlhze029lm0frzw2xr6hem8c3k9ts54w0w")
+	toAddr, err := sdk.AccAddressFromBech32("aeth1mq9qxlhze029lm0frzw2xr6hem8c3k9ts54w0w")
 	suite.Require().NoError(err)
 
 	// build a legacy transaction
-	msgs := []sdk.Msg{banktypes.NewMsgSend(fromAddr, toAddr, sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(1e6))))}
-	fee := legacytx.NewStdFee(1e6, sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(5e4))))
+	msgs := []sdk.Msg{banktypes.NewMsgSend(fromAddr, toAddr, sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(1e6))))}
+	fee := legacytx.NewStdFee(1e6, sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(5e4))))
 	sigs := []legacytx.StdSignature{legacytx.NewStdSignature(pk, []byte("an amino json signed signature"))}
 	stdTx := legacytx.NewStdTx(msgs, fee, sigs, "legacy broadcast test")
 	stdTx.TimeoutHeight = 100000

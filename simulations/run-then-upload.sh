@@ -3,7 +3,7 @@
 # This requires AWS access keys envs to be set (ie AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
 # These need to be generated from the AWS console.
 
-# For commands passed to the docker container, the working directory is /root/kava (which is the blockchain git repo).
+# For commands passed to the docker container, the working directory is /root/aeth (which is the blockchain git repo).
 
 
 # Parse Input Args

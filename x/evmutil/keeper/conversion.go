@@ -6,7 +6,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/kava-labs/kava/x/evmutil/types"
+	"github.com/mokitanetwork/aether/x/evmutil/types"
 )
 
 // MintConversionPairCoin mints the given amount of a ConversionPair denom and

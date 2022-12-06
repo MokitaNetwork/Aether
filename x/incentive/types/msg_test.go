@@ -10,11 +10,11 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/tendermint/tendermint/crypto"
 
-	"github.com/kava-labs/kava/x/incentive/types"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 )
 
 func TestMsgClaim_Validate(t *testing.T) {
-	validAddress := sdk.AccAddress(crypto.AddressHash([]byte("KavaTest1"))).String()
+	validAddress := sdk.AccAddress(crypto.AddressHash([]byte("AetherTest1"))).String()
 
 	type expectedErr struct {
 		wraps error
@@ -160,7 +160,7 @@ func TestMsgClaim_Validate(t *testing.T) {
 }
 
 func TestMsgClaimUSDXMintingReward_Validate(t *testing.T) {
-	validAddress := sdk.AccAddress(crypto.AddressHash([]byte("KavaTest1"))).String()
+	validAddress := sdk.AccAddress(crypto.AddressHash([]byte("AetherTest1"))).String()
 
 	type expectedErr struct {
 		wraps error

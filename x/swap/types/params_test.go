@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/kava-labs/kava/x/swap/types"
+	"github.com/mokitanetwork/aether/x/swap/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	paramstypes "github.com/cosmos/cosmos-sdk/x/params/types"
@@ -19,7 +19,7 @@ import (
 
 func TestParams_UnmarshalJSON(t *testing.T) {
 	pools := types.NewAllowedPools(
-		types.NewAllowedPool("hard", "ukava"),
+		types.NewAllowedPool("hard", "uaeth"),
 		types.NewAllowedPool("hard", "usdx"),
 	)
 	poolData, err := json.Marshal(pools)
@@ -45,7 +45,7 @@ func TestParams_UnmarshalJSON(t *testing.T) {
 
 func TestParams_MarshalYAML(t *testing.T) {
 	pools := types.NewAllowedPools(
-		types.NewAllowedPool("hard", "ukava"),
+		types.NewAllowedPool("hard", "uaeth"),
 		types.NewAllowedPool("hard", "usdx"),
 	)
 	fee, err := sdk.NewDecFromStr("0.5")
@@ -134,9 +134,9 @@ func TestParams_Validation(t *testing.T) {
 			name: "duplicate pools",
 			key:  types.KeyAllowedPools,
 			testFn: func(params *types.Params) {
-				params.AllowedPools = types.NewAllowedPools(types.NewAllowedPool("ukava", "ukava"))
+				params.AllowedPools = types.NewAllowedPools(types.NewAllowedPool("uaeth", "uaeth"))
 			},
-			expectedErr: "pool cannot have two tokens of the same type, received 'ukava' and 'ukava'",
+			expectedErr: "pool cannot have two tokens of the same type, received 'uaeth' and 'uaeth'",
 		},
 		{
 			name: "nil swap fee",
@@ -212,8 +212,8 @@ func TestParams_Validation(t *testing.T) {
 func TestParams_String(t *testing.T) {
 	params := types.NewParams(
 		types.NewAllowedPools(
-			types.NewAllowedPool("hard", "ukava"),
-			types.NewAllowedPool("ukava", "usdx"),
+			types.NewAllowedPool("hard", "uaeth"),
+			types.NewAllowedPool("uaeth", "usdx"),
 		),
 		sdk.MustNewDecFromStr("0.5"),
 	)
@@ -221,8 +221,8 @@ func TestParams_String(t *testing.T) {
 	require.NoError(t, params.Validate())
 
 	output := params.String()
-	assert.Contains(t, output, types.PoolID("hard", "ukava"))
-	assert.Contains(t, output, types.PoolID("ukava", "usdx"))
+	assert.Contains(t, output, types.PoolID("hard", "uaeth"))
+	assert.Contains(t, output, types.PoolID("uaeth", "usdx"))
 	assert.Contains(t, output, "0.5")
 }
 
@@ -234,38 +234,38 @@ func TestAllowedPool_Validation(t *testing.T) {
 	}{
 		{
 			name:        "blank token a",
-			allowedPool: types.NewAllowedPool("", "ukava"),
+			allowedPool: types.NewAllowedPool("", "uaeth"),
 			expectedErr: "invalid denom: ",
 		},
 		{
 			name:        "blank token b",
-			allowedPool: types.NewAllowedPool("ukava", ""),
+			allowedPool: types.NewAllowedPool("uaeth", ""),
 			expectedErr: "invalid denom: ",
 		},
 		{
 			name:        "invalid token a",
-			allowedPool: types.NewAllowedPool("1ukava", "ukava"),
-			expectedErr: "invalid denom: 1ukava",
+			allowedPool: types.NewAllowedPool("1uaeth", "uaeth"),
+			expectedErr: "invalid denom: 1uaeth",
 		},
 		{
 			name:        "invalid token b",
-			allowedPool: types.NewAllowedPool("ukava", "1ukava"),
-			expectedErr: "invalid denom: 1ukava",
+			allowedPool: types.NewAllowedPool("uaeth", "1uaeth"),
+			expectedErr: "invalid denom: 1uaeth",
 		},
 		{
 			name:        "matching tokens",
-			allowedPool: types.NewAllowedPool("ukava", "ukava"),
-			expectedErr: "pool cannot have two tokens of the same type, received 'ukava' and 'ukava'",
+			allowedPool: types.NewAllowedPool("uaeth", "uaeth"),
+			expectedErr: "pool cannot have two tokens of the same type, received 'uaeth' and 'uaeth'",
 		},
 		{
 			name:        "invalid token order",
-			allowedPool: types.NewAllowedPool("usdx", "ukava"),
-			expectedErr: "invalid token order: 'ukava' must come before 'usdx'",
+			allowedPool: types.NewAllowedPool("usdx", "uaeth"),
+			expectedErr: "invalid token order: 'uaeth' must come before 'usdx'",
 		},
 		{
 			name:        "invalid token order due to capitalization",
-			allowedPool: types.NewAllowedPool("ukava", "UKAVA"),
-			expectedErr: "invalid token order: 'UKAVA' must come before 'ukava'",
+			allowedPool: types.NewAllowedPool("uaeth", "UKAVA"),
+			expectedErr: "invalid token order: 'UKAVA' must come before 'uaeth'",
 		},
 	}
 
@@ -278,7 +278,7 @@ func TestAllowedPool_Validation(t *testing.T) {
 }
 
 func TestAllowedPool_TokenMatch_CaseSensitive(t *testing.T) {
-	allowedPool := types.NewAllowedPool("UKAVA", "ukava")
+	allowedPool := types.NewAllowedPool("UKAVA", "uaeth")
 	err := allowedPool.Validate()
 	assert.NoError(t, err)
 
@@ -292,13 +292,13 @@ func TestAllowedPool_TokenMatch_CaseSensitive(t *testing.T) {
 }
 
 func TestAllowedPool_String(t *testing.T) {
-	allowedPool := types.NewAllowedPool("hard", "ukava")
+	allowedPool := types.NewAllowedPool("hard", "uaeth")
 	require.NoError(t, allowedPool.Validate())
 
 	output := `AllowedPool:
-  Name: hard:ukava
+  Name: hard:uaeth
 	Token A: hard
-	Token B: ukava
+	Token B: uaeth
 `
 	assert.Equal(t, output, allowedPool.String())
 }
@@ -325,8 +325,8 @@ func TestAllowedPool_Name(t *testing.T) {
 			name:   "a001:a002",
 		},
 		{
-			tokens: "hard ukava",
-			name:   "hard:ukava",
+			tokens: "hard uaeth",
+			name:   "hard:uaeth",
 		},
 		{
 			tokens: "bnb hard",
@@ -360,15 +360,15 @@ func TestAllowedPools_Validate(t *testing.T) {
 		{
 			name: "duplicate pool",
 			allowedPools: types.NewAllowedPools(
-				types.NewAllowedPool("hard", "ukava"),
-				types.NewAllowedPool("hard", "ukava"),
+				types.NewAllowedPool("hard", "uaeth"),
+				types.NewAllowedPool("hard", "uaeth"),
 			),
-			expectedErr: "duplicate pool: hard:ukava",
+			expectedErr: "duplicate pool: hard:uaeth",
 		},
 		{
 			name: "duplicate pools",
 			allowedPools: types.NewAllowedPools(
-				types.NewAllowedPool("hard", "ukava"),
+				types.NewAllowedPool("hard", "uaeth"),
 				types.NewAllowedPool("bnb", "usdx"),
 				types.NewAllowedPool("btcb", "xrpb"),
 				types.NewAllowedPool("bnb", "usdx"),

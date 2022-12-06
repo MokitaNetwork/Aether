@@ -17,10 +17,10 @@ import (
 
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/kava-labs/kava/x/pricefeed/client/cli"
-	"github.com/kava-labs/kava/x/pricefeed/client/rest"
-	"github.com/kava-labs/kava/x/pricefeed/keeper"
-	"github.com/kava-labs/kava/x/pricefeed/types"
+	"github.com/mokitanetwork/aether/x/pricefeed/client/cli"
+	"github.com/mokitanetwork/aether/x/pricefeed/client/rest"
+	"github.com/mokitanetwork/aether/x/pricefeed/keeper"
+	"github.com/mokitanetwork/aether/x/pricefeed/types"
 )
 
 var (

@@ -5,7 +5,7 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	pftypes "github.com/kava-labs/kava/x/pricefeed/types"
+	pftypes "github.com/mokitanetwork/aether/x/pricefeed/types"
 )
 
 // BankKeeper defines the expected bank keeper

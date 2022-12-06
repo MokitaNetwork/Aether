@@ -7,8 +7,8 @@ import (
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/kava-labs/kava/x/committee/testutil"
-	"github.com/kava-labs/kava/x/committee/types"
+	"github.com/mokitanetwork/aether/x/committee/testutil"
+	"github.com/mokitanetwork/aether/x/committee/types"
 )
 
 type keeperTestSuite struct {

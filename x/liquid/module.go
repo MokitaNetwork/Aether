@@ -16,9 +16,9 @@ import (
 
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/kava-labs/kava/x/liquid/client/cli"
-	"github.com/kava-labs/kava/x/liquid/keeper"
-	"github.com/kava-labs/kava/x/liquid/types"
+	"github.com/mokitanetwork/aether/x/liquid/client/cli"
+	"github.com/mokitanetwork/aether/x/liquid/keeper"
+	"github.com/mokitanetwork/aether/x/liquid/types"
 )
 
 var (

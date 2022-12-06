@@ -8,10 +8,10 @@ import (
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 	tmtime "github.com/tendermint/tendermint/types/time"
 
-	"github.com/kava-labs/kava/app"
-	"github.com/kava-labs/kava/x/hard"
-	"github.com/kava-labs/kava/x/hard/types"
-	pricefeedtypes "github.com/kava-labs/kava/x/pricefeed/types"
+	"github.com/mokitanetwork/aether/app"
+	"github.com/mokitanetwork/aether/x/hard"
+	"github.com/mokitanetwork/aether/x/hard/types"
+	pricefeedtypes "github.com/mokitanetwork/aether/x/pricefeed/types"
 )
 
 func (suite *KeeperTestSuite) TestRepay() {
@@ -46,12 +46,12 @@ func (suite *KeeperTestSuite) TestRepay() {
 			args{
 				borrower:             sdk.AccAddress(crypto.AddressHash([]byte("borrower"))),
 				repayer:              sdk.AccAddress(crypto.AddressHash([]byte("borrower"))),
-				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(100*KAVA_CF))),
-				initialRepayerCoins:  sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(100*KAVA_CF))),
-				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(1000*USDX_CF))),
-				depositCoins:         sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(100*KAVA_CF))),
-				borrowCoins:          sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(50*KAVA_CF))),
-				repayCoins:           sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(10*KAVA_CF))),
+				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
+				initialRepayerCoins:  sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
+				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(1000*USDX_CF))),
+				depositCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
+				borrowCoins:          sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(50*KAVA_CF))),
+				repayCoins:           sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(10*KAVA_CF))),
 			},
 			errArgs{
 				expectPass:   true,
@@ -64,12 +64,12 @@ func (suite *KeeperTestSuite) TestRepay() {
 			args{
 				borrower:             sdk.AccAddress(crypto.AddressHash([]byte("borrower"))),
 				repayer:              sdk.AccAddress(crypto.AddressHash([]byte("repayer"))),
-				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(100*KAVA_CF))),
-				initialRepayerCoins:  sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(100*KAVA_CF))),
-				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(1000*USDX_CF))),
-				depositCoins:         sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(100*KAVA_CF))),
-				borrowCoins:          sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(50*KAVA_CF))),
-				repayCoins:           sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(10*KAVA_CF))),
+				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
+				initialRepayerCoins:  sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
+				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(1000*USDX_CF))),
+				depositCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
+				borrowCoins:          sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(50*KAVA_CF))),
+				repayCoins:           sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(10*KAVA_CF))),
 			},
 			errArgs{
 				expectPass:   true,
@@ -82,12 +82,12 @@ func (suite *KeeperTestSuite) TestRepay() {
 			args{
 				borrower:             sdk.AccAddress(crypto.AddressHash([]byte("borrower"))),
 				repayer:              sdk.AccAddress(crypto.AddressHash([]byte("borrower"))),
-				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(100*KAVA_CF))),
-				initialRepayerCoins:  sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(100*KAVA_CF))),
-				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(1000*USDX_CF))),
-				depositCoins:         sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(100*KAVA_CF))),
-				borrowCoins:          sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(50*KAVA_CF))),
-				repayCoins:           sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(50*KAVA_CF))),
+				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
+				initialRepayerCoins:  sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
+				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(1000*USDX_CF))),
+				depositCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
+				borrowCoins:          sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(50*KAVA_CF))),
+				repayCoins:           sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(50*KAVA_CF))),
 			},
 			errArgs{
 				expectPass:   true,
@@ -100,12 +100,12 @@ func (suite *KeeperTestSuite) TestRepay() {
 			args{
 				borrower:             sdk.AccAddress(crypto.AddressHash([]byte("borrower"))),
 				repayer:              sdk.AccAddress(crypto.AddressHash([]byte("borrower"))),
-				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(100*KAVA_CF))),
-				initialRepayerCoins:  sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(100*KAVA_CF))),
-				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(1000*USDX_CF))),
-				depositCoins:         sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(80*KAVA_CF))), // Deposit less so user still has some KAVA
-				borrowCoins:          sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(50*KAVA_CF))),
-				repayCoins:           sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(60*KAVA_CF))), // Exceeds borrowed coins but not user's balance
+				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
+				initialRepayerCoins:  sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
+				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(1000*USDX_CF))),
+				depositCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(80*KAVA_CF))), // Deposit less so user still has some KAVA
+				borrowCoins:          sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(50*KAVA_CF))),
+				repayCoins:           sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(60*KAVA_CF))), // Exceeds borrowed coins but not user's balance
 			},
 			errArgs{
 				expectPass:   true,
@@ -118,12 +118,12 @@ func (suite *KeeperTestSuite) TestRepay() {
 			args{
 				borrower:             sdk.AccAddress(crypto.AddressHash([]byte("borrower"))),
 				repayer:              sdk.AccAddress(crypto.AddressHash([]byte("borrower"))),
-				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(100*KAVA_CF))),
-				initialRepayerCoins:  sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(100*KAVA_CF))),
-				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(1000*USDX_CF))),
-				depositCoins:         sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(100*KAVA_CF))),
-				borrowCoins:          sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(50*KAVA_CF))),
-				repayCoins:           sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(10*KAVA_CF)), sdk.NewCoin("bnb", sdk.NewInt(10*KAVA_CF))),
+				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
+				initialRepayerCoins:  sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
+				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(1000*USDX_CF))),
+				depositCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
+				borrowCoins:          sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(50*KAVA_CF))),
+				repayCoins:           sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(10*KAVA_CF)), sdk.NewCoin("bnb", sdk.NewInt(10*KAVA_CF))),
 			},
 			errArgs{
 				expectPass:   false,
@@ -136,17 +136,17 @@ func (suite *KeeperTestSuite) TestRepay() {
 			args{
 				borrower:             sdk.AccAddress(crypto.AddressHash([]byte("borrower"))),
 				repayer:              sdk.AccAddress(crypto.AddressHash([]byte("repayer"))),
-				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(100*KAVA_CF))),
-				initialRepayerCoins:  sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(49*KAVA_CF))),
-				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(1000*USDX_CF))),
-				depositCoins:         sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(100*KAVA_CF))),
-				borrowCoins:          sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(50*KAVA_CF))),
-				repayCoins:           sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(50*KAVA_CF))), // Exceeds repayer's balance, but not borrow amount
+				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
+				initialRepayerCoins:  sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(49*KAVA_CF))),
+				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(1000*USDX_CF))),
+				depositCoins:         sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
+				borrowCoins:          sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(50*KAVA_CF))),
+				repayCoins:           sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(50*KAVA_CF))), // Exceeds repayer's balance, but not borrow amount
 			},
 			errArgs{
 				expectPass:   false,
 				expectDelete: false,
-				contains:     "account can only repay up to 49000000ukava",
+				contains:     "account can only repay up to 49000000uaeth",
 			},
 		},
 		{
@@ -156,7 +156,7 @@ func (suite *KeeperTestSuite) TestRepay() {
 				repayer:              sdk.AccAddress(crypto.AddressHash([]byte("borrower"))),
 				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(100*USDX_CF))),
 				initialRepayerCoins:  sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(100*USDX_CF))),
-				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(1000*USDX_CF))),
+				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(1000*USDX_CF))),
 				depositCoins:         sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(100*USDX_CF))),
 				borrowCoins:          sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(50*USDX_CF))),
 				repayCoins:           sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(45*USDX_CF))),
@@ -173,11 +173,11 @@ func (suite *KeeperTestSuite) TestRepay() {
 				borrower:             sdk.AccAddress(crypto.AddressHash([]byte("borrower"))),
 				repayer:              sdk.AccAddress(crypto.AddressHash([]byte("borrower"))),
 				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(100*USDX_CF))),
-				initialRepayerCoins:  sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(100*USDX_CF)), sdk.NewCoin("ukava", sdk.NewInt(100*KAVA_CF))),
-				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(1000*USDX_CF))),
+				initialRepayerCoins:  sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(100*USDX_CF)), sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
+				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(1000*USDX_CF))),
 				depositCoins:         sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(100*USDX_CF))),
-				borrowCoins:          sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(50*USDX_CF)), sdk.NewCoin("ukava", sdk.NewInt(10*KAVA_CF))), // (50*$1)+(10*$2) = $70
-				repayCoins:           sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(45*USDX_CF)), sdk.NewCoin("ukava", sdk.NewInt(8*KAVA_CF))),  // (45*$1)+(8*$2) = $61
+				borrowCoins:          sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(50*USDX_CF)), sdk.NewCoin("uaeth", sdk.NewInt(10*KAVA_CF))), // (50*$1)+(10*$2) = $70
+				repayCoins:           sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(45*USDX_CF)), sdk.NewCoin("uaeth", sdk.NewInt(8*KAVA_CF))),  // (45*$1)+(8*$2) = $61
 			},
 			errArgs{
 				expectPass:   false,
@@ -191,11 +191,11 @@ func (suite *KeeperTestSuite) TestRepay() {
 				borrower:             sdk.AccAddress(crypto.AddressHash([]byte("borrower"))),
 				repayer:              sdk.AccAddress(crypto.AddressHash([]byte("borrower"))),
 				initialBorrowerCoins: sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(100*USDX_CF))),
-				initialRepayerCoins:  sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(100*USDX_CF)), sdk.NewCoin("ukava", sdk.NewInt(100*KAVA_CF))),
-				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(1000*USDX_CF))),
+				initialRepayerCoins:  sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(100*USDX_CF)), sdk.NewCoin("uaeth", sdk.NewInt(100*KAVA_CF))),
+				initialModuleCoins:   sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(1000*KAVA_CF)), sdk.NewCoin("usdx", sdk.NewInt(1000*USDX_CF))),
 				depositCoins:         sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(100*USDX_CF))),
-				borrowCoins:          sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(50*USDX_CF)), sdk.NewCoin("ukava", sdk.NewInt(10*KAVA_CF))), // (50*$1)+(10*$2) = $70
-				repayCoins:           sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(500*USDX_CF)), sdk.NewCoin("ukava", sdk.NewInt(8*KAVA_CF))), // (500*$1)+(8*$2) = $516, or capping to borrowed amount, (50*$1)+(8*$2) = $66
+				borrowCoins:          sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(50*USDX_CF)), sdk.NewCoin("uaeth", sdk.NewInt(10*KAVA_CF))), // (50*$1)+(10*$2) = $70
+				repayCoins:           sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(500*USDX_CF)), sdk.NewCoin("uaeth", sdk.NewInt(8*KAVA_CF))), // (500*$1)+(8*$2) = $516, or capping to borrowed amount, (50*$1)+(8*$2) = $66
 			},
 			errArgs{
 				expectPass:   false,
@@ -232,9 +232,9 @@ func (suite *KeeperTestSuite) TestRepay() {
 						model,                          // Interest Rate Model
 						sdk.MustNewDecFromStr("0.05"),  // Reserve Factor
 						sdk.MustNewDecFromStr("0.05")), // Keeper Reward Percent
-					types.NewMoneyMarket("ukava",
+					types.NewMoneyMarket("uaeth",
 						types.NewBorrowLimit(false, sdk.NewDec(100000000*KAVA_CF), sdk.MustNewDecFromStr("0.8")), // Borrow Limit
-						"kava:usd",                     // Market ID
+						"aeth:usd",                     // Market ID
 						sdk.NewInt(KAVA_CF),            // Conversion Factor
 						model,                          // Interest Rate Model
 						sdk.MustNewDecFromStr("0.05"),  // Reserve Factor
@@ -250,7 +250,7 @@ func (suite *KeeperTestSuite) TestRepay() {
 				Params: pricefeedtypes.Params{
 					Markets: []pricefeedtypes.Market{
 						{MarketID: "usdx:usd", BaseAsset: "usdx", QuoteAsset: "usd", Oracles: []sdk.AccAddress{}, Active: true},
-						{MarketID: "kava:usd", BaseAsset: "kava", QuoteAsset: "usd", Oracles: []sdk.AccAddress{}, Active: true},
+						{MarketID: "aeth:usd", BaseAsset: "aeth", QuoteAsset: "usd", Oracles: []sdk.AccAddress{}, Active: true},
 					},
 				},
 				PostedPrices: []pricefeedtypes.PostedPrice{
@@ -261,7 +261,7 @@ func (suite *KeeperTestSuite) TestRepay() {
 						Expiry:        time.Now().Add(1 * time.Hour),
 					},
 					{
-						MarketID:      "kava:usd",
+						MarketID:      "aeth:usd",
 						OracleAddress: sdk.AccAddress{},
 						Price:         sdk.MustNewDecFromStr("2.00"),
 						Expiry:        time.Now().Add(1 * time.Hour),

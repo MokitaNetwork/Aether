@@ -10,8 +10,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	vesting "github.com/cosmos/cosmos-sdk/x/auth/vesting/types"
 
-	"github.com/kava-labs/kava/app"
-	"github.com/kava-labs/kava/app/ante"
+	"github.com/mokitanetwork/aether/app"
+	"github.com/mokitanetwork/aether/app/ante"
 )
 
 func TestVestingMempoolDecorator_MsgCreateVestingAccount_Unauthorized(t *testing.T) {
@@ -26,7 +26,7 @@ func TestVestingMempoolDecorator_MsgCreateVestingAccount_Unauthorized(t *testing
 		[]sdk.Msg{
 			vesting.NewMsgCreateVestingAccount(
 				testAddresses[0], testAddresses[1],
-				sdk.NewCoins(sdk.NewInt64Coin("ukava", 100_000_000)),
+				sdk.NewCoins(sdk.NewInt64Coin("uaeth", 100_000_000)),
 				time.Date(1998, 1, 1, 0, 0, 0, 0, time.UTC).Unix(), false),
 		},
 		sdk.NewCoins(),

@@ -9,7 +9,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 
-	"github.com/kava-labs/kava/x/swap/types"
+	"github.com/mokitanetwork/aether/x/swap/types"
 )
 
 // flags for cli queries
@@ -74,8 +74,8 @@ func queryDepositsCmd(queryRoute string) *cobra.Command {
 		Long: strings.TrimSpace(`get liquidity provider deposits:
  		Example:
  		$ kvcli q swap deposits --pool bnb:usdx
- 		$ kvcli q swap deposits --owner kava1l0xsq2z7gqd7yly0g40y5836g0appumark77ny
- 		$ kvcli q swap deposits --pool bnb:usdx --owner kava1l0xsq2z7gqd7yly0g40y5836g0appumark77ny
+ 		$ kvcli q swap deposits --owner aeth1l0xsq2z7gqd7yly0g40y5836g0appumark77ny
+ 		$ kvcli q swap deposits --pool bnb:usdx --owner aeth1l0xsq2z7gqd7yly0g40y5836g0appumark77ny
  		$ kvcli q swap deposits --page=2 --limit=100
  		`,
 		),

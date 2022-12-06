@@ -16,10 +16,10 @@ import (
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 	tmtime "github.com/tendermint/tendermint/types/time"
 
-	"github.com/kava-labs/kava/app"
-	auctiontypes "github.com/kava-labs/kava/x/auction/types"
-	"github.com/kava-labs/kava/x/cdp/keeper"
-	"github.com/kava-labs/kava/x/cdp/types"
+	"github.com/mokitanetwork/aether/app"
+	auctiontypes "github.com/mokitanetwork/aether/x/auction/types"
+	"github.com/mokitanetwork/aether/x/cdp/keeper"
+	"github.com/mokitanetwork/aether/x/cdp/types"
 )
 
 type SeizeTestSuite struct {
@@ -41,7 +41,7 @@ type liquidationTracker struct {
 
 func (suite *SeizeTestSuite) SetupTest() {
 	tApp := app.NewTestApp()
-	ctx := tApp.NewContext(true, tmproto.Header{Height: 1, Time: tmtime.Now(), ChainID: "kavatest_1-1"})
+	ctx := tApp.NewContext(true, tmproto.Header{Height: 1, Time: tmtime.Now(), ChainID: "aethtest_1-1"})
 	tracker := liquidationTracker{}
 	coins := cs(c("btc", 100000000), c("xrp", 10000000000))
 	_, addrs := app.GeneratePrivKeyAddressPairs(100)
@@ -247,7 +247,7 @@ func (suite *SeizeTestSuite) TestKeeperLiquidation() {
 	layout := "2006-01-02T15:04:05.000Z"
 	endTimeStr := "9000-01-01T00:00:00.000Z"
 	endTime, _ := time.Parse(layout, endTimeStr)
-	addr, _ := sdk.AccAddressFromBech32("kava1ze7y9qwdddejmy7jlw4cymqqlt2wh05yhwmrv2")
+	addr, _ := sdk.AccAddressFromBech32("aeth1ze7y9qwdddejmy7jlw4cymqqlt2wh05yhwmrv2")
 
 	testCases := []test{
 		{
@@ -445,7 +445,7 @@ func (suite *SeizeTestSuite) TestBeginBlockerLiquidation() {
 	layout := "2006-01-02T15:04:05.000Z"
 	endTimeStr := "9000-01-01T00:00:00.000Z"
 	endTime, _ := time.Parse(layout, endTimeStr)
-	addr, _ := sdk.AccAddressFromBech32("kava1ze7y9qwdddejmy7jlw4cymqqlt2wh05yhwmrv2")
+	addr, _ := sdk.AccAddressFromBech32("aeth1ze7y9qwdddejmy7jlw4cymqqlt2wh05yhwmrv2")
 
 	testCases := []test{
 		{

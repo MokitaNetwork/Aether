@@ -11,13 +11,13 @@ package simulation
 // 	"github.com/cosmos/cosmos-sdk/types/module"
 // 	"github.com/cosmos/cosmos-sdk/x/simulation"
 
-// 	"github.com/kava-labs/kava/x/swap/types"
+// 	"github.com/mokitanetwork/aether/x/swap/types"
 // )
 
 // var (
 // 	//nolint
 // 	accs            []simulation.Account
-// 	consistentPools = [2][2]string{{"ukava", "usdx"}, {"bnb", "xrp"}}
+// 	consistentPools = [2][2]string{{"uaeth", "usdx"}, {"bnb", "xrp"}}
 // )
 
 // // GenSwapFee generates a random SwapFee in range [0.01, 1.00]

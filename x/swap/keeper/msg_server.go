@@ -6,7 +6,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/kava-labs/kava/x/swap/types"
+	"github.com/mokitanetwork/aether/x/swap/types"
 )
 
 type msgServer struct {

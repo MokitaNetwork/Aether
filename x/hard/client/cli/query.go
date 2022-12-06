@@ -11,7 +11,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/version"
 
-	"github.com/kava-labs/kava/x/hard/types"
+	"github.com/mokitanetwork/aether/x/hard/types"
 )
 
 // flags for cli queries
@@ -114,8 +114,8 @@ func queryUnsyncedDepositsCmd() *cobra.Command {
 		Short: "query hard module unsynced deposits with optional filters",
 		Long:  "query for all hard module unsynced deposits or a specific unsynced deposit using flags",
 		Example: fmt.Sprintf(`%[1]s q %[2]s unsynced-deposits
-%[1]s q %[2]s unsynced-deposits --owner kava1l0xsq2z7gqd7yly0g40y5836g0appumark77ny --denom bnb
-%[1]s q %[2]s unsynced-deposits --denom ukava
+%[1]s q %[2]s unsynced-deposits --owner aeth1l0xsq2z7gqd7yly0g40y5836g0appumark77ny --denom bnb
+%[1]s q %[2]s unsynced-deposits --denom uaeth
 %[1]s q %[2]s unsynced-deposits --denom btcb`, version.AppName, types.ModuleName),
 		Args: cobra.NoArgs,
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -176,8 +176,8 @@ func queryDepositsCmd() *cobra.Command {
 		Short: "query hard module deposits with optional filters",
 		Long:  "query for all hard module deposits or a specific deposit using flags",
 		Example: fmt.Sprintf(`%[1]s q %[2]s deposits
-%[1]s q %[2]s deposits --owner kava1l0xsq2z7gqd7yly0g40y5836g0appumark77ny --denom bnb
-%[1]s q %[2]s deposits --denom ukava
+%[1]s q %[2]s deposits --owner aeth1l0xsq2z7gqd7yly0g40y5836g0appumark77ny --denom bnb
+%[1]s q %[2]s deposits --denom uaeth
 %[1]s q %[2]s deposits --denom btcb`, version.AppName, types.ModuleName),
 		Args: cobra.NoArgs,
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -238,7 +238,7 @@ func queryUnsyncedBorrowsCmd() *cobra.Command {
 		Short: "query hard module unsynced borrows with optional filters",
 		Long:  "query for all hard module unsynced borrows or a specific unsynced borrow using flags",
 		Example: fmt.Sprintf(`%[1]s q %[2]s unsynced-borrows
-%[1]s q %[2]s unsynced-borrows --owner kava1l0xsq2z7gqd7yly0g40y5836g0appumark77ny
+%[1]s q %[2]s unsynced-borrows --owner aeth1l0xsq2z7gqd7yly0g40y5836g0appumark77ny
 %[1]s q %[2]s unsynced-borrows --denom bnb`, version.AppName, types.ModuleName),
 		Args: cobra.NoArgs,
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -299,7 +299,7 @@ func queryBorrowsCmd() *cobra.Command {
 		Short: "query hard module borrows with optional filters",
 		Long:  "query for all hard module borrows or a specific borrow using flags",
 		Example: fmt.Sprintf(`%[1]s q %[2]s borrows
-%[1]s q %[2]s borrows --owner kava1l0xsq2z7gqd7yly0g40y5836g0appumark77ny
+%[1]s q %[2]s borrows --owner aeth1l0xsq2z7gqd7yly0g40y5836g0appumark77ny
 %[1]s q %[2]s borrows --denom bnb`, version.AppName, types.ModuleName),
 		Args: cobra.NoArgs,
 		RunE: func(cmd *cobra.Command, args []string) error {

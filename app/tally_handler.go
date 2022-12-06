@@ -8,15 +8,15 @@ import (
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
-	earnkeeper "github.com/kava-labs/kava/x/earn/keeper"
-	liquidkeeper "github.com/kava-labs/kava/x/liquid/keeper"
-	liquidtypes "github.com/kava-labs/kava/x/liquid/types"
-	savingskeeper "github.com/kava-labs/kava/x/savings/keeper"
+	earnkeeper "github.com/mokitanetwork/aether/x/earn/keeper"
+	liquidkeeper "github.com/mokitanetwork/aether/x/liquid/keeper"
+	liquidtypes "github.com/mokitanetwork/aether/x/liquid/types"
+	savingskeeper "github.com/mokitanetwork/aether/x/savings/keeper"
 )
 
 var _ govtypes.TallyHandler = TallyHandler{}
 
-// TallyHandler is the tally handler for kava
+// TallyHandler is the tally handler for aeth
 type TallyHandler struct {
 	gk  govkeeper.Keeper
 	stk stakingkeeper.Keeper
@@ -101,25 +101,25 @@ func (th TallyHandler) Tally(ctx sdk.Context, proposal types.Proposal) (passes b
 			return false
 		})
 
-		// get voter bkava and update total voting power and results
-		addrBkava := th.getAddrBkava(ctx, voter).toCoins()
-		for _, coin := range addrBkava {
+		// get voter baeth and update total voting power and results
+		addrBaeth := th.getAddrBaeth(ctx, voter).toCoins()
+		for _, coin := range addrBaeth {
 			valAddr, err := liquidtypes.ParseLiquidStakingTokenDenom(coin.Denom)
 			if err != nil {
 				break
 			}
 
-			// reduce delegator shares by the amount of voter bkava for the validator
+			// reduce delegator shares by the amount of voter baeth for the validator
 			valAddrStr := valAddr.String()
 			if val, ok := currValidators[valAddrStr]; ok {
 				val.DelegatorDeductions = val.DelegatorDeductions.Add(coin.Amount.ToDec())
 				currValidators[valAddrStr] = val
 			}
 
-			// votingPower = amount of ukava coin
+			// votingPower = amount of uaeth coin
 			stakedCoins, err := th.lk.GetStakedTokensForDerivatives(ctx, sdk.NewCoins(coin))
 			if err != nil {
-				// error is returned only if the bkava denom is incorrect, which should never happen here.
+				// error is returned only if the baeth denom is incorrect, which should never happen here.
 				panic(err)
 			}
 			votingPower := stakedCoins.Amount.ToDec()
@@ -185,60 +185,60 @@ func (th TallyHandler) Tally(ctx sdk.Context, proposal types.Proposal) (passes b
 	return false, false, tallyResults
 }
 
-// bkavaByDenom a map of the bkava denom and the amount of bkava for that denom.
-type bkavaByDenom map[string]sdk.Int
+// baethByDenom a map of the baeth denom and the amount of baeth for that denom.
+type baethByDenom map[string]sdk.Int
 
-func (bkavaMap bkavaByDenom) add(coin sdk.Coin) {
-	_, found := bkavaMap[coin.Denom]
+func (baethMap baethByDenom) add(coin sdk.Coin) {
+	_, found := baethMap[coin.Denom]
 	if !found {
-		bkavaMap[coin.Denom] = sdk.ZeroInt()
+		baethMap[coin.Denom] = sdk.ZeroInt()
 	}
-	bkavaMap[coin.Denom] = bkavaMap[coin.Denom].Add(coin.Amount)
+	baethMap[coin.Denom] = baethMap[coin.Denom].Add(coin.Amount)
 }
 
-func (bkavaMap bkavaByDenom) toCoins() sdk.Coins {
+func (baethMap baethByDenom) toCoins() sdk.Coins {
 	coins := sdk.Coins{}
-	for denom, amt := range bkavaMap {
+	for denom, amt := range baethMap {
 		coins = coins.Add(sdk.NewCoin(denom, amt))
 	}
 	return coins.Sort()
 }
 
-// getAddrBkava returns a map of validator address & the amount of bkava
+// getAddrBaeth returns a map of validator address & the amount of baeth
 // of the addr for each validator.
-func (th TallyHandler) getAddrBkava(ctx sdk.Context, addr sdk.AccAddress) bkavaByDenom {
-	results := make(bkavaByDenom)
-	th.addBkavaFromWallet(ctx, addr, results)
-	th.addBkavaFromSavings(ctx, addr, results)
-	th.addBkavaFromEarn(ctx, addr, results)
+func (th TallyHandler) getAddrBaeth(ctx sdk.Context, addr sdk.AccAddress) baethByDenom {
+	results := make(baethByDenom)
+	th.addBaethFromWallet(ctx, addr, results)
+	th.addBaethFromSavings(ctx, addr, results)
+	th.addBaethFromEarn(ctx, addr, results)
 	return results
 }
 
-// addBkavaFromWallet adds all addr balances of bkava in x/bank.
-func (th TallyHandler) addBkavaFromWallet(ctx sdk.Context, addr sdk.AccAddress, bkava bkavaByDenom) {
+// addBaethFromWallet adds all addr balances of baeth in x/bank.
+func (th TallyHandler) addBaethFromWallet(ctx sdk.Context, addr sdk.AccAddress, baeth baethByDenom) {
 	coins := th.bk.GetAllBalances(ctx, addr)
 	for _, coin := range coins {
 		if th.lk.IsDerivativeDenom(ctx, coin.Denom) {
-			bkava.add(coin)
+			baeth.add(coin)
 		}
 	}
 }
 
-// addBkavaFromSavings adds all addr deposits of bkava in x/savings.
-func (th TallyHandler) addBkavaFromSavings(ctx sdk.Context, addr sdk.AccAddress, bkava bkavaByDenom) {
+// addBaethFromSavings adds all addr deposits of baeth in x/savings.
+func (th TallyHandler) addBaethFromSavings(ctx sdk.Context, addr sdk.AccAddress, baeth baethByDenom) {
 	deposit, found := th.svk.GetDeposit(ctx, addr)
 	if !found {
 		return
 	}
 	for _, coin := range deposit.Amount {
 		if th.lk.IsDerivativeDenom(ctx, coin.Denom) {
-			bkava.add(coin)
+			baeth.add(coin)
 		}
 	}
 }
 
-// addBkavaFromEarn adds all addr deposits of bkava in x/earn.
-func (th TallyHandler) addBkavaFromEarn(ctx sdk.Context, addr sdk.AccAddress, bkava bkavaByDenom) {
+// addBaethFromEarn adds all addr deposits of baeth in x/earn.
+func (th TallyHandler) addBaethFromEarn(ctx sdk.Context, addr sdk.AccAddress, baeth baethByDenom) {
 	shares, found := th.ek.GetVaultAccountShares(ctx, addr)
 	if !found {
 		return
@@ -246,7 +246,7 @@ func (th TallyHandler) addBkavaFromEarn(ctx sdk.Context, addr sdk.AccAddress, bk
 	for _, share := range shares {
 		if th.lk.IsDerivativeDenom(ctx, share.Denom) {
 			if coin, err := th.ek.ConvertToAssets(ctx, share); err == nil {
-				bkava.add(coin)
+				baeth.add(coin)
 			}
 		}
 	}

@@ -7,9 +7,9 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/kava-labs/kava/x/auction"
-	"github.com/kava-labs/kava/x/auction/testutil"
-	types "github.com/kava-labs/kava/x/auction/types"
+	"github.com/mokitanetwork/aether/x/auction"
+	"github.com/mokitanetwork/aether/x/auction/testutil"
+	types "github.com/mokitanetwork/aether/x/auction/types"
 )
 
 type abciTestSuite struct {

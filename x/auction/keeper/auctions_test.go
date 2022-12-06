@@ -9,8 +9,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 
-	"github.com/kava-labs/kava/x/auction/testutil"
-	"github.com/kava-labs/kava/x/auction/types"
+	"github.com/mokitanetwork/aether/x/auction/testutil"
+	"github.com/mokitanetwork/aether/x/auction/types"
 )
 
 type auctionTestSuite struct {

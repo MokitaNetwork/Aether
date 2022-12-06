@@ -8,10 +8,10 @@ package keeper_test
 // 	"github.com/stretchr/testify/suite"
 // 	abci "github.com/tendermint/tendermint/abci/types"
 
-// 	"github.com/kava-labs/kava/app"
-// 	"github.com/kava-labs/kava/x/swap/keeper"
-// 	"github.com/kava-labs/kava/x/swap/testutil"
-// 	"github.com/kava-labs/kava/x/swap/types"
+// 	"github.com/mokitanetwork/aether/app"
+// 	"github.com/mokitanetwork/aether/x/swap/keeper"
+// 	"github.com/mokitanetwork/aether/x/swap/testutil"
+// 	"github.com/mokitanetwork/aether/x/swap/types"
 // )
 
 // type querierTestSuite struct {
@@ -27,7 +27,7 @@ package keeper_test
 // 	_, addrs := app.GeneratePrivKeyAddressPairs(5)
 // 	coins := []sdk.Coins{}
 // 	for j := 0; j < 5; j++ {
-// 		coins = append(coins, cs(c("ukava", 10000000000), c("bnb", 10000000000), c("usdx", 10000000000)))
+// 		coins = append(coins, cs(c("uaeth", 10000000000), c("bnb", 10000000000), c("usdx", 10000000000)))
 // 	}
 // 	suite.addresses = addrs
 // 	authGS := app.NewAuthGenState(addrs, coins)
@@ -65,7 +65,7 @@ package keeper_test
 
 // func (suite *querierTestSuite) TestQueryPool() {
 // 	// Set up pool in store
-// 	coinA := sdk.NewCoin("ukava", sdk.NewInt(10))
+// 	coinA := sdk.NewCoin("uaeth", sdk.NewInt(10))
 // 	coinB := sdk.NewCoin("usdx", sdk.NewInt(200))
 
 // 	pool, err := types.NewDenominatedPool(sdk.NewCoins(coinA, coinB))
@@ -95,7 +95,7 @@ package keeper_test
 
 // func (suite *querierTestSuite) TestQueryPools() {
 // 	// Set up pools in store
-// 	coinA := sdk.NewCoin("ukava", sdk.NewInt(10))
+// 	coinA := sdk.NewCoin("uaeth", sdk.NewInt(10))
 // 	coinB := sdk.NewCoin("usdx", sdk.NewInt(200))
 // 	coinC := sdk.NewCoin("usdx", sdk.NewInt(200))
 
@@ -138,7 +138,7 @@ package keeper_test
 
 // func (suite *querierTestSuite) TestQueryDeposit() {
 // 	// Set up pool in store
-// 	coinA := sdk.NewCoin("ukava", sdk.NewInt(10))
+// 	coinA := sdk.NewCoin("uaeth", sdk.NewInt(10))
 // 	coinB := sdk.NewCoin("usdx", sdk.NewInt(200))
 // 	pool, err := types.NewDenominatedPool(sdk.NewCoins(coinA, coinB))
 // 	suite.Nil(err)

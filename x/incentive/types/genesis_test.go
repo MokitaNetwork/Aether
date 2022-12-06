@@ -37,7 +37,7 @@ func TestGenesisState_Validate(t *testing.T) {
 							"bnb-a",
 							time.Date(2020, 10, 15, 14, 0, 0, 0, time.UTC),
 							time.Date(2024, 10, 15, 14, 0, 0, 0, time.UTC),
-							sdk.NewCoin("ukava", sdk.NewInt(25000)),
+							sdk.NewCoin("uaeth", sdk.NewInt(25000)),
 						),
 					},
 					DefaultMultiRewardPeriods,
@@ -48,7 +48,7 @@ func TestGenesisState_Validate(t *testing.T) {
 					DefaultMultiRewardPeriods,
 					MultipliersPerDenoms{
 						{
-							Denom: "ukava",
+							Denom: "uaeth",
 							Multipliers: Multipliers{
 								NewMultiplier("small", 1, sdk.MustNewDecFromStr("0.33")),
 								NewMultiplier("large", 12, sdk.MustNewDecFromStr("1.00")),
@@ -71,8 +71,8 @@ func TestGenesisState_Validate(t *testing.T) {
 				Claims: Claims{
 					{
 						Type:   CLAIM_TYPE_USDX_MINTING,
-						Owner:  sdk.AccAddress(crypto.AddressHash([]byte("KavaTestUser1"))),
-						Reward: cs(c("ukava", 100000000)),
+						Owner:  sdk.AccAddress(crypto.AddressHash([]byte("AetherTestUser1"))),
+						Reward: cs(c("uaeth", 100000000)),
 						RewardIndexes: []MultiRewardIndex{
 							{
 								CollateralType: "bnb-a",
@@ -118,7 +118,7 @@ func TestGenesisState_Validate(t *testing.T) {
 					{
 						Type:   CLAIM_TYPE_USDX_MINTING,
 						Owner:  nil, // invalid address
-						Reward: cs(c("ukava", 100000000)),
+						Reward: cs(c("uaeth", 100000000)),
 						RewardIndexes: []MultiRewardIndex{
 							{
 								CollateralType: "bnb-a",

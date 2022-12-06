@@ -9,14 +9,14 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	distrtypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
 
-	earntypes "github.com/kava-labs/kava/x/earn/types"
-	"github.com/kava-labs/kava/x/incentive/keeper/adapters"
-	"github.com/kava-labs/kava/x/incentive/keeper/store"
-	"github.com/kava-labs/kava/x/incentive/types"
+	earntypes "github.com/mokitanetwork/aether/x/earn/types"
+	"github.com/mokitanetwork/aether/x/incentive/keeper/adapters"
+	"github.com/mokitanetwork/aether/x/incentive/keeper/store"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 )
 
 // EarnAccumulator is an accumulator for Earn claim types. This includes
-// claiming staking rewards and reward distribution for liquid kava.
+// claiming staking rewards and reward distribution for liquid aeth.
 type EarnAccumulator struct {
 	store        store.IncentiveStore
 	liquidKeeper types.LiquidKeeper
@@ -57,72 +57,72 @@ func (a EarnAccumulator) AccumulateRewards(
 		))
 	}
 
-	if rewardPeriod.CollateralType == "bkava" {
-		return a.accumulateEarnBkavaRewards(ctx, rewardPeriod)
+	if rewardPeriod.CollateralType == "baeth" {
+		return a.accumulateEarnBaethRewards(ctx, rewardPeriod)
 	}
 
-	// Non bkava vaults use the basic accumulator.
+	// Non baeth vaults use the basic accumulator.
 	return NewBasicAccumulator(a.store, a.adapters).AccumulateRewards(ctx, claimType, rewardPeriod)
 }
 
-// accumulateEarnBkavaRewards does the same as AccumulateEarnRewards but for
-// *all* bkava vaults.
-func (k EarnAccumulator) accumulateEarnBkavaRewards(ctx sdk.Context, rewardPeriod types.MultiRewardPeriod) error {
-	// All bkava vault denoms
-	bkavaVaultsDenoms := make(map[string]bool)
+// accumulateEarnBaethRewards does the same as AccumulateEarnRewards but for
+// *all* baeth vaults.
+func (k EarnAccumulator) accumulateEarnBaethRewards(ctx sdk.Context, rewardPeriod types.MultiRewardPeriod) error {
+	// All baeth vault denoms
+	baethVaultsDenoms := make(map[string]bool)
 
-	// bkava vault denoms from earn records (non-empty vaults)
+	// baeth vault denoms from earn records (non-empty vaults)
 	k.earnKeeper.IterateVaultRecords(ctx, func(record earntypes.VaultRecord) (stop bool) {
 		if k.liquidKeeper.IsDerivativeDenom(ctx, record.TotalShares.Denom) {
-			bkavaVaultsDenoms[record.TotalShares.Denom] = true
+			baethVaultsDenoms[record.TotalShares.Denom] = true
 		}
 
 		return false
 	})
 
-	// bkava vault denoms from past incentive indexes, may include vaults
+	// baeth vault denoms from past incentive indexes, may include vaults
 	// that were fully withdrawn.
 	k.store.IterateRewardIndexesByClaimType(
 		ctx,
 		types.CLAIM_TYPE_EARN,
 		func(reward types.TypedRewardIndexes) (stop bool) {
 			if k.liquidKeeper.IsDerivativeDenom(ctx, reward.CollateralType) {
-				bkavaVaultsDenoms[reward.CollateralType] = true
+				baethVaultsDenoms[reward.CollateralType] = true
 			}
 
 			return false
 		})
 
-	totalBkavaValue, err := k.liquidKeeper.GetTotalDerivativeValue(ctx)
+	totalBaethValue, err := k.liquidKeeper.GetTotalDerivativeValue(ctx)
 	if err != nil {
 		return err
 	}
 
 	i := 0
-	sortedBkavaVaultsDenoms := make([]string, len(bkavaVaultsDenoms))
-	for vaultDenom := range bkavaVaultsDenoms {
-		sortedBkavaVaultsDenoms[i] = vaultDenom
+	sortedBaethVaultsDenoms := make([]string, len(baethVaultsDenoms))
+	for vaultDenom := range baethVaultsDenoms {
+		sortedBaethVaultsDenoms[i] = vaultDenom
 		i++
 	}
 
 	// Sort the vault denoms to ensure deterministic iteration order.
-	sort.Strings(sortedBkavaVaultsDenoms)
+	sort.Strings(sortedBaethVaultsDenoms)
 
-	// Accumulate rewards for each bkava vault.
-	for _, bkavaDenom := range sortedBkavaVaultsDenoms {
-		derivativeValue, err := k.liquidKeeper.GetDerivativeValue(ctx, bkavaDenom)
+	// Accumulate rewards for each baeth vault.
+	for _, baethDenom := range sortedBaethVaultsDenoms {
+		derivativeValue, err := k.liquidKeeper.GetDerivativeValue(ctx, baethDenom)
 		if err != nil {
 			return err
 		}
 
-		k.accumulateBkavaEarnRewards(
+		k.accumulateBaethEarnRewards(
 			ctx,
-			bkavaDenom,
+			baethDenom,
 			rewardPeriod.Start,
 			rewardPeriod.End,
 			GetProportionalRewardsPerSecond(
 				rewardPeriod,
-				totalBkavaValue.Amount,
+				totalBaethValue.Amount,
 				derivativeValue.Amount,
 			),
 		)
@@ -133,25 +133,25 @@ func (k EarnAccumulator) accumulateEarnBkavaRewards(ctx sdk.Context, rewardPerio
 
 func GetProportionalRewardsPerSecond(
 	rewardPeriod types.MultiRewardPeriod,
-	totalBkavaSupply sdk.Int,
-	singleBkavaSupply sdk.Int,
+	totalBaethSupply sdk.Int,
+	singleBaethSupply sdk.Int,
 ) sdk.DecCoins {
-	// Rate per bkava-xxx = rewardsPerSecond * % of bkava-xxx
-	//                    = rewardsPerSecond * (bkava-xxx / total bkava)
-	//                    = (rewardsPerSecond * bkava-xxx) / total bkava
+	// Rate per baeth-xxx = rewardsPerSecond * % of baeth-xxx
+	//                    = rewardsPerSecond * (baeth-xxx / total baeth)
+	//                    = (rewardsPerSecond * baeth-xxx) / total baeth
 
 	newRate := sdk.NewDecCoins()
 
 	// Prevent division by zero, if there are no total shares then there are no
 	// rewards.
-	if totalBkavaSupply.IsZero() {
+	if totalBaethSupply.IsZero() {
 		return newRate
 	}
 
 	for _, rewardCoin := range rewardPeriod.RewardsPerSecond {
 		scaledAmount := rewardCoin.Amount.ToDec().
-			Mul(singleBkavaSupply.ToDec()).
-			Quo(totalBkavaSupply.ToDec())
+			Mul(singleBaethSupply.ToDec()).
+			Quo(totalBaethSupply.ToDec())
 
 		newRate = newRate.Add(sdk.NewDecCoinFromDec(rewardCoin.Denom, scaledAmount))
 	}
@@ -159,7 +159,7 @@ func GetProportionalRewardsPerSecond(
 	return newRate
 }
 
-func (k EarnAccumulator) accumulateBkavaEarnRewards(
+func (k EarnAccumulator) accumulateBaethEarnRewards(
 	ctx sdk.Context,
 	collateralType string,
 	periodStart time.Time,

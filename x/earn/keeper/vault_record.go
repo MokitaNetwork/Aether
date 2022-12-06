@@ -3,7 +3,7 @@ package keeper
 import (
 	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/kava-labs/kava/x/earn/types"
+	"github.com/mokitanetwork/aether/x/earn/types"
 )
 
 // ----------------------------------------------------------------------------

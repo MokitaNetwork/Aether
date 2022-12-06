@@ -7,7 +7,7 @@ import (
 
 	tmtime "github.com/tendermint/tendermint/types/time"
 
-	"github.com/kava-labs/kava/x/bep3/types"
+	"github.com/mokitanetwork/aether/x/bep3/types"
 )
 
 func i(in int64) sdk.Int                    { return sdk.NewInt(in) }
@@ -30,8 +30,8 @@ func atomicSwap(index int) types.AtomicSwap {
 	randomNumber, _ := types.GenerateSecureRandomNumber()
 	randomNumberHash := types.CalculateRandomHash(randomNumber[:], timestamp)
 
-	swap := types.NewAtomicSwap(cs(c("bnb", 50000)), randomNumberHash, expireOffset, timestamp, kavaAddrs[0],
-		kavaAddrs[1], binanceAddrs[0].String(), binanceAddrs[1].String(), 1, types.SWAP_STATUS_OPEN, true, types.SWAP_DIRECTION_INCOMING)
+	swap := types.NewAtomicSwap(cs(c("bnb", 50000)), randomNumberHash, expireOffset, timestamp, aethAddrs[0],
+		aethAddrs[1], binanceAddrs[0].String(), binanceAddrs[1].String(), 1, types.SWAP_STATUS_OPEN, true, types.SWAP_DIRECTION_INCOMING)
 
 	return swap
 }

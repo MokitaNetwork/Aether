@@ -12,7 +12,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/version"
 
-	"github.com/kava-labs/kava/x/hard/types"
+	"github.com/mokitanetwork/aether/x/hard/types"
 )
 
 // GetTxCmd returns the transaction commands for this module
@@ -102,7 +102,7 @@ func getCmdBorrow() *cobra.Command {
 		Long:  strings.TrimSpace(`borrows tokens from the hard protocol`),
 		Args:  cobra.ExactArgs(1),
 		Example: fmt.Sprintf(
-			`%s tx %s borrow 1000000000ukava --from <key>`, version.AppName, types.ModuleName,
+			`%s tx %s borrow 1000000000uaeth --from <key>`, version.AppName, types.ModuleName,
 		),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			clientCtx, err := client.GetClientTxContext(cmd)
@@ -131,9 +131,9 @@ func getCmdRepay() *cobra.Command {
 		Long:  strings.TrimSpace(`repay tokens to the hard protocol with optional --owner param to repay another account's loan`),
 		Args:  cobra.ExactArgs(1),
 		Example: fmt.Sprintf(`
-%[1]s tx %[2]s repay 1000000000ukava --from <key>
-%[1]s tx %[2]s repay 1000000000ukava,25000000000bnb --from <key>
-%[1]s tx %[2]s repay 1000000000ukava,25000000000bnb --owner <owner-address> --from <key>`, version.AppName, types.ModuleName),
+%[1]s tx %[2]s repay 1000000000uaeth --from <key>
+%[1]s tx %[2]s repay 1000000000uaeth,25000000000bnb --from <key>
+%[1]s tx %[2]s repay 1000000000uaeth,25000000000bnb --owner <owner-address> --from <key>`, version.AppName, types.ModuleName),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {
@@ -182,7 +182,7 @@ func getCmdLiquidate() *cobra.Command {
 		Long:  strings.TrimSpace(`liquidate a borrower that's over their loan-to-value ratio`),
 		Args:  cobra.ExactArgs(1),
 		Example: fmt.Sprintf(
-			`%s tx %s liquidate kava1hgcfsuwc889wtdmt8pjy7qffua9dd2tralu64j --from <key>`, version.AppName, types.ModuleName,
+			`%s tx %s liquidate aeth1hgcfsuwc889wtdmt8pjy7qffua9dd2tralu64j --from <key>`, version.AppName, types.ModuleName,
 		),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			clientCtx, err := client.GetClientTxContext(cmd)

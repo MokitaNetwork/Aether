@@ -4,7 +4,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
 	"github.com/cosmos/cosmos-sdk/store/prefix"
-	"github.com/kava-labs/kava/x/incentive/types"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 )
 
 // GetClaim returns the claim in the store corresponding the the owner and

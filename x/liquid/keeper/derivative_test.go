@@ -9,8 +9,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/staking"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	"github.com/kava-labs/kava/app"
-	"github.com/kava-labs/kava/x/liquid/types"
+	"github.com/mokitanetwork/aether/app"
+	"github.com/mokitanetwork/aether/x/liquid/types"
 )
 
 func (suite *KeeperTestSuite) TestBurnDerivative() {
@@ -43,7 +43,7 @@ func (suite *KeeperTestSuite) TestBurnDerivative() {
 			name:             "error when denom cannot be parsed",
 			balance:          c(liquidDenom, 1e9),
 			moduleDelegation: i(1e9),
-			burnAmount:       c(fmt.Sprintf("ckava-%s", valAddr), 1e6),
+			burnAmount:       c(fmt.Sprintf("caeth-%s", valAddr), 1e6),
 			expectedErr:      types.ErrInvalidDenom,
 		},
 		{
@@ -55,7 +55,7 @@ func (suite *KeeperTestSuite) TestBurnDerivative() {
 		},
 		{
 			name:             "error when user doesn't have enough funds",
-			balance:          c("ukava", 10),
+			balance:          c("uaeth", 10),
 			moduleDelegation: i(1e9),
 			burnAmount:       c(liquidDenom, 1e9),
 			expectedErr:      sdkerrors.ErrInsufficientFunds,
@@ -297,7 +297,7 @@ func (suite *KeeperTestSuite) TestMintDerivative() {
 				return
 			}
 
-			derivative := sdk.NewCoins(sdk.NewCoin(fmt.Sprintf("bkava-%s", valAddr), tc.expectedDerivatives))
+			derivative := sdk.NewCoins(sdk.NewCoin(fmt.Sprintf("baeth-%s", valAddr), tc.expectedDerivatives))
 			suite.AccountBalanceEqual(delegator, derivative)
 
 			suite.DelegationSharesEqual(valAddr, delegator, tc.expectedSharesRemaining)
@@ -350,22 +350,22 @@ func (suite *KeeperTestSuite) TestIsDerivativeDenom() {
 		},
 		{
 			name:        "invalid - invalid val addr",
-			denom:       "bkava-asdfasdf",
+			denom:       "baeth-asdfasdf",
 			wantIsDenom: false,
 		},
 		{
-			name:        "invalid - ukava",
-			denom:       "ukava",
+			name:        "invalid - uaeth",
+			denom:       "uaeth",
 			wantIsDenom: false,
 		},
 		{
-			name:        "invalid - plain bkava",
-			denom:       "bkava",
+			name:        "invalid - plain baeth",
+			denom:       "baeth",
 			wantIsDenom: false,
 		},
 		{
-			name:        "invalid - bkava prefix",
-			denom:       "bkava-",
+			name:        "invalid - baeth prefix",
+			denom:       "baeth-",
 			wantIsDenom: false,
 		},
 	}
@@ -413,7 +413,7 @@ func (suite *KeeperTestSuite) TestGetStakedTokensForDerivatives() {
 	testCases := []struct {
 		name           string
 		derivatives    sdk.Coins
-		wantKavaAmount sdk.Int
+		wantAetherAmount sdk.Int
 		err            error
 	}{
 		{
@@ -421,7 +421,7 @@ func (suite *KeeperTestSuite) TestGetStakedTokensForDerivatives() {
 			derivatives: sdk.NewCoins(
 				sdk.NewCoin(suite.Keeper.GetLiquidStakingTokenDenom(valAddr1), vestedBalance),
 			),
-			wantKavaAmount: vestedBalance,
+			wantAetherAmount: vestedBalance,
 		},
 		{
 			name: "valid - slashed validator",
@@ -429,7 +429,7 @@ func (suite *KeeperTestSuite) TestGetStakedTokensForDerivatives() {
 				sdk.NewCoin(suite.Keeper.GetLiquidStakingTokenDenom(valAddr3), vestedBalance),
 			),
 			// vestedBalance * 95%
-			wantKavaAmount: vestedBalance.Mul(sdk.NewInt(95)).Quo(sdk.NewInt(100)),
+			wantAetherAmount: vestedBalance.Mul(sdk.NewInt(95)).Quo(sdk.NewInt(100)),
 		},
 		{
 			name: "valid - sum",
@@ -438,7 +438,7 @@ func (suite *KeeperTestSuite) TestGetStakedTokensForDerivatives() {
 				sdk.NewCoin(suite.Keeper.GetLiquidStakingTokenDenom(valAddr1), vestedBalance),
 			),
 			// vestedBalance + (vestedBalance * 95%)
-			wantKavaAmount: vestedBalance.Mul(sdk.NewInt(95)).Quo(sdk.NewInt(100)).Add(vestedBalance),
+			wantAetherAmount: vestedBalance.Mul(sdk.NewInt(95)).Quo(sdk.NewInt(100)).Add(vestedBalance),
 		},
 		{
 			name: "invalid - undelegated validator address denom",
@@ -450,21 +450,21 @@ func (suite *KeeperTestSuite) TestGetStakedTokensForDerivatives() {
 		{
 			name: "invalid - denom",
 			derivatives: sdk.NewCoins(
-				sdk.NewCoin("kava", vestedBalance),
+				sdk.NewCoin("aeth", vestedBalance),
 			),
-			err: fmt.Errorf("invalid derivative denom: cannot parse denom kava"),
+			err: fmt.Errorf("invalid derivative denom: cannot parse denom aeth"),
 		},
 	}
 
 	for _, tc := range testCases {
 		suite.Run(tc.name, func() {
-			kavaAmount, err := suite.Keeper.GetStakedTokensForDerivatives(suite.Ctx, tc.derivatives)
+			aethAmount, err := suite.Keeper.GetStakedTokensForDerivatives(suite.Ctx, tc.derivatives)
 
 			if tc.err != nil {
 				suite.Require().Error(err)
 			} else {
 				suite.Require().NoError(err)
-				suite.Require().Equal(suite.NewBondCoin(tc.wantKavaAmount), kavaAmount)
+				suite.Require().Equal(suite.NewBondCoin(tc.wantAetherAmount), aethAmount)
 			}
 		})
 	}
@@ -545,6 +545,6 @@ func (suite *KeeperTestSuite) TestDerivativeFromTokens() {
 
 	derivatives, err := suite.Keeper.DerivativeFromTokens(suite.Ctx, valAddr, suite.NewBondCoin(initialBalance))
 	suite.NoError(err)
-	expected := sdk.NewCoin(fmt.Sprintf("bkava-%s", valAddr), initialBalance)
+	expected := sdk.NewCoin(fmt.Sprintf("baeth-%s", valAddr), initialBalance)
 	suite.Equal(expected, derivatives)
 }

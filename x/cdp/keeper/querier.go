@@ -12,7 +12,7 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 
-	"github.com/kava-labs/kava/x/cdp/types"
+	"github.com/mokitanetwork/aether/x/cdp/types"
 )
 
 // NewQuerier returns a new querier function

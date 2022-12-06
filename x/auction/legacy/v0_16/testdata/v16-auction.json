@@ -9,7 +9,7 @@
   },
   "auctions": [
     {
-      "@type": "/kava.auction.v1beta1.CollateralAuction",
+      "@type": "/aeth.auction.v1beta1.CollateralAuction",
       "base_auction": {
         "id": "3795",
         "initiator": "hard",
@@ -23,12 +23,12 @@
       "corresponding_debt": { "denom": "debt", "amount": "0" },
       "max_bid": { "denom": "bnb", "amount": "1" },
       "lot_returns": {
-        "addresses": ["kava1eevfnzkf2mt6feyttyzh6ektclauq7zlayefwf"],
+        "addresses": ["aeth1eevfnzkf2mt6feyttyzh6ektclauq7zlayefwf"],
         "weights": ["100"]
       }
     },
     {
-      "@type": "/kava.auction.v1beta1.SurplusAuction",
+      "@type": "/aeth.auction.v1beta1.SurplusAuction",
       "base_auction": {
         "id": "3796",
         "initiator": "hard",
@@ -41,7 +41,7 @@
       }
     },
     {
-      "@type": "/kava.auction.v1beta1.DebtAuction",
+      "@type": "/aeth.auction.v1beta1.DebtAuction",
       "base_auction": {
         "id": "3895",
         "initiator": "hard",

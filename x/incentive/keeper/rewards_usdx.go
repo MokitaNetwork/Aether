@@ -5,8 +5,8 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	cdptypes "github.com/kava-labs/kava/x/cdp/types"
-	"github.com/kava-labs/kava/x/incentive/types"
+	cdptypes "github.com/mokitanetwork/aether/x/cdp/types"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 )
 
 // AccumulateUSDXMintingRewards calculates new rewards to distribute this block and updates the global indexes to reflect this.

@@ -11,7 +11,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/cosmos/cosmos-sdk/x/simulation"
 
-	"github.com/kava-labs/kava/x/committee/types"
+	"github.com/mokitanetwork/aether/x/committee/types"
 )
 
 const (

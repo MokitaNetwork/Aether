@@ -1,4 +1,4 @@
 all:
-	docker build --tag kava/kavanode kavanode
+	docker build --tag aeth/aethnode aethnode
 
 .PHONY: all

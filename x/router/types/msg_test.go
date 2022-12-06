@@ -9,22 +9,22 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/kava-labs/kava/x/router/types"
+	"github.com/mokitanetwork/aether/x/router/types"
 )
 
 func TestMsgMintDeposit_Signing(t *testing.T) {
-	address := mustAccAddressFromBech32("kava1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d")
-	validatorAddress := mustValAddressFromBech32("kavavaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42")
+	address := mustAccAddressFromBech32("aeth1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d")
+	validatorAddress := mustValAddressFromBech32("aethvaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42")
 
 	msg := types.NewMsgMintDeposit(
 		address,
 		validatorAddress,
-		sdk.NewCoin("ukava", sdk.NewInt(1e9)),
+		sdk.NewCoin("uaeth", sdk.NewInt(1e9)),
 	)
 
 	// checking for the "type" field ensures the msg is registered on the amino codec
 	signBytes := []byte(
-		`{"type":"router/MsgMintDeposit","value":{"amount":{"amount":"1000000000","denom":"ukava"},"depositor":"kava1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d","validator":"kavavaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42"}}`,
+		`{"type":"router/MsgMintDeposit","value":{"amount":{"amount":"1000000000","denom":"uaeth"},"depositor":"aeth1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d","validator":"aethvaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42"}}`,
 	)
 
 	assert.Equal(t, []sdk.AccAddress{address}, msg.GetSigners())
@@ -32,18 +32,18 @@ func TestMsgMintDeposit_Signing(t *testing.T) {
 }
 
 func TestMsgDelegateMintDeposit_Signing(t *testing.T) {
-	address := mustAccAddressFromBech32("kava1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d")
-	validatorAddress := mustValAddressFromBech32("kavavaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42")
+	address := mustAccAddressFromBech32("aeth1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d")
+	validatorAddress := mustValAddressFromBech32("aethvaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42")
 
 	msg := types.NewMsgDelegateMintDeposit(
 		address,
 		validatorAddress,
-		sdk.NewCoin("ukava", sdk.NewInt(1e9)),
+		sdk.NewCoin("uaeth", sdk.NewInt(1e9)),
 	)
 
 	// checking for the "type" field ensures the msg is registered on the amino codec
 	signBytes := []byte(
-		`{"type":"router/MsgDelegateMintDeposit","value":{"amount":{"amount":"1000000000","denom":"ukava"},"depositor":"kava1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d","validator":"kavavaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42"}}`,
+		`{"type":"router/MsgDelegateMintDeposit","value":{"amount":{"amount":"1000000000","denom":"uaeth"},"depositor":"aeth1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d","validator":"aethvaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42"}}`,
 	)
 
 	assert.Equal(t, []sdk.AccAddress{address}, msg.GetSigners())
@@ -51,18 +51,18 @@ func TestMsgDelegateMintDeposit_Signing(t *testing.T) {
 }
 
 func TestMsgWithdrawBurn_Signing(t *testing.T) {
-	address := mustAccAddressFromBech32("kava1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d")
-	validatorAddress := mustValAddressFromBech32("kavavaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42")
+	address := mustAccAddressFromBech32("aeth1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d")
+	validatorAddress := mustValAddressFromBech32("aethvaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42")
 
 	msg := types.NewMsgWithdrawBurn(
 		address,
 		validatorAddress,
-		sdk.NewCoin("ukava", sdk.NewInt(1e9)),
+		sdk.NewCoin("uaeth", sdk.NewInt(1e9)),
 	)
 
 	// checking for the "type" field ensures the msg is registered on the amino codec
 	signBytes := []byte(
-		`{"type":"router/MsgWithdrawBurn","value":{"amount":{"amount":"1000000000","denom":"ukava"},"from":"kava1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d","validator":"kavavaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42"}}`,
+		`{"type":"router/MsgWithdrawBurn","value":{"amount":{"amount":"1000000000","denom":"uaeth"},"from":"aeth1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d","validator":"aethvaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42"}}`,
 	)
 
 	assert.Equal(t, []sdk.AccAddress{address}, msg.GetSigners())
@@ -70,18 +70,18 @@ func TestMsgWithdrawBurn_Signing(t *testing.T) {
 }
 
 func TestMsgWithdrawBurnUndelegate_Signing(t *testing.T) {
-	address := mustAccAddressFromBech32("kava1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d")
-	validatorAddress := mustValAddressFromBech32("kavavaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42")
+	address := mustAccAddressFromBech32("aeth1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d")
+	validatorAddress := mustValAddressFromBech32("aethvaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42")
 
 	msg := types.NewMsgWithdrawBurnUndelegate(
 		address,
 		validatorAddress,
-		sdk.NewCoin("ukava", sdk.NewInt(1e9)),
+		sdk.NewCoin("uaeth", sdk.NewInt(1e9)),
 	)
 
 	// checking for the "type" field ensures the msg is registered on the amino codec
 	signBytes := []byte(
-		`{"type":"router/MsgWithdrawBurnUndelegate","value":{"amount":{"amount":"1000000000","denom":"ukava"},"from":"kava1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d","validator":"kavavaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42"}}`,
+		`{"type":"router/MsgWithdrawBurnUndelegate","value":{"amount":{"amount":"1000000000","denom":"uaeth"},"from":"aeth1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d","validator":"aethvaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42"}}`,
 	)
 
 	assert.Equal(t, []sdk.AccAddress{address}, msg.GetSigners())
@@ -89,9 +89,9 @@ func TestMsgWithdrawBurnUndelegate_Signing(t *testing.T) {
 }
 
 func TestMsg_Validate(t *testing.T) {
-	validAddress := "kava1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d"
-	validValidatorAddress := "kavavaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42"
-	validCoin := sdk.NewInt64Coin("ukava", 1e9)
+	validAddress := "aeth1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d"
+	validValidatorAddress := "aethvaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42"
+	validCoin := sdk.NewInt64Coin("uaeth", 1e9)
 
 	type msgArgs struct {
 		depositor string
@@ -152,7 +152,7 @@ func TestMsg_Validate(t *testing.T) {
 			msgArgs: msgArgs{
 				depositor: validAddress,
 				validator: validValidatorAddress,
-				amount:    sdk.NewCoin("ukava", sdk.ZeroInt()),
+				amount:    sdk.NewCoin("uaeth", sdk.ZeroInt()),
 			},
 			expectedErr: sdkerrors.ErrInvalidCoins,
 		},
@@ -161,7 +161,7 @@ func TestMsg_Validate(t *testing.T) {
 			msgArgs: msgArgs{
 				depositor: validAddress,
 				validator: validValidatorAddress,
-				amount:    sdk.Coin{Denom: "ukava", Amount: sdk.NewInt(-1)},
+				amount:    sdk.Coin{Denom: "uaeth", Amount: sdk.NewInt(-1)},
 			},
 			expectedErr: sdkerrors.ErrInvalidCoins,
 		},

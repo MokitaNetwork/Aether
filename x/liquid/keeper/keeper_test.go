@@ -18,8 +18,8 @@ import (
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 	tmtime "github.com/tendermint/tendermint/types/time"
 
-	"github.com/kava-labs/kava/app"
-	"github.com/kava-labs/kava/x/liquid/keeper"
+	"github.com/mokitanetwork/aether/app"
+	"github.com/mokitanetwork/aether/x/liquid/keeper"
 )
 
 // Test suite used for all keeper tests

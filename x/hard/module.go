@@ -16,10 +16,10 @@ import (
 
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/kava-labs/kava/x/hard/client/cli"
-	"github.com/kava-labs/kava/x/hard/client/rest"
-	"github.com/kava-labs/kava/x/hard/keeper"
-	"github.com/kava-labs/kava/x/hard/types"
+	"github.com/mokitanetwork/aether/x/hard/client/cli"
+	"github.com/mokitanetwork/aether/x/hard/client/rest"
+	"github.com/mokitanetwork/aether/x/hard/keeper"
+	"github.com/mokitanetwork/aether/x/hard/types"
 )
 
 var (

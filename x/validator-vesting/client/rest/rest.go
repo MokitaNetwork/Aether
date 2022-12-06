@@ -7,7 +7,7 @@ import (
 	clientrest "github.com/cosmos/cosmos-sdk/client/rest"
 )
 
-// RegisterRoutes registers kavadist-related REST handlers to a router
+// RegisterRoutes registers aethdist-related REST handlers to a router
 func RegisterRoutes(cliCtx client.Context, rtr *mux.Router) {
 	r := clientrest.WithHTTPDeprecationHeaders(rtr)
 	registerQueryRoutes(cliCtx, r)

@@ -1,12 +1,12 @@
 [Unit]
-Description=Kava daemon
+Description=Aether daemon
 After=network-online.target
 
 [Service]
 
-# Run as kava:kava
-User=kava
-ExecStart=/home/kava/go/bin/kvd start
+# Run as aeth:aeth
+User=aeth
+ExecStart=/home/aeth/go/bin/kvd start
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=4096

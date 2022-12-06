@@ -10,7 +10,7 @@ import (
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	proposaltypes "github.com/cosmos/cosmos-sdk/x/params/types/proposal"
 	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
-	kavadisttypes "github.com/kava-labs/kava/x/kavadist/types"
+	aethdisttypes "github.com/mokitanetwork/aether/x/aethdist/types"
 )
 
 var (
@@ -43,25 +43,25 @@ func init() {
 func RegisterLegacyAminoCodec(cdc *codec.LegacyAmino) {
 	// Proposals
 	cdc.RegisterInterface((*PubProposal)(nil), nil)
-	cdc.RegisterConcrete(CommitteeChangeProposal{}, "kava/CommitteeChangeProposal", nil)
-	cdc.RegisterConcrete(CommitteeDeleteProposal{}, "kava/CommitteeDeleteProposal", nil)
+	cdc.RegisterConcrete(CommitteeChangeProposal{}, "aeth/CommitteeChangeProposal", nil)
+	cdc.RegisterConcrete(CommitteeDeleteProposal{}, "aeth/CommitteeDeleteProposal", nil)
 
 	// Committees
 	cdc.RegisterInterface((*Committee)(nil), nil)
-	cdc.RegisterConcrete(BaseCommittee{}, "kava/BaseCommittee", nil)
-	cdc.RegisterConcrete(MemberCommittee{}, "kava/MemberCommittee", nil)
-	cdc.RegisterConcrete(TokenCommittee{}, "kava/TokenCommittee", nil)
+	cdc.RegisterConcrete(BaseCommittee{}, "aeth/BaseCommittee", nil)
+	cdc.RegisterConcrete(MemberCommittee{}, "aeth/MemberCommittee", nil)
+	cdc.RegisterConcrete(TokenCommittee{}, "aeth/TokenCommittee", nil)
 
 	// Permissions
 	cdc.RegisterInterface((*Permission)(nil), nil)
-	cdc.RegisterConcrete(GodPermission{}, "kava/GodPermission", nil)
-	cdc.RegisterConcrete(TextPermission{}, "kava/TextPermission", nil)
-	cdc.RegisterConcrete(SoftwareUpgradePermission{}, "kava/SoftwareUpgradePermission", nil)
-	cdc.RegisterConcrete(ParamsChangePermission{}, "kava/ParamsChangePermission", nil)
+	cdc.RegisterConcrete(GodPermission{}, "aeth/GodPermission", nil)
+	cdc.RegisterConcrete(TextPermission{}, "aeth/TextPermission", nil)
+	cdc.RegisterConcrete(SoftwareUpgradePermission{}, "aeth/SoftwareUpgradePermission", nil)
+	cdc.RegisterConcrete(ParamsChangePermission{}, "aeth/ParamsChangePermission", nil)
 
 	// Msgs
-	cdc.RegisterConcrete(&MsgSubmitProposal{}, "kava/MsgSubmitProposal", nil)
-	cdc.RegisterConcrete(&MsgVote{}, "kava/MsgVote", nil)
+	cdc.RegisterConcrete(&MsgSubmitProposal{}, "aeth/MsgSubmitProposal", nil)
+	cdc.RegisterConcrete(&MsgVote{}, "aeth/MsgVote", nil)
 }
 
 // RegisterProposalTypeCodec allows external modules to register their own pubproposal types on the
@@ -79,7 +79,7 @@ func RegisterInterfaces(registry types.InterfaceRegistry) {
 	msgservice.RegisterMsgServiceDesc(registry, &_Msg_serviceDesc)
 
 	registry.RegisterInterface(
-		"kava.committee.v1beta1.Committee",
+		"aeth.committee.v1beta1.Committee",
 		(*Committee)(nil),
 		&BaseCommittee{},
 		&TokenCommittee{},
@@ -87,7 +87,7 @@ func RegisterInterfaces(registry types.InterfaceRegistry) {
 	)
 
 	registry.RegisterInterface(
-		"kava.committee.v1beta1.Permission",
+		"aeth.committee.v1beta1.Permission",
 		(*Permission)(nil),
 		&GodPermission{},
 		&TextPermission{},
@@ -98,12 +98,12 @@ func RegisterInterfaces(registry types.InterfaceRegistry) {
 	// Need to register PubProposal here since we use this as alias for the x/gov Content interface for all the proposal implementations used in this module.
 	// Note that all proposals supported by x/committee needed to be registered here, including the proposals from x/gov.
 	registry.RegisterInterface(
-		"kava.committee.v1beta1.PubProposal",
+		"aeth.committee.v1beta1.PubProposal",
 		(*PubProposal)(nil),
 		&Proposal{},
 		&distrtypes.CommunityPoolSpendProposal{},
 		&govtypes.TextProposal{},
-		&kavadisttypes.CommunityPoolMultiSpendProposal{},
+		&aethdisttypes.CommunityPoolMultiSpendProposal{},
 		&proposaltypes.ParameterChangeProposal{},
 		&upgradetypes.SoftwareUpgradeProposal{},
 		&upgradetypes.CancelSoftwareUpgradeProposal{},

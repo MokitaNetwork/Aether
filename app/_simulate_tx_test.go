@@ -8,7 +8,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/kava-labs/kava/app"
+	"github.com/mokitanetwork/aether/app"
 
 	"github.com/cosmos/cosmos-sdk/client/context"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -51,9 +51,9 @@ func (suite *SimulateRequestTestSuite) TearDownTest() {
 }
 
 func (suite *SimulateRequestTestSuite) TestSimulateRequest() {
-	fromAddr, err := sdk.AccAddressFromBech32("kava1esagqd83rhqdtpy5sxhklaxgn58k2m3s3mnpea")
+	fromAddr, err := sdk.AccAddressFromBech32("aeth1esagqd83rhqdtpy5sxhklaxgn58k2m3s3mnpea")
 	suite.Require().NoError(err)
-	toAddr, err := sdk.AccAddressFromBech32("kava1mq9qxlhze029lm0frzw2xr6hem8c3k9ts54w0w")
+	toAddr, err := sdk.AccAddressFromBech32("aeth1mq9qxlhze029lm0frzw2xr6hem8c3k9ts54w0w")
 	suite.Require().NoError(err)
 
 	simRequest := app.SimulateRequest{
@@ -61,11 +61,11 @@ func (suite *SimulateRequestTestSuite) TestSimulateRequest() {
 			bank.MsgSend{
 				FromAddress: fromAddr,
 				ToAddress:   toAddr,
-				Amount:      sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(1e6))),
+				Amount:      sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(1e6))),
 			},
 		},
 		Fee: auth.StdFee{
-			Amount: sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(5e4))),
+			Amount: sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(5e4))),
 			Gas:    1e6,
 		},
 		Memo: "test memo",

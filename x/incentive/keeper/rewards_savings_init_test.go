@@ -7,8 +7,8 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/kava-labs/kava/x/incentive/types"
-	savingstypes "github.com/kava-labs/kava/x/savings/types"
+	"github.com/mokitanetwork/aether/x/incentive/types"
+	savingstypes "github.com/mokitanetwork/aether/x/savings/types"
 )
 
 // InitializeSavingsRewardTests runs unit tests for the keeper.InitializeSavingsReward method

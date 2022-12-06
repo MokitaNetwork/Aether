@@ -12,7 +12,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/rest"
 
-	"github.com/kava-labs/kava/x/incentive/types"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 )
 
 func registerTxRoutes(cliCtx client.Context, r *mux.Router) {

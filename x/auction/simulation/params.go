@@ -6,7 +6,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/x/simulation"
 
-	"github.com/kava-labs/kava/x/auction/types"
+	"github.com/mokitanetwork/aether/x/auction/types"
 )
 
 // ParamChanges defines the parameters that can be modified by param change proposals

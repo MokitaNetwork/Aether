@@ -5,8 +5,8 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/kava-labs/kava/x/earn/testutil"
-	"github.com/kava-labs/kava/x/earn/types"
+	"github.com/mokitanetwork/aether/x/earn/testutil"
+	"github.com/mokitanetwork/aether/x/earn/types"
 	"github.com/stretchr/testify/suite"
 )
 
@@ -242,16 +242,16 @@ func (suite *withdrawTestSuite) TestWithdraw_Partial() {
 	)
 }
 
-func (suite *withdrawTestSuite) TestWithdraw_bKava() {
-	vaultDenom := "bkava"
-	coinDenom := testutil.TestBkavaDenoms[0]
+func (suite *withdrawTestSuite) TestWithdraw_bAether() {
+	vaultDenom := "baeth"
+	coinDenom := testutil.TestBaethDenoms[0]
 
 	startBalance := sdk.NewInt64Coin(coinDenom, 1000)
 	depositAmount := sdk.NewInt64Coin(coinDenom, 100)
 
 	acc1 := suite.CreateAccount(sdk.NewCoins(startBalance), 0)
 
-	// vault denom is only "bkava" which has it's own special handler
+	// vault denom is only "baeth" which has it's own special handler
 	suite.CreateVault(
 		vaultDenom,
 		types.StrategyTypes{types.STRATEGY_TYPE_SAVINGS},
@@ -262,12 +262,12 @@ func (suite *withdrawTestSuite) TestWithdraw_bKava() {
 	err := suite.Keeper.Deposit(suite.Ctx, acc1.GetAddress(), depositAmount, types.STRATEGY_TYPE_SAVINGS)
 	suite.Require().NoError(
 		err,
-		"should be able to deposit bkava derivative denom in bkava vault",
+		"should be able to deposit baeth derivative denom in baeth vault",
 	)
 
 	_, err = suite.Keeper.Withdraw(suite.Ctx, acc1.GetAddress(), depositAmount, types.STRATEGY_TYPE_SAVINGS)
 	suite.Require().NoError(
 		err,
-		"should be able to withdraw bkava derivative denom from bkava vault",
+		"should be able to withdraw baeth derivative denom from baeth vault",
 	)
 }

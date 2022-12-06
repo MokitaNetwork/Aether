@@ -8,9 +8,9 @@ import (
 
 	tmtime "github.com/tendermint/tendermint/types/time"
 
-	"github.com/kava-labs/kava/app"
-	"github.com/kava-labs/kava/x/cdp/types"
-	pricefeedtypes "github.com/kava-labs/kava/x/pricefeed/types"
+	"github.com/mokitanetwork/aether/app"
+	"github.com/mokitanetwork/aether/x/cdp/types"
+	pricefeedtypes "github.com/mokitanetwork/aether/x/pricefeed/types"
 )
 
 // Avoid cluttering test cases with long function names

@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/kava-labs/kava/x/incentive/types"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 )
 
 // SynchronizeClaimTests runs unit tests for the keeper.SynchronizeClaim method
@@ -354,7 +354,7 @@ func (suite *SynchronizeClaimTests) TestGetSyncedClaim_ClaimUnchangedWhenNoGloba
 
 func (suite *SynchronizeClaimTests) TestGetSyncedClaim_ClaimUpdatedWhenMissingIndexAndHasNoSourceShares() {
 	collateralType_1 := "btcb:usdx"
-	collateralType_2 := "ukava:usdx"
+	collateralType_2 := "uaeth:usdx"
 	owner := arbitraryAddress()
 	claimType := types.CLAIM_TYPE_SWAP
 
@@ -412,7 +412,7 @@ func (suite *SynchronizeClaimTests) TestGetSyncedClaim_ClaimUpdatedWhenMissingIn
 
 func (suite *SynchronizeClaimTests) TestGetSyncedClaim_ClaimUpdatedWhenMissingIndexButHasSourceShares() {
 	collateralType_1 := "btcb:usdx"
-	collateralType_2 := "ukava:usdx"
+	collateralType_2 := "uaeth:usdx"
 	owner := arbitraryAddress()
 	claimType := types.CLAIM_TYPE_SWAP
 

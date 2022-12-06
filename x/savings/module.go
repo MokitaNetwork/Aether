@@ -17,9 +17,9 @@ import (
 
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/kava-labs/kava/x/savings/client/cli"
-	"github.com/kava-labs/kava/x/savings/keeper"
-	"github.com/kava-labs/kava/x/savings/types"
+	"github.com/mokitanetwork/aether/x/savings/client/cli"
+	"github.com/mokitanetwork/aether/x/savings/keeper"
+	"github.com/mokitanetwork/aether/x/savings/types"
 )
 
 var (

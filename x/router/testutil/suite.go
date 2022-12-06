@@ -18,11 +18,11 @@ import (
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 	tmtime "github.com/tendermint/tendermint/types/time"
 
-	"github.com/kava-labs/kava/app"
-	earnkeeper "github.com/kava-labs/kava/x/earn/keeper"
-	earntypes "github.com/kava-labs/kava/x/earn/types"
-	"github.com/kava-labs/kava/x/router/keeper"
-	savingstypes "github.com/kava-labs/kava/x/savings/types"
+	"github.com/mokitanetwork/aether/app"
+	earnkeeper "github.com/mokitanetwork/aether/x/earn/keeper"
+	earntypes "github.com/mokitanetwork/aether/x/earn/types"
+	"github.com/mokitanetwork/aether/x/router/keeper"
+	savingstypes "github.com/mokitanetwork/aether/x/savings/types"
 )
 
 // Test suite used for all keeper tests

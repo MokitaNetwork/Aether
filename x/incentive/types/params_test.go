@@ -9,7 +9,7 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/kava-labs/kava/x/incentive/types"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 )
 
 type ParamTestSuite struct {
@@ -95,7 +95,7 @@ func (suite *ParamTestSuite) TestParamValidation() {
 						},
 					},
 					{
-						Denom: "ukava",
+						Denom: "uaeth",
 						Multipliers: types.Multipliers{
 							types.NewMultiplier("small", 1, sdk.MustNewDecFromStr("0.2")),
 							types.NewMultiplier("large", 12, sdk.MustNewDecFromStr("1.0")),

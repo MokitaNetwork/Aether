@@ -11,7 +11,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/rest"
 
-	"github.com/kava-labs/kava/x/bep3/types"
+	"github.com/mokitanetwork/aether/x/bep3/types"
 )
 
 func registerTxRoutes(cliCtx client.Context, r *mux.Router) {

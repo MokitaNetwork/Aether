@@ -116,7 +116,7 @@ func TestGenesisState_UnmarshalAnys(t *testing.T) {
 			BaseAuction: BaseAuction{
 				ID:              2,
 				Initiator:       "mod account",
-				Lot:             sdk.NewInt64Coin("ukava", 1e9),
+				Lot:             sdk.NewInt64Coin("uaeth", 1e9),
 				Bidder:          sdk.AccAddress("test bidder"),
 				Bid:             sdk.NewInt64Coin("usdx", 5),
 				HasReceivedBids: true,
@@ -131,7 +131,7 @@ func TestGenesisState_UnmarshalAnys(t *testing.T) {
 				Initiator:       "seller mod account",
 				Lot:             sdk.NewInt64Coin("usdx", 1e9),
 				Bidder:          sdk.AccAddress("test bidder"),
-				Bid:             sdk.NewInt64Coin("ukava", 5),
+				Bid:             sdk.NewInt64Coin("uaeth", 5),
 				HasReceivedBids: true,
 				EndTime:         arbitraryTime,
 				MaxEndTime:      arbitraryTime.Add(time.Hour),

@@ -1,19 +1,19 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Kava - Legacy REST and gRPC Gateway docs",
+    "title": "Aether - Legacy REST and gRPC Gateway docs",
     "description": "A REST interface for state queries",
     "version": "1.0.0"
   },
   "externalDocs": {
     "description": "GitHub",
-    "url": "https://github.com/Kava-Labs/kava"
+    "url": "https://github.com/mokitanetwork/aether"
   },
-  "host": "api.data.kava.io",
+  "host": "api.data.aeth.io",
   "schemes": ["https"],
   "apis": [
     {
-      "url": "./out/swagger/kava/auction/v1beta1/query.swagger.json",
+      "url": "./out/swagger/aeth/auction/v1beta1/query.swagger.json",
       "tags": {
         "rename": {
           "Query": "Auction"
@@ -30,7 +30,7 @@
       }
     },
     {
-      "url": "./out/swagger/kava/bep3/v1beta1/query.swagger.json",
+      "url": "./out/swagger/aeth/bep3/v1beta1/query.swagger.json",
       "tags": {
         "rename": {
           "Query": "BEP3"
@@ -47,7 +47,7 @@
       }
     },
     {
-      "url": "./out/swagger/kava/cdp/v1beta1/query.swagger.json",
+      "url": "./out/swagger/aeth/cdp/v1beta1/query.swagger.json",
       "tags": {
         "rename": {
           "Query": "CDP"
@@ -64,7 +64,7 @@
       }
     },
     {
-      "url": "./out/swagger/kava/committee/v1beta1/query.swagger.json",
+      "url": "./out/swagger/aeth/committee/v1beta1/query.swagger.json",
       "tags": {
         "rename": {
           "Query": "Committee"
@@ -81,7 +81,7 @@
       }
     },
     {
-      "url": "./out/swagger/kava/earn/v1beta1/query.swagger.json",
+      "url": "./out/swagger/aeth/earn/v1beta1/query.swagger.json",
       "tags": {
         "rename": {
           "Query": "Earn"
@@ -98,7 +98,7 @@
       }
     },
     {
-      "url": "./out/swagger/kava/hard/v1beta1/query.swagger.json",
+      "url": "./out/swagger/aeth/hard/v1beta1/query.swagger.json",
       "tags": {
         "rename": {
           "Query": "Hard"
@@ -115,7 +115,7 @@
       }
     },
     {
-      "url": "./out/swagger/kava/issuance/v1beta1/query.swagger.json",
+      "url": "./out/swagger/aeth/issuance/v1beta1/query.swagger.json",
       "tags": {
         "rename": {
           "Query": "Issuance"
@@ -132,10 +132,10 @@
       }
     },
     {
-      "url": "./out/swagger/kava/kavadist/v1beta1/query.swagger.json",
+      "url": "./out/swagger/aeth/aethdist/v1beta1/query.swagger.json",
       "tags": {
         "rename": {
-          "Query": "Kavadist"
+          "Query": "Aetherdist"
         }
       },
       "operationIds": {
@@ -143,13 +143,13 @@
           {
             "type": "regex",
             "from": "(.*)",
-            "to": "Kavadist$1"
+            "to": "Aetherdist$1"
           }
         ]
       }
     },
     {
-      "url": "./out/swagger/kava/liquid/v1beta1/query.swagger.json",
+      "url": "./out/swagger/aeth/liquid/v1beta1/query.swagger.json",
       "tags": {
         "rename": {
           "Query": "Liquid"
@@ -166,7 +166,7 @@
       }
     },
     {
-      "url": "./out/swagger/kava/pricefeed/v1beta1/query.swagger.json",
+      "url": "./out/swagger/aeth/pricefeed/v1beta1/query.swagger.json",
       "tags": {
         "rename": {
           "Query": "Pricefeed"
@@ -183,7 +183,7 @@
       }
     },
     {
-      "url": "./out/swagger/kava/swap/v1beta1/query.swagger.json",
+      "url": "./out/swagger/aeth/swap/v1beta1/query.swagger.json",
       "tags": {
         "rename": {
           "Query": "Swap"
@@ -200,7 +200,7 @@
       }
     },
     {
-      "url": "./out/swagger/kava/savings/v1beta1/query.swagger.json",
+      "url": "./out/swagger/aeth/savings/v1beta1/query.swagger.json",
       "tags": {
         "rename": {
           "Query": "Savings"

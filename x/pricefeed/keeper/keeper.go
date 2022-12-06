@@ -12,7 +12,7 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 
-	"github.com/kava-labs/kava/x/pricefeed/types"
+	"github.com/mokitanetwork/aether/x/pricefeed/types"
 )
 
 // Keeper struct for pricefeed module

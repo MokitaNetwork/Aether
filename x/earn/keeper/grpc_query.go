@@ -10,7 +10,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/kava-labs/kava/x/earn/types"
+	"github.com/mokitanetwork/aether/x/earn/types"
 )
 
 type queryServer struct {
@@ -62,13 +62,13 @@ func (s queryServer) Vaults(
 
 	var vaultRecordsErr error
 
-	// Iterate over vault records instead of AllowedVaults to get all bkava-*
+	// Iterate over vault records instead of AllowedVaults to get all baeth-*
 	// vaults
 	s.keeper.IterateVaultRecords(sdkCtx, func(record types.VaultRecord) bool {
-		// Check if bkava, use allowed vault
+		// Check if baeth, use allowed vault
 		allowedVaultDenom := record.TotalShares.Denom
-		if strings.HasPrefix(record.TotalShares.Denom, bkavaPrefix) {
-			allowedVaultDenom = bkavaDenom
+		if strings.HasPrefix(record.TotalShares.Denom, baethPrefix) {
+			allowedVaultDenom = baethDenom
 		}
 
 		allowedVault, found := allowedVaultsMap[allowedVaultDenom]
@@ -155,12 +155,12 @@ func (s queryServer) Vault(
 		return nil, status.Errorf(codes.NotFound, "vault not found with specified denom")
 	}
 
-	// Handle bkava separately to get total of **all** bkava vaults
-	if req.Denom == bkavaDenom {
-		return s.getAggregateBkavaVault(sdkCtx, allowedVault)
+	// Handle baeth separately to get total of **all** baeth vaults
+	if req.Denom == baethDenom {
+		return s.getAggregateBaethVault(sdkCtx, allowedVault)
 	}
 
-	// Must be req.Denom and not allowedVault.Denom to get full "bkava" denom
+	// Must be req.Denom and not allowedVault.Denom to get full "baeth" denom
 	vaultRecord, found := s.keeper.GetVaultRecord(sdkCtx, req.Denom)
 	if !found {
 		// No supply yet, no error just set it to zero
@@ -173,7 +173,7 @@ func (s queryServer) Vault(
 	}
 
 	vault := types.VaultResponse{
-		// VaultRecord denom instead of AllowedVault.Denom for full bkava denom
+		// VaultRecord denom instead of AllowedVault.Denom for full baeth denom
 		Denom:             vaultRecord.TotalShares.Denom,
 		Strategies:        allowedVault.Strategies,
 		IsPrivateVault:    allowedVault.IsPrivateVault,
@@ -187,18 +187,18 @@ func (s queryServer) Vault(
 	}, nil
 }
 
-// getAggregateBkavaVault returns a VaultResponse of the total of all bkava
+// getAggregateBaethVault returns a VaultResponse of the total of all baeth
 // vaults.
-func (s queryServer) getAggregateBkavaVault(
+func (s queryServer) getAggregateBaethVault(
 	ctx sdk.Context,
 	allowedVault types.AllowedVault,
 ) (*types.QueryVaultResponse, error) {
-	allBkava := sdk.NewCoins()
+	allBaeth := sdk.NewCoins()
 
 	var iterErr error
 	s.keeper.IterateVaultRecords(ctx, func(record types.VaultRecord) (stop bool) {
-		// Skip non bkava vaults
-		if !strings.HasPrefix(record.TotalShares.Denom, bkavaPrefix) {
+		// Skip non baeth vaults
+		if !strings.HasPrefix(record.TotalShares.Denom, baethPrefix) {
 			return false
 		}
 
@@ -208,7 +208,7 @@ func (s queryServer) getAggregateBkavaVault(
 			return false
 		}
 
-		allBkava = allBkava.Add(vaultValue)
+		allBaeth = allBaeth.Add(vaultValue)
 
 		return false
 	})
@@ -217,14 +217,14 @@ func (s queryServer) getAggregateBkavaVault(
 		return nil, iterErr
 	}
 
-	vaultValue, err := s.keeper.liquidKeeper.GetStakedTokensForDerivatives(ctx, allBkava)
+	vaultValue, err := s.keeper.liquidKeeper.GetStakedTokensForDerivatives(ctx, allBaeth)
 	if err != nil {
 		return nil, err
 	}
 
 	return &types.QueryVaultResponse{
 		Vault: types.VaultResponse{
-			Denom:             bkavaDenom,
+			Denom:             baethDenom,
 			Strategies:        allowedVault.Strategies,
 			IsPrivateVault:    allowedVault.IsPrivateVault,
 			AllowedDepositors: addressSliceToStringSlice(allowedVault.AllowedDepositors),
@@ -250,9 +250,9 @@ func (s queryServer) Deposits(
 
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
 
-	// bkava aggregate total
-	if req.Denom == bkavaDenom {
-		return s.getOneAccountBkavaVaultDeposit(sdkCtx, req)
+	// baeth aggregate total
+	if req.Denom == baethDenom {
+		return s.getOneAccountBaethVaultDeposit(sdkCtx, req)
 	}
 
 	// specific vault
@@ -273,7 +273,7 @@ func (s queryServer) TotalSupply(
 	totalSupply := sdk.NewCoins()
 	liquidStakedDerivatives := sdk.NewCoins()
 
-	// allowed vaults param contains info on allowed strategies, but bkava is aggregated
+	// allowed vaults param contains info on allowed strategies, but baeth is aggregated
 	allowedVaults := s.keeper.GetAllowedVaults(sdkCtx)
 	allowedVaultByDenom := make(map[string]types.AllowedVault)
 	for _, av := range allowedVaults {
@@ -284,11 +284,11 @@ func (s queryServer) TotalSupply(
 	// iterate actual records to properly enumerate all denoms
 	s.keeper.IterateVaultRecords(sdkCtx, func(vault types.VaultRecord) (stop bool) {
 		isLiquidStakingDenom := false
-		// find allowed vault to get parameters. handle translating bkava denoms to allowed vault denom
+		// find allowed vault to get parameters. handle translating baeth denoms to allowed vault denom
 		allowedVaultDenom := vault.TotalShares.Denom
-		if strings.HasPrefix(vault.TotalShares.Denom, bkavaPrefix) {
+		if strings.HasPrefix(vault.TotalShares.Denom, baethPrefix) {
 			isLiquidStakingDenom = true
-			allowedVaultDenom = bkavaDenom
+			allowedVaultDenom = baethDenom
 		}
 		allowedVault, found := allowedVaultByDenom[allowedVaultDenom]
 		if !found {
@@ -318,7 +318,7 @@ func (s queryServer) TotalSupply(
 		return false
 	})
 
-	// determine underlying value of bkava denoms
+	// determine underlying value of baeth denoms
 	if len(liquidStakedDerivatives) > 0 {
 		underlyingValue, err := s.keeper.liquidKeeper.GetStakedTokensForDerivatives(
 			sdkCtx,
@@ -327,7 +327,7 @@ func (s queryServer) TotalSupply(
 		if err != nil {
 			return nil, err
 		}
-		totalSupply = totalSupply.Add(sdk.NewCoin(bkavaDenom, underlyingValue.Amount))
+		totalSupply = totalSupply.Add(sdk.NewCoin(baethDenom, underlyingValue.Amount))
 	}
 
 	return &types.QueryTotalSupplyResponse{
@@ -369,7 +369,7 @@ func (s queryServer) getOneAccountOneVaultDeposit(
 	}
 
 	if req.ValueInStakedTokens {
-		// Get underlying ukava amount if denom is a derivative
+		// Get underlying uaeth amount if denom is a derivative
 		if !s.keeper.liquidKeeper.IsDerivativeDenom(ctx, req.Denom) {
 			return nil, status.Errorf(
 				codes.InvalidArgument,
@@ -378,13 +378,13 @@ func (s queryServer) getOneAccountOneVaultDeposit(
 			)
 		}
 
-		ukavaValue, err := s.keeper.liquidKeeper.GetStakedTokensForDerivatives(ctx, sdk.NewCoins(value))
+		uaethValue, err := s.keeper.liquidKeeper.GetStakedTokensForDerivatives(ctx, sdk.NewCoins(value))
 		if err != nil {
 			// This should "never" happen if IsDerivativeDenom is true
-			panic("Error getting ukava value for " + req.Denom)
+			panic("Error getting uaeth value for " + req.Denom)
 		}
 
-		value = ukavaValue
+		value = uaethValue
 	}
 
 	return &types.QueryDepositsResponse{
@@ -402,9 +402,9 @@ func (s queryServer) getOneAccountOneVaultDeposit(
 	}, nil
 }
 
-// getOneAccountBkavaVaultDeposit returns deposits for the aggregated bkava vault
+// getOneAccountBaethVaultDeposit returns deposits for the aggregated baeth vault
 // and a specific account
-func (s queryServer) getOneAccountBkavaVaultDeposit(
+func (s queryServer) getOneAccountBaethVaultDeposit(
 	ctx sdk.Context,
 	req *types.QueryDepositsRequest,
 ) (*types.QueryDepositsResponse, error) {
@@ -428,22 +428,22 @@ func (s queryServer) getOneAccountBkavaVaultDeposit(
 		}, nil
 	}
 
-	// Get all account deposit values to add up bkava
+	// Get all account deposit values to add up baeth
 	totalAccountValue, err := getAccountTotalValue(ctx, s.keeper, depositor, shareRecord.Shares)
 	if err != nil {
 		return nil, err
 	}
 
-	// Remove non-bkava coins, GetStakedTokensForDerivatives expects only bkava
-	totalBkavaValue := sdk.NewCoins()
+	// Remove non-baeth coins, GetStakedTokensForDerivatives expects only baeth
+	totalBaethValue := sdk.NewCoins()
 	for _, coin := range totalAccountValue {
 		if s.keeper.liquidKeeper.IsDerivativeDenom(ctx, coin.Denom) {
-			totalBkavaValue = totalBkavaValue.Add(coin)
+			totalBaethValue = totalBaethValue.Add(coin)
 		}
 	}
 
-	// Use account value with only the aggregate bkava converted to underlying staked tokens
-	stakedValue, err := s.keeper.liquidKeeper.GetStakedTokensForDerivatives(ctx, totalBkavaValue)
+	// Use account value with only the aggregate baeth converted to underlying staked tokens
+	stakedValue, err := s.keeper.liquidKeeper.GetStakedTokensForDerivatives(ctx, totalBaethValue)
 	if err != nil {
 		return nil, err
 	}
@@ -489,29 +489,29 @@ func (s queryServer) getOneAccountAllDeposits(
 	}
 
 	if req.ValueInStakedTokens {
-		// Plain slice to not sum ukava amounts together. This is not a valid
+		// Plain slice to not sum uaeth amounts together. This is not a valid
 		// sdk.Coin due to multiple coins of the same denom, but we need them to
 		// be separate in the response to not be an aggregate amount.
 		var valueInStakedTokens []sdk.Coin
 
 		for _, coin := range value {
-			// Skip non-bkava coins
+			// Skip non-baeth coins
 			if !s.keeper.liquidKeeper.IsDerivativeDenom(ctx, coin.Denom) {
 				continue
 			}
 
 			// Derivative coins are converted to underlying staked tokens
-			ukavaValue, err := s.keeper.liquidKeeper.GetStakedTokensForDerivatives(ctx, sdk.NewCoins(coin))
+			uaethValue, err := s.keeper.liquidKeeper.GetStakedTokensForDerivatives(ctx, sdk.NewCoins(coin))
 			if err != nil {
 				// This should "never" happen if IsDerivativeDenom is true
-				panic("Error getting ukava value for " + coin.Denom)
+				panic("Error getting uaeth value for " + coin.Denom)
 			}
-			valueInStakedTokens = append(valueInStakedTokens, ukavaValue)
+			valueInStakedTokens = append(valueInStakedTokens, uaethValue)
 		}
 
 		var filteredShares types.VaultShares
 		for _, share := range accountShare.Shares {
-			// Remove non-bkava coins from shares as they are used to
+			// Remove non-baeth coins from shares as they are used to
 			// determine which value is mapped to which denom
 			// These should be in the same order as valueInStakedTokens
 			if !s.keeper.liquidKeeper.IsDerivativeDenom(ctx, share.Denom) {

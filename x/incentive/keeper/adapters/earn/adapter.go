@@ -3,8 +3,8 @@ package earn
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	earntypes "github.com/kava-labs/kava/x/earn/types"
-	"github.com/kava-labs/kava/x/incentive/types"
+	earntypes "github.com/mokitanetwork/aether/x/earn/types"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 )
 
 var _ types.SourceAdapter = SourceAdapter{}

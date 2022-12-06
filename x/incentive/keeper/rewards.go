@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/kava-labs/kava/x/incentive/keeper/accumulators"
-	"github.com/kava-labs/kava/x/incentive/types"
+	"github.com/mokitanetwork/aether/x/incentive/keeper/accumulators"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 )
 
 // AccumulateRewards calculates new rewards to distribute this block and updates the global indexes to reflect this.

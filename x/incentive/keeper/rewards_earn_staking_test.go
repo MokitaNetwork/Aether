@@ -3,13 +3,13 @@ package keeper_test
 import (
 	"time"
 
-	earntypes "github.com/kava-labs/kava/x/earn/types"
-	"github.com/kava-labs/kava/x/incentive/types"
+	earntypes "github.com/mokitanetwork/aether/x/earn/types"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 )
 
 func (suite *AccumulateEarnRewardsTests) TestStakingRewardsDistributed() {
-	vaultDenom1 := "bkava-meow"
-	vaultDenom2 := "bkava-woof"
+	vaultDenom1 := "baeth-meow"
+	vaultDenom2 := "baeth-woof"
 
 	previousAccrualTime := time.Date(1998, 1, 1, 0, 0, 0, 0, time.UTC)
 	suite.ctx = suite.ctx.WithBlockTime(previousAccrualTime)
@@ -24,7 +24,7 @@ func (suite *AccumulateEarnRewardsTests) TestStakingRewardsDistributed() {
 	vault1Shares := d("700000")
 	vault2Shares := d("100000")
 
-	// More bkava minted than deposited into earn
+	// More baeth minted than deposited into earn
 	// Rewards are higher per-share as a result
 	earnKeeper := newFakeEarnKeeper().
 		addVault(vaultDenom1, earntypes.NewVaultShare(vaultDenom1, vault1Shares)).
@@ -40,7 +40,7 @@ func (suite *AccumulateEarnRewardsTests) TestStakingRewardsDistributed() {
 			CollateralType: vaultDenom1,
 			RewardIndexes: types.RewardIndexes{
 				{
-					CollateralType: "ukava",
+					CollateralType: "uaeth",
 					RewardFactor:   initialVault1RewardFactor,
 				},
 			},
@@ -49,7 +49,7 @@ func (suite *AccumulateEarnRewardsTests) TestStakingRewardsDistributed() {
 			CollateralType: vaultDenom2,
 			RewardIndexes: types.RewardIndexes{
 				{
-					CollateralType: "ukava",
+					CollateralType: "uaeth",
 					RewardFactor:   initialVault2RewardFactor,
 				},
 			},
@@ -66,7 +66,7 @@ func (suite *AccumulateEarnRewardsTests) TestStakingRewardsDistributed() {
 
 	rewardPeriod := types.NewMultiRewardPeriod(
 		true,
-		"bkava",         // reward period is set for "bkava" to apply to all vaults
+		"baeth",         // reward period is set for "baeth" to apply to all vaults
 		time.Unix(0, 0), // ensure the test is within start and end times
 		distantFuture,
 		cs(), // no incentives, so only the staking rewards are distributed
@@ -81,7 +81,7 @@ func (suite *AccumulateEarnRewardsTests) TestStakingRewardsDistributed() {
 	// Only contains staking rewards
 	suite.storedIndexesEqual(vaultDenom1, types.RewardIndexes{
 		{
-			CollateralType: "ukava",
+			CollateralType: "uaeth",
 			RewardFactor: initialVault1RewardFactor.
 				Add(vaultDenom1Supply.ToDec().
 					QuoInt64(10).
@@ -92,7 +92,7 @@ func (suite *AccumulateEarnRewardsTests) TestStakingRewardsDistributed() {
 
 	suite.storedIndexesEqual(vaultDenom2, types.RewardIndexes{
 		{
-			CollateralType: "ukava",
+			CollateralType: "uaeth",
 			RewardFactor: initialVault2RewardFactor.
 				Add(vaultDenom2Supply.ToDec().
 					QuoInt64(10).

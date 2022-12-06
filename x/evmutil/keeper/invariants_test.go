@@ -8,9 +8,9 @@ import (
 	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/kava-labs/kava/x/evmutil/keeper"
-	"github.com/kava-labs/kava/x/evmutil/testutil"
-	"github.com/kava-labs/kava/x/evmutil/types"
+	"github.com/mokitanetwork/aether/x/evmutil/keeper"
+	"github.com/mokitanetwork/aether/x/evmutil/testutil"
+	"github.com/mokitanetwork/aether/x/evmutil/types"
 )
 
 type invariantTestSuite struct {
@@ -39,10 +39,10 @@ func (suite *invariantTestSuite) SetupValidState() {
 			keeper.ConversionMultiplier.QuoRaw(2),
 		))
 	}
-	suite.FundModuleAccountWithKava(
+	suite.FundModuleAccountWithAether(
 		types.ModuleName,
 		sdk.NewCoins(
-			sdk.NewCoin("ukava", sdk.NewInt(2)), // ( sum of all minor balances ) / conversion multiplier
+			sdk.NewCoin("uaeth", sdk.NewInt(2)), // ( sum of all minor balances ) / conversion multiplier
 		),
 	)
 
@@ -127,7 +127,7 @@ func (suite *invariantTestSuite) TestSmallBalances() {
 
 	// increase minor balance at least above conversion multiplier
 	suite.Keeper.AddBalance(suite.Ctx, suite.Addrs[0], keeper.ConversionMultiplier)
-	// add same number of ukava to avoid breaking other invariants
+	// add same number of uaeth to avoid breaking other invariants
 	amt := sdk.NewCoins(sdk.NewInt64Coin(keeper.CosmosDenom, 1))
 	suite.Require().NoError(
 		suite.BankKeeper.MintCoins(suite.Ctx, minttypes.ModuleName, amt),

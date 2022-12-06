@@ -5,9 +5,9 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/kava-labs/kava/app"
-	"github.com/kava-labs/kava/x/swap/keeper"
-	"github.com/kava-labs/kava/x/swap/types"
+	"github.com/mokitanetwork/aether/app"
+	"github.com/mokitanetwork/aether/x/swap/keeper"
+	"github.com/mokitanetwork/aether/x/swap/types"
 
 	"github.com/cosmos/cosmos-sdk/simapp"
 	sdk "github.com/cosmos/cosmos-sdk/types"

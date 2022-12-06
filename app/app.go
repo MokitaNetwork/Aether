@@ -91,62 +91,62 @@ import (
 	feemarketkeeper "github.com/tharsis/ethermint/x/feemarket/keeper"
 	feemarkettypes "github.com/tharsis/ethermint/x/feemarket/types"
 
-	"github.com/kava-labs/kava/app/ante"
-	kavaparams "github.com/kava-labs/kava/app/params"
-	"github.com/kava-labs/kava/x/auction"
-	auctionkeeper "github.com/kava-labs/kava/x/auction/keeper"
-	auctiontypes "github.com/kava-labs/kava/x/auction/types"
-	"github.com/kava-labs/kava/x/bep3"
-	bep3keeper "github.com/kava-labs/kava/x/bep3/keeper"
-	bep3types "github.com/kava-labs/kava/x/bep3/types"
-	"github.com/kava-labs/kava/x/cdp"
-	cdpkeeper "github.com/kava-labs/kava/x/cdp/keeper"
-	cdptypes "github.com/kava-labs/kava/x/cdp/types"
-	"github.com/kava-labs/kava/x/committee"
-	committeeclient "github.com/kava-labs/kava/x/committee/client"
-	committeekeeper "github.com/kava-labs/kava/x/committee/keeper"
-	committeetypes "github.com/kava-labs/kava/x/committee/types"
-	earn "github.com/kava-labs/kava/x/earn"
-	earnclient "github.com/kava-labs/kava/x/earn/client"
-	earnkeeper "github.com/kava-labs/kava/x/earn/keeper"
-	earntypes "github.com/kava-labs/kava/x/earn/types"
-	evmutil "github.com/kava-labs/kava/x/evmutil"
-	evmutilkeeper "github.com/kava-labs/kava/x/evmutil/keeper"
-	evmutiltypes "github.com/kava-labs/kava/x/evmutil/types"
-	"github.com/kava-labs/kava/x/hard"
-	hardkeeper "github.com/kava-labs/kava/x/hard/keeper"
-	hardtypes "github.com/kava-labs/kava/x/hard/types"
-	"github.com/kava-labs/kava/x/incentive"
-	incentivekeeper "github.com/kava-labs/kava/x/incentive/keeper"
-	incentivetypes "github.com/kava-labs/kava/x/incentive/types"
-	issuance "github.com/kava-labs/kava/x/issuance"
-	issuancekeeper "github.com/kava-labs/kava/x/issuance/keeper"
-	issuancetypes "github.com/kava-labs/kava/x/issuance/types"
-	"github.com/kava-labs/kava/x/kavadist"
-	kavadistclient "github.com/kava-labs/kava/x/kavadist/client"
-	kavadistkeeper "github.com/kava-labs/kava/x/kavadist/keeper"
-	kavadisttypes "github.com/kava-labs/kava/x/kavadist/types"
-	"github.com/kava-labs/kava/x/liquid"
-	liquidkeeper "github.com/kava-labs/kava/x/liquid/keeper"
-	liquidtypes "github.com/kava-labs/kava/x/liquid/types"
-	pricefeed "github.com/kava-labs/kava/x/pricefeed"
-	pricefeedkeeper "github.com/kava-labs/kava/x/pricefeed/keeper"
-	pricefeedtypes "github.com/kava-labs/kava/x/pricefeed/types"
-	"github.com/kava-labs/kava/x/router"
-	routerkeeper "github.com/kava-labs/kava/x/router/keeper"
-	routertypes "github.com/kava-labs/kava/x/router/types"
-	savings "github.com/kava-labs/kava/x/savings"
-	savingskeeper "github.com/kava-labs/kava/x/savings/keeper"
-	savingstypes "github.com/kava-labs/kava/x/savings/types"
-	"github.com/kava-labs/kava/x/swap"
-	swapkeeper "github.com/kava-labs/kava/x/swap/keeper"
-	swaptypes "github.com/kava-labs/kava/x/swap/types"
-	validatorvesting "github.com/kava-labs/kava/x/validator-vesting"
-	validatorvestingtypes "github.com/kava-labs/kava/x/validator-vesting/types"
+	"github.com/mokitanetwork/aether/app/ante"
+	aethparams "github.com/mokitanetwork/aether/app/params"
+	"github.com/mokitanetwork/aether/x/auction"
+	auctionkeeper "github.com/mokitanetwork/aether/x/auction/keeper"
+	auctiontypes "github.com/mokitanetwork/aether/x/auction/types"
+	"github.com/mokitanetwork/aether/x/bep3"
+	bep3keeper "github.com/mokitanetwork/aether/x/bep3/keeper"
+	bep3types "github.com/mokitanetwork/aether/x/bep3/types"
+	"github.com/mokitanetwork/aether/x/cdp"
+	cdpkeeper "github.com/mokitanetwork/aether/x/cdp/keeper"
+	cdptypes "github.com/mokitanetwork/aether/x/cdp/types"
+	"github.com/mokitanetwork/aether/x/committee"
+	committeeclient "github.com/mokitanetwork/aether/x/committee/client"
+	committeekeeper "github.com/mokitanetwork/aether/x/committee/keeper"
+	committeetypes "github.com/mokitanetwork/aether/x/committee/types"
+	earn "github.com/mokitanetwork/aether/x/earn"
+	earnclient "github.com/mokitanetwork/aether/x/earn/client"
+	earnkeeper "github.com/mokitanetwork/aether/x/earn/keeper"
+	earntypes "github.com/mokitanetwork/aether/x/earn/types"
+	evmutil "github.com/mokitanetwork/aether/x/evmutil"
+	evmutilkeeper "github.com/mokitanetwork/aether/x/evmutil/keeper"
+	evmutiltypes "github.com/mokitanetwork/aether/x/evmutil/types"
+	"github.com/mokitanetwork/aether/x/hard"
+	hardkeeper "github.com/mokitanetwork/aether/x/hard/keeper"
+	hardtypes "github.com/mokitanetwork/aether/x/hard/types"
+	"github.com/mokitanetwork/aether/x/incentive"
+	incentivekeeper "github.com/mokitanetwork/aether/x/incentive/keeper"
+	incentivetypes "github.com/mokitanetwork/aether/x/incentive/types"
+	issuance "github.com/mokitanetwork/aether/x/issuance"
+	issuancekeeper "github.com/mokitanetwork/aether/x/issuance/keeper"
+	issuancetypes "github.com/mokitanetwork/aether/x/issuance/types"
+	"github.com/mokitanetwork/aether/x/aethdist"
+	aethdistclient "github.com/mokitanetwork/aether/x/aethdist/client"
+	aethdistkeeper "github.com/mokitanetwork/aether/x/aethdist/keeper"
+	aethdisttypes "github.com/mokitanetwork/aether/x/aethdist/types"
+	"github.com/mokitanetwork/aether/x/liquid"
+	liquidkeeper "github.com/mokitanetwork/aether/x/liquid/keeper"
+	liquidtypes "github.com/mokitanetwork/aether/x/liquid/types"
+	pricefeed "github.com/mokitanetwork/aether/x/pricefeed"
+	pricefeedkeeper "github.com/mokitanetwork/aether/x/pricefeed/keeper"
+	pricefeedtypes "github.com/mokitanetwork/aether/x/pricefeed/types"
+	"github.com/mokitanetwork/aether/x/router"
+	routerkeeper "github.com/mokitanetwork/aether/x/router/keeper"
+	routertypes "github.com/mokitanetwork/aether/x/router/types"
+	savings "github.com/mokitanetwork/aether/x/savings"
+	savingskeeper "github.com/mokitanetwork/aether/x/savings/keeper"
+	savingstypes "github.com/mokitanetwork/aether/x/savings/types"
+	"github.com/mokitanetwork/aether/x/swap"
+	swapkeeper "github.com/mokitanetwork/aether/x/swap/keeper"
+	swaptypes "github.com/mokitanetwork/aether/x/swap/types"
+	validatorvesting "github.com/mokitanetwork/aether/x/validator-vesting"
+	validatorvestingtypes "github.com/mokitanetwork/aether/x/validator-vesting/types"
 )
 
 const (
-	appName = "kava"
+	appName = "aeth"
 )
 
 var (
@@ -170,7 +170,7 @@ var (
 			upgradeclient.CancelProposalHandler,
 			ibcclientclient.UpdateClientProposalHandler,
 			ibcclientclient.UpgradeProposalHandler,
-			kavadistclient.ProposalHandler,
+			aethdistclient.ProposalHandler,
 			committeeclient.ProposalHandler,
 			earnclient.DepositProposalHandler,
 			earnclient.WithdrawProposalHandler,
@@ -186,7 +186,7 @@ var (
 		vesting.AppModuleBasic{},
 		evm.AppModuleBasic{},
 		feemarket.AppModuleBasic{},
-		kavadist.AppModuleBasic{},
+		aethdist.AppModuleBasic{},
 		auction.AppModuleBasic{},
 		issuance.AppModuleBasic{},
 		bep3.AppModuleBasic{},
@@ -217,7 +217,7 @@ var (
 		ibctransfertypes.ModuleName:     {authtypes.Minter, authtypes.Burner},
 		evmtypes.ModuleName:             {authtypes.Minter, authtypes.Burner}, // used for secure addition and subtraction of balance using module account
 		evmutiltypes.ModuleName:         {authtypes.Minter, authtypes.Burner},
-		kavadisttypes.KavaDistMacc:      {authtypes.Minter},
+		aethdisttypes.AetherDistMacc:      {authtypes.Minter},
 		auctiontypes.ModuleName:         nil,
 		issuancetypes.ModuleAccountName: {authtypes.Minter, authtypes.Burner},
 		bep3types.ModuleName:            {authtypes.Burner, authtypes.Minter},
@@ -228,7 +228,7 @@ var (
 		savingstypes.ModuleAccountName:  nil,
 		liquidtypes.ModuleAccountName:   {authtypes.Minter, authtypes.Burner},
 		earntypes.ModuleAccountName:     nil,
-		kavadisttypes.FundModuleAccount: nil,
+		aethdisttypes.FundModuleAccount: nil,
 	}
 )
 
@@ -253,7 +253,7 @@ var DefaultOptions = Options{
 	EVMMaxGasWanted: ethermintconfig.DefaultMaxTxGasWanted,
 }
 
-// App is the Kava ABCI application.
+// App is the Aether ABCI application.
 type App struct {
 	*baseapp.BaseApp
 
@@ -286,7 +286,7 @@ type App struct {
 	upgradeKeeper    upgradekeeper.Keeper
 	evidenceKeeper   evidencekeeper.Keeper
 	transferKeeper   ibctransferkeeper.Keeper
-	kavadistKeeper   kavadistkeeper.Keeper
+	aethdistKeeper   aethdistkeeper.Keeper
 	auctionKeeper    auctionkeeper.Keeper
 	issuanceKeeper   issuancekeeper.Keeper
 	bep3Keeper       bep3keeper.Keeper
@@ -321,7 +321,7 @@ func init() {
 		stdlog.Printf("Failed to get home dir %v", err)
 	}
 
-	DefaultNodeHome = filepath.Join(userHomeDir, ".kava")
+	DefaultNodeHome = filepath.Join(userHomeDir, ".aeth")
 }
 
 // NewApp returns a reference to an initialized App.
@@ -330,7 +330,7 @@ func NewApp(
 	db dbm.DB,
 	homePath string,
 	traceStore io.Writer,
-	encodingConfig kavaparams.EncodingConfig,
+	encodingConfig aethparams.EncodingConfig,
 	options Options,
 	baseAppOptions ...func(*baseapp.BaseApp),
 ) *App {
@@ -349,7 +349,7 @@ func NewApp(
 		govtypes.StoreKey, paramstypes.StoreKey, ibchost.StoreKey,
 		upgradetypes.StoreKey, evidencetypes.StoreKey, ibctransfertypes.StoreKey,
 		evmtypes.StoreKey, feemarkettypes.StoreKey, authzkeeper.StoreKey,
-		capabilitytypes.StoreKey, kavadisttypes.StoreKey, auctiontypes.StoreKey,
+		capabilitytypes.StoreKey, aethdisttypes.StoreKey, auctiontypes.StoreKey,
 		issuancetypes.StoreKey, bep3types.StoreKey, pricefeedtypes.StoreKey,
 		swaptypes.StoreKey, cdptypes.StoreKey, hardtypes.StoreKey,
 		committeetypes.StoreKey, incentivetypes.StoreKey, evmutiltypes.StoreKey,
@@ -383,7 +383,7 @@ func NewApp(
 	slashingSubspace := app.paramsKeeper.Subspace(slashingtypes.ModuleName)
 	govSubspace := app.paramsKeeper.Subspace(govtypes.ModuleName).WithKeyTable(govtypes.ParamKeyTable())
 	crisisSubspace := app.paramsKeeper.Subspace(crisistypes.ModuleName)
-	kavadistSubspace := app.paramsKeeper.Subspace(kavadisttypes.ModuleName)
+	aethdistSubspace := app.paramsKeeper.Subspace(aethdisttypes.ModuleName)
 	auctionSubspace := app.paramsKeeper.Subspace(auctiontypes.ModuleName)
 	issuanceSubspace := app.paramsKeeper.Subspace(issuancetypes.ModuleName)
 	bep3Subspace := app.paramsKeeper.Subspace(bep3types.ModuleName)
@@ -511,10 +511,10 @@ func NewApp(
 
 	app.evmutilKeeper.SetEvmKeeper(app.evmKeeper)
 
-	app.kavadistKeeper = kavadistkeeper.NewKeeper(
+	app.aethdistKeeper = aethdistkeeper.NewKeeper(
 		appCodec,
-		keys[kavadisttypes.StoreKey],
-		kavadistSubspace,
+		keys[aethdisttypes.StoreKey],
+		aethdistSubspace,
 		app.bankKeeper,
 		app.accountKeeper,
 		app.distrKeeper,
@@ -681,7 +681,7 @@ func NewApp(
 		AddRoute(upgradetypes.RouterKey, upgrade.NewSoftwareUpgradeProposalHandler(app.upgradeKeeper)).
 		AddRoute(ibcclienttypes.RouterKey, ibcclient.NewClientProposalHandler(app.ibcKeeper.ClientKeeper)).
 		AddRoute(distrtypes.RouterKey, distr.NewCommunityPoolSpendProposalHandler(app.distrKeeper)).
-		AddRoute(kavadisttypes.RouterKey, kavadist.NewCommunityPoolMultiSpendProposalHandler(app.kavadistKeeper)).
+		AddRoute(aethdisttypes.RouterKey, aethdist.NewCommunityPoolMultiSpendProposalHandler(app.aethdistKeeper)).
 		AddRoute(earntypes.RouterKey, earn.NewCommunityPoolProposalHandler(app.earnKeeper)).
 		AddRoute(committeetypes.RouterKey, committee.NewProposalHandler(app.committeeKeeper))
 	app.govKeeper = govkeeper.NewKeeper(
@@ -723,7 +723,7 @@ func NewApp(
 		transferModule,
 		vesting.NewAppModule(app.accountKeeper, app.bankKeeper),
 		authzmodule.NewAppModule(appCodec, app.authzKeeper, app.accountKeeper, app.bankKeeper, app.interfaceRegistry),
-		kavadist.NewAppModule(app.kavadistKeeper, app.accountKeeper),
+		aethdist.NewAppModule(app.aethdistKeeper, app.accountKeeper),
 		auction.NewAppModule(app.auctionKeeper, app.accountKeeper, app.bankKeeper),
 		issuance.NewAppModule(app.issuanceKeeper, app.accountKeeper, app.bankKeeper),
 		bep3.NewAppModule(app.bep3Keeper, app.accountKeeper, app.bankKeeper),
@@ -760,7 +760,7 @@ func NewApp(
 		stakingtypes.ModuleName,
 		feemarkettypes.ModuleName,
 		evmtypes.ModuleName,
-		kavadisttypes.ModuleName,
+		aethdisttypes.ModuleName,
 		// Auction begin blocker will close out expired auctions and pay debt back to cdp.
 		// It should be run before cdp begin blocker which cancels out debt with stable and starts more auctions.
 		auctiontypes.ModuleName,
@@ -813,7 +813,7 @@ func NewApp(
 		committeetypes.ModuleName,
 		upgradetypes.ModuleName,
 		evidencetypes.ModuleName,
-		kavadisttypes.ModuleName,
+		aethdisttypes.ModuleName,
 		swaptypes.ModuleName,
 		vestingtypes.ModuleName,
 		ibchost.ModuleName,
@@ -847,7 +847,7 @@ func NewApp(
 		ibctransfertypes.ModuleName,
 		evmtypes.ModuleName,
 		feemarkettypes.ModuleName,
-		kavadisttypes.ModuleName,
+		aethdisttypes.ModuleName,
 		auctiontypes.ModuleName,
 		issuancetypes.ModuleName,
 		savingstypes.ModuleName,
@@ -965,7 +965,7 @@ func (app *App) InitChainer(ctx sdk.Context, req abci.RequestInitChain) abci.Res
 		panic(err)
 	}
 
-	// Store current module versions in kava-10 to setup future in-place upgrades.
+	// Store current module versions in aeth-10 to setup future in-place upgrades.
 	// During in-place migrations, the old module versions in the store will be referenced to determine which migrations to run.
 	app.upgradeKeeper.SetModuleVersionMap(ctx, app.mm.GetVersionMap())
 
@@ -1030,14 +1030,14 @@ func (app *App) RegisterTendermintService(clientCtx client.Context) {
 // loadBlockedMaccAddrs returns a map indicating the blocked status of each module account address
 func (app *App) loadBlockedMaccAddrs() map[string]bool {
 	modAccAddrs := app.ModuleAccountAddrs()
-	kavadistMaccAddr := app.accountKeeper.GetModuleAddress(kavadisttypes.ModuleName)
+	aethdistMaccAddr := app.accountKeeper.GetModuleAddress(aethdisttypes.ModuleName)
 	earnMaccAddr := app.accountKeeper.GetModuleAddress(earntypes.ModuleName)
 	liquidMaccAddr := app.accountKeeper.GetModuleAddress(liquidtypes.ModuleName)
-	kavadistFundMaccAddr := app.accountKeeper.GetModuleAddress(kavadisttypes.FundModuleAccount)
+	aethdistFundMaccAddr := app.accountKeeper.GetModuleAddress(aethdisttypes.FundModuleAccount)
 
 	for addr := range modAccAddrs {
-		// Set the kavadist and earn module account address as unblocked
-		if addr == kavadistMaccAddr.String() || addr == earnMaccAddr.String() || addr == liquidMaccAddr.String() || addr == kavadistFundMaccAddr.String() {
+		// Set the aethdist and earn module account address as unblocked
+		if addr == aethdistMaccAddr.String() || addr == earnMaccAddr.String() || addr == liquidMaccAddr.String() || addr == aethdistFundMaccAddr.String() {
 			modAccAddrs[addr] = false
 		}
 	}

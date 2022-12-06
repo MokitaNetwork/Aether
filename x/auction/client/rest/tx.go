@@ -10,7 +10,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/rest"
 	"github.com/gorilla/mux"
 
-	"github.com/kava-labs/kava/x/auction/types"
+	"github.com/mokitanetwork/aether/x/auction/types"
 )
 
 func registerTxRoutes(cliCtx client.Context, r *mux.Router) {

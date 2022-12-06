@@ -9,7 +9,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/types/rest"
 
-	"github.com/kava-labs/kava/x/pricefeed/types"
+	"github.com/mokitanetwork/aether/x/pricefeed/types"
 )
 
 // define routes that get registered by the main application

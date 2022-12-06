@@ -15,8 +15,8 @@ import (
 func RegisterLegacyAminoCodec(cdc *codec.LegacyAmino) {
 	cdc.RegisterConcrete(&MsgDeposit{}, "earn/MsgDeposit", nil)
 	cdc.RegisterConcrete(&MsgWithdraw{}, "earn/MsgWithdraw", nil)
-	cdc.RegisterConcrete(&CommunityPoolDepositProposal{}, "kava/CommunityPoolDepositProposal", nil)
-	cdc.RegisterConcrete(&CommunityPoolWithdrawProposal{}, "kava/CommunityPoolWithdrawProposal", nil)
+	cdc.RegisterConcrete(&CommunityPoolDepositProposal{}, "aeth/CommunityPoolDepositProposal", nil)
+	cdc.RegisterConcrete(&CommunityPoolWithdrawProposal{}, "aeth/CommunityPoolWithdrawProposal", nil)
 }
 
 // RegisterInterfaces registers proto messages under their interfaces for unmarshalling,

@@ -6,12 +6,12 @@ import (
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
-	"github.com/kava-labs/kava/app"
-	cdptypes "github.com/kava-labs/kava/x/cdp/types"
-	committeetypes "github.com/kava-labs/kava/x/committee/types"
-	"github.com/kava-labs/kava/x/incentive/testutil"
-	pricefeedtypes "github.com/kava-labs/kava/x/pricefeed/types"
-	swaptypes "github.com/kava-labs/kava/x/swap/types"
+	"github.com/mokitanetwork/aether/app"
+	cdptypes "github.com/mokitanetwork/aether/x/cdp/types"
+	committeetypes "github.com/mokitanetwork/aether/x/committee/types"
+	"github.com/mokitanetwork/aether/x/incentive/testutil"
+	pricefeedtypes "github.com/mokitanetwork/aether/x/pricefeed/types"
+	swaptypes "github.com/mokitanetwork/aether/x/swap/types"
 )
 
 // Avoid cluttering test cases with long function names
@@ -116,7 +116,7 @@ func NewPricefeedGenStateMultiFromTime(cdc codec.JSONCodec, t time.Time) app.Gen
 	pfGenesis := pricefeedtypes.GenesisState{
 		Params: pricefeedtypes.Params{
 			Markets: []pricefeedtypes.Market{
-				{MarketID: "kava:usd", BaseAsset: "kava", QuoteAsset: "usd", Oracles: []sdk.AccAddress{}, Active: true},
+				{MarketID: "aeth:usd", BaseAsset: "aeth", QuoteAsset: "usd", Oracles: []sdk.AccAddress{}, Active: true},
 				{MarketID: "btc:usd", BaseAsset: "btc", QuoteAsset: "usd", Oracles: []sdk.AccAddress{}, Active: true},
 				{MarketID: "xrp:usd", BaseAsset: "xrp", QuoteAsset: "usd", Oracles: []sdk.AccAddress{}, Active: true},
 				{MarketID: "bnb:usd", BaseAsset: "bnb", QuoteAsset: "usd", Oracles: []sdk.AccAddress{}, Active: true},
@@ -126,7 +126,7 @@ func NewPricefeedGenStateMultiFromTime(cdc codec.JSONCodec, t time.Time) app.Gen
 		},
 		PostedPrices: []pricefeedtypes.PostedPrice{
 			{
-				MarketID:      "kava:usd",
+				MarketID:      "aeth:usd",
 				OracleAddress: sdk.AccAddress{},
 				Price:         sdk.MustNewDecFromStr("2.00"),
 				Expiry:        t.Add(expiry),
@@ -167,14 +167,14 @@ func NewPricefeedGenStateMultiFromTime(cdc codec.JSONCodec, t time.Time) app.Gen
 }
 
 func NewHardGenStateMulti(genTime time.Time) testutil.HardGenesisBuilder {
-	kavaMM := testutil.NewStandardMoneyMarket("ukava")
-	kavaMM.SpotMarketID = "kava:usd"
+	aethMM := testutil.NewStandardMoneyMarket("uaeth")
+	aethMM.SpotMarketID = "aeth:usd"
 	btcMM := testutil.NewStandardMoneyMarket("btcb")
 	btcMM.SpotMarketID = "btc:usd"
 
 	builder := testutil.NewHardGenesisBuilder().WithGenesisTime(genTime).
 		WithInitializedMoneyMarket(testutil.NewStandardMoneyMarket("usdx")).
-		WithInitializedMoneyMarket(kavaMM).
+		WithInitializedMoneyMarket(aethMM).
 		WithInitializedMoneyMarket(testutil.NewStandardMoneyMarket("bnb")).
 		WithInitializedMoneyMarket(btcMM).
 		WithInitializedMoneyMarket(testutil.NewStandardMoneyMarket("xrp")).
@@ -184,7 +184,7 @@ func NewHardGenStateMulti(genTime time.Time) testutil.HardGenesisBuilder {
 
 func NewStakingGenesisState(cdc codec.JSONCodec) app.GenesisState {
 	genState := stakingtypes.DefaultGenesisState()
-	genState.Params.BondDenom = "ukava"
+	genState.Params.BondDenom = "uaeth"
 	return app.GenesisState{
 		stakingtypes.ModuleName: cdc.MustMarshalJSON(genState),
 	}
@@ -225,7 +225,7 @@ func NewCommitteeGenesisState(cdc codec.Codec, committeeID uint64, members ...sd
 func NewSwapGenesisState(cdc codec.JSONCodec) app.GenesisState {
 	genesis := swaptypes.NewGenesisState(
 		swaptypes.NewParams(
-			swaptypes.NewAllowedPools(swaptypes.NewAllowedPool("busd", "ukava")),
+			swaptypes.NewAllowedPools(swaptypes.NewAllowedPool("busd", "uaeth")),
 			d("0.0"),
 		),
 		swaptypes.DefaultPoolRecords,

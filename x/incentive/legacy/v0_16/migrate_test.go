@@ -10,9 +10,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/suite"
 
-	app "github.com/kava-labs/kava/app"
-	v015incentive "github.com/kava-labs/kava/x/incentive/legacy/v0_15"
-	v016incentive "github.com/kava-labs/kava/x/incentive/types"
+	app "github.com/mokitanetwork/aether/app"
+	v015incentive "github.com/mokitanetwork/aether/x/incentive/legacy/v0_15"
+	v016incentive "github.com/mokitanetwork/aether/x/incentive/types"
 )
 
 type migrateTestSuite struct {
@@ -151,7 +151,7 @@ func (s *migrateTestSuite) TestMigrate_GenState() {
 				},
 				RewardIndexes: v015incentive.RewardIndexes{
 					{
-						CollateralType: "kava",
+						CollateralType: "aeth",
 						RewardFactor:   sdk.MustNewDecFromStr("0.5"),
 					},
 				},
@@ -400,7 +400,7 @@ func (s *migrateTestSuite) TestMigrate_GenState() {
 				},
 				RewardIndexes: v016incentive.RewardIndexes{
 					{
-						CollateralType: "kava",
+						CollateralType: "aeth",
 						RewardFactor:   sdk.MustNewDecFromStr("0.5"),
 					},
 				},

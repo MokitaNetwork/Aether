@@ -6,11 +6,11 @@ import (
 	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
-	cdptypes "github.com/kava-labs/kava/x/cdp/types"
-	earntypes "github.com/kava-labs/kava/x/earn/types"
-	hardtypes "github.com/kava-labs/kava/x/hard/types"
-	pricefeedtypes "github.com/kava-labs/kava/x/pricefeed/types"
-	savingstypes "github.com/kava-labs/kava/x/savings/types"
+	cdptypes "github.com/mokitanetwork/aether/x/cdp/types"
+	earntypes "github.com/mokitanetwork/aether/x/earn/types"
+	hardtypes "github.com/mokitanetwork/aether/x/hard/types"
+	pricefeedtypes "github.com/mokitanetwork/aether/x/pricefeed/types"
+	savingstypes "github.com/mokitanetwork/aether/x/savings/types"
 )
 
 // ParamSubspace defines the expected Subspace interfacace

@@ -9,22 +9,22 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/kava-labs/kava/x/liquid/types"
+	"github.com/mokitanetwork/aether/x/liquid/types"
 )
 
 func TestMsgMintDerivative_Signing(t *testing.T) {
-	address := mustAccAddressFromBech32("kava1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d")
-	validatorAddress := mustValAddressFromBech32("kavavaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42")
+	address := mustAccAddressFromBech32("aeth1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d")
+	validatorAddress := mustValAddressFromBech32("aethvaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42")
 
 	msg := types.NewMsgMintDerivative(
 		address,
 		validatorAddress,
-		sdk.NewCoin("ukava", sdk.NewInt(1e9)),
+		sdk.NewCoin("uaeth", sdk.NewInt(1e9)),
 	)
 
 	// checking for the "type" field ensures the msg is registered on the amino codec
 	signBytes := []byte(
-		`{"type":"liquid/MsgMintDerivative","value":{"amount":{"amount":"1000000000","denom":"ukava"},"sender":"kava1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d","validator":"kavavaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42"}}`,
+		`{"type":"liquid/MsgMintDerivative","value":{"amount":{"amount":"1000000000","denom":"uaeth"},"sender":"aeth1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d","validator":"aethvaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42"}}`,
 	)
 
 	assert.Equal(t, []sdk.AccAddress{address}, msg.GetSigners())
@@ -32,18 +32,18 @@ func TestMsgMintDerivative_Signing(t *testing.T) {
 }
 
 func TestMsgBurnDerivative_Signing(t *testing.T) {
-	address := mustAccAddressFromBech32("kava1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d")
-	validatorAddress := mustValAddressFromBech32("kavavaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42")
+	address := mustAccAddressFromBech32("aeth1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d")
+	validatorAddress := mustValAddressFromBech32("aethvaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42")
 
 	msg := types.NewMsgBurnDerivative(
 		address,
 		validatorAddress,
-		sdk.NewCoin("bkava-kavavaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42", sdk.NewInt(1e9)),
+		sdk.NewCoin("baeth-aethvaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42", sdk.NewInt(1e9)),
 	)
 
 	// checking for the "type" field ensures the msg is registered on the amino codec
 	signBytes := []byte(
-		`{"type":"liquid/MsgBurnDerivative","value":{"amount":{"amount":"1000000000","denom":"bkava-kavavaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42"},"sender":"kava1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d","validator":"kavavaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42"}}`,
+		`{"type":"liquid/MsgBurnDerivative","value":{"amount":{"amount":"1000000000","denom":"baeth-aethvaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42"},"sender":"aeth1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d","validator":"aethvaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42"}}`,
 	)
 
 	assert.Equal(t, []sdk.AccAddress{address}, msg.GetSigners())
@@ -51,9 +51,9 @@ func TestMsgBurnDerivative_Signing(t *testing.T) {
 }
 
 func TestMsg_Validate(t *testing.T) {
-	validAddress := mustAccAddressFromBech32("kava1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d")
-	validValidatorAddress := mustValAddressFromBech32("kavavaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42")
-	validCoin := sdk.NewInt64Coin("ukava", 1e9)
+	validAddress := mustAccAddressFromBech32("aeth1gepm4nwzz40gtpur93alv9f9wm5ht4l0hzzw9d")
+	validValidatorAddress := mustValAddressFromBech32("aethvaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42")
+	validCoin := sdk.NewInt64Coin("uaeth", 1e9)
 
 	type msgArgs struct {
 		sender    string
@@ -85,7 +85,7 @@ func TestMsg_Validate(t *testing.T) {
 		{
 			name: "invalid short sender",
 			msgArgs: msgArgs{
-				sender:    "kava1uexte6", // encoded zero length address
+				sender:    "aeth1uexte6", // encoded zero length address
 				validator: validValidatorAddress.String(),
 				amount:    validCoin,
 			},
@@ -114,7 +114,7 @@ func TestMsg_Validate(t *testing.T) {
 			msgArgs: msgArgs{
 				sender:    validAddress.String(),
 				validator: validValidatorAddress.String(),
-				amount:    sdk.NewInt64Coin("ukava", 0),
+				amount:    sdk.NewInt64Coin("uaeth", 0),
 			},
 			expectedErr: sdkerrors.ErrInvalidCoins,
 		},

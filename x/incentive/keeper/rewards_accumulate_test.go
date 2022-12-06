@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kava-labs/kava/x/incentive/types"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 	"github.com/stretchr/testify/suite"
 )
 
@@ -56,7 +56,7 @@ func (suite *AccumulateTestSuite) TestStateUpdatedWhenBlockTimeHasIncreased() {
 					RewardFactor:   d("0.02"),
 				},
 				{
-					CollateralType: "ukava",
+					CollateralType: "uaeth",
 					RewardFactor:   d("0.04"),
 				},
 			},
@@ -73,7 +73,7 @@ func (suite *AccumulateTestSuite) TestStateUpdatedWhenBlockTimeHasIncreased() {
 		pool,
 		time.Unix(0, 0), // ensure the test is within start and end times
 		distantFuture,
-		cs(c("swap", 2000), c("ukava", 1000)), // same denoms as in global indexes
+		cs(c("swap", 2000), c("uaeth", 1000)), // same denoms as in global indexes
 	)
 
 	suite.keeper.AccumulateRewards(suite.ctx, claimType, period)
@@ -87,7 +87,7 @@ func (suite *AccumulateTestSuite) TestStateUpdatedWhenBlockTimeHasIncreased() {
 			RewardFactor:   d("7.22"),
 		},
 		{
-			CollateralType: "ukava",
+			CollateralType: "uaeth",
 			RewardFactor:   d("3.64"),
 		},
 	})
@@ -109,7 +109,7 @@ func (suite *AccumulateTestSuite) TestStateUnchangedWhenBlockTimeHasNotIncreased
 					RewardFactor:   d("0.02"),
 				},
 				{
-					CollateralType: "ukava",
+					CollateralType: "uaeth",
 					RewardFactor:   d("0.04"),
 				},
 			},
@@ -126,7 +126,7 @@ func (suite *AccumulateTestSuite) TestStateUnchangedWhenBlockTimeHasNotIncreased
 		pool,
 		time.Unix(0, 0), // ensure the test is within start and end times
 		distantFuture,
-		cs(c("swap", 2000), c("ukava", 1000)), // same denoms as in global indexes
+		cs(c("swap", 2000), c("uaeth", 1000)), // same denoms as in global indexes
 	)
 
 	suite.keeper.AccumulateRewards(suite.ctx, claimType, period)
@@ -155,7 +155,7 @@ func (suite *AccumulateTestSuite) TestNoAccumulationWhenSourceSharesAreZero() {
 					RewardFactor:   d("0.02"),
 				},
 				{
-					CollateralType: "ukava",
+					CollateralType: "uaeth",
 					RewardFactor:   d("0.04"),
 				},
 			},
@@ -173,7 +173,7 @@ func (suite *AccumulateTestSuite) TestNoAccumulationWhenSourceSharesAreZero() {
 		pool,
 		time.Unix(0, 0), // ensure the test is within start and end times
 		distantFuture,
-		cs(c("swap", 2000), c("ukava", 1000)), // same denoms as in global indexes
+		cs(c("swap", 2000), c("uaeth", 1000)), // same denoms as in global indexes
 	)
 
 	suite.keeper.AccumulateRewards(suite.ctx, claimType, period)
@@ -198,7 +198,7 @@ func (suite *AccumulateTestSuite) TestStateAddedWhenStateDoesNotExist() {
 		pool,
 		time.Unix(0, 0), // ensure the test is within start and end times
 		distantFuture,
-		cs(c("swap", 2000), c("ukava", 1000)),
+		cs(c("swap", 2000), c("uaeth", 1000)),
 	)
 
 	firstAccrualTime := time.Date(1998, 1, 1, 0, 0, 0, 0, time.UTC)
@@ -224,7 +224,7 @@ func (suite *AccumulateTestSuite) TestStateAddedWhenStateDoesNotExist() {
 			RewardFactor:   d("0.02"),
 		},
 		{
-			CollateralType: "ukava",
+			CollateralType: "uaeth",
 			RewardFactor:   d("0.01"),
 		},
 	})
@@ -275,7 +275,7 @@ func (suite *AccumulateTestSuite) TestNoAccumulationWhenBeforeStartTime() {
 					RewardFactor:   d("0.02"),
 				},
 				{
-					CollateralType: "ukava",
+					CollateralType: "uaeth",
 					RewardFactor:   d("0.04"),
 				},
 			},
@@ -292,7 +292,7 @@ func (suite *AccumulateTestSuite) TestNoAccumulationWhenBeforeStartTime() {
 		pool,
 		firstAccrualTime.Add(time.Nanosecond), // start time after accrual time
 		distantFuture,
-		cs(c("swap", 2000), c("ukava", 1000)),
+		cs(c("swap", 2000), c("uaeth", 1000)),
 	)
 
 	suite.ctx = suite.ctx.WithBlockTime(firstAccrualTime)
@@ -323,7 +323,7 @@ func (suite *AccumulateTestSuite) TestPanicWhenCurrentTimeLessThanPrevious() {
 		pool,
 		time.Time{}, // start time after accrual time
 		distantFuture,
-		cs(c("swap", 2000), c("ukava", 1000)),
+		cs(c("swap", 2000), c("uaeth", 1000)),
 	)
 
 	suite.ctx = suite.ctx.WithBlockTime(firstAccrualTime)

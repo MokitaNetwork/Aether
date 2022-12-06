@@ -30,26 +30,26 @@ import (
 	evmkeeper "github.com/tharsis/ethermint/x/evm/keeper"
 	feemarketkeeper "github.com/tharsis/ethermint/x/feemarket/keeper"
 
-	auctionkeeper "github.com/kava-labs/kava/x/auction/keeper"
-	bep3keeper "github.com/kava-labs/kava/x/bep3/keeper"
-	cdpkeeper "github.com/kava-labs/kava/x/cdp/keeper"
-	committeekeeper "github.com/kava-labs/kava/x/committee/keeper"
-	earnkeeper "github.com/kava-labs/kava/x/earn/keeper"
-	evmutilkeeper "github.com/kava-labs/kava/x/evmutil/keeper"
-	hardkeeper "github.com/kava-labs/kava/x/hard/keeper"
-	incentivekeeper "github.com/kava-labs/kava/x/incentive/keeper"
-	issuancekeeper "github.com/kava-labs/kava/x/issuance/keeper"
-	kavadistkeeper "github.com/kava-labs/kava/x/kavadist/keeper"
-	liquidkeeper "github.com/kava-labs/kava/x/liquid/keeper"
-	pricefeedkeeper "github.com/kava-labs/kava/x/pricefeed/keeper"
-	routerkeeper "github.com/kava-labs/kava/x/router/keeper"
-	savingskeeper "github.com/kava-labs/kava/x/savings/keeper"
-	swapkeeper "github.com/kava-labs/kava/x/swap/keeper"
+	auctionkeeper "github.com/mokitanetwork/aether/x/auction/keeper"
+	bep3keeper "github.com/mokitanetwork/aether/x/bep3/keeper"
+	cdpkeeper "github.com/mokitanetwork/aether/x/cdp/keeper"
+	committeekeeper "github.com/mokitanetwork/aether/x/committee/keeper"
+	earnkeeper "github.com/mokitanetwork/aether/x/earn/keeper"
+	evmutilkeeper "github.com/mokitanetwork/aether/x/evmutil/keeper"
+	hardkeeper "github.com/mokitanetwork/aether/x/hard/keeper"
+	incentivekeeper "github.com/mokitanetwork/aether/x/incentive/keeper"
+	issuancekeeper "github.com/mokitanetwork/aether/x/issuance/keeper"
+	aethdistkeeper "github.com/mokitanetwork/aether/x/aethdist/keeper"
+	liquidkeeper "github.com/mokitanetwork/aether/x/liquid/keeper"
+	pricefeedkeeper "github.com/mokitanetwork/aether/x/pricefeed/keeper"
+	routerkeeper "github.com/mokitanetwork/aether/x/router/keeper"
+	savingskeeper "github.com/mokitanetwork/aether/x/savings/keeper"
+	swapkeeper "github.com/mokitanetwork/aether/x/swap/keeper"
 )
 
 var (
 	emptyTime            time.Time
-	testChainID                = "kavatest_1-1"
+	testChainID                = "aethtest_1-1"
 	defaultInitialHeight int64 = 1
 )
 
@@ -100,7 +100,7 @@ func (tApp TestApp) GetGovKeeper() govkeeper.Keeper             { return tApp.go
 func (tApp TestApp) GetCrisisKeeper() crisiskeeper.Keeper       { return tApp.crisisKeeper }
 func (tApp TestApp) GetParamsKeeper() paramskeeper.Keeper       { return tApp.paramsKeeper }
 
-func (tApp TestApp) GetKavadistKeeper() kavadistkeeper.Keeper   { return tApp.kavadistKeeper }
+func (tApp TestApp) GetAetherdistKeeper() aethdistkeeper.Keeper   { return tApp.aethdistKeeper }
 func (tApp TestApp) GetAuctionKeeper() auctionkeeper.Keeper     { return tApp.auctionKeeper }
 func (tApp TestApp) GetIssuanceKeeper() issuancekeeper.Keeper   { return tApp.issuanceKeeper }
 func (tApp TestApp) GetBep3Keeper() bep3keeper.Keeper           { return tApp.bep3Keeper }

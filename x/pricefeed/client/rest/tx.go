@@ -13,7 +13,7 @@ import (
 	"github.com/gorilla/mux"
 	tmtime "github.com/tendermint/tendermint/types/time"
 
-	"github.com/kava-labs/kava/x/pricefeed/types"
+	"github.com/mokitanetwork/aether/x/pricefeed/types"
 )
 
 func registerTxRoutes(cliCtx client.Context, r *mux.Router) {

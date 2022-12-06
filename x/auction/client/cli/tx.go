@@ -12,7 +12,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/version"
 
-	"github.com/kava-labs/kava/x/auction/types"
+	"github.com/mokitanetwork/aether/x/auction/types"
 )
 
 // GetTxCmd returns the transaction cli commands for this module

@@ -1,8 +1,8 @@
 package v0_16
 
 import (
-	v015cdp "github.com/kava-labs/kava/x/cdp/legacy/v0_15"
-	v016cdp "github.com/kava-labs/kava/x/cdp/types"
+	v015cdp "github.com/mokitanetwork/aether/x/cdp/legacy/v0_15"
+	v016cdp "github.com/mokitanetwork/aether/x/cdp/types"
 )
 
 func migrateParams(params v015cdp.Params) v016cdp.Params {

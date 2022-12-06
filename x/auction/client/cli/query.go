@@ -13,7 +13,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/version"
 
-	"github.com/kava-labs/kava/x/auction/types"
+	"github.com/mokitanetwork/aether/x/auction/types"
 )
 
 // GetQueryCmd returns the cli query commands for the auction module
@@ -112,7 +112,7 @@ func GetCmdQueryAuctions() *cobra.Command {
 		Long:  "Query for all paginated auctions that match optional filters.",
 		Example: strings.Join([]string{
 			fmt.Sprintf("  $ %s q %s auctions --type=(collateral|surplus|debt)", version.AppName, types.ModuleName),
-			fmt.Sprintf("  $ %s q %s auctions --owner=kava1hatdq32u5x4wnxrtv5wzjzmq49sxgjgsj0mffm", version.AppName, types.ModuleName),
+			fmt.Sprintf("  $ %s q %s auctions --owner=aeth1hatdq32u5x4wnxrtv5wzjzmq49sxgjgsj0mffm", version.AppName, types.ModuleName),
 			fmt.Sprintf("  $ %s q %s auctions --denom=bnb", version.AppName, types.ModuleName),
 			fmt.Sprintf("  $ %s q %s auctions --phase=(forward|reverse)", version.AppName, types.ModuleName),
 			fmt.Sprintf("  $ %s q %s auctions --page=2 --limit=100", version.AppName, types.ModuleName),

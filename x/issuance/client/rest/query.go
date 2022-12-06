@@ -8,7 +8,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/rest"
 	"github.com/gorilla/mux"
 
-	"github.com/kava-labs/kava/x/issuance/types"
+	"github.com/mokitanetwork/aether/x/issuance/types"
 )
 
 // define routes that get registered by the main application

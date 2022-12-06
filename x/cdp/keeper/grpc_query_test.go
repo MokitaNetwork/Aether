@@ -6,9 +6,9 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/query"
-	"github.com/kava-labs/kava/app"
-	"github.com/kava-labs/kava/x/cdp/keeper"
-	"github.com/kava-labs/kava/x/cdp/types"
+	"github.com/mokitanetwork/aether/app"
+	"github.com/mokitanetwork/aether/x/cdp/keeper"
+	"github.com/mokitanetwork/aether/x/cdp/types"
 	"github.com/stretchr/testify/suite"
 	tmprototypes "github.com/tendermint/tendermint/proto/tendermint/types"
 )
@@ -152,7 +152,7 @@ func (suite *grpcQueryTestSuite) TestGrpcQueryCdps_InvalidCollateralType() {
 	suite.addCdp()
 
 	_, err := suite.queryServer.Cdps(sdk.WrapSDKContext(suite.ctx), &types.QueryCdpsRequest{
-		CollateralType: "kava-a",
+		CollateralType: "aeth-a",
 	})
 	suite.Require().Error(err)
 	suite.Require().Equal("rpc error: code = InvalidArgument desc = invalid collateral type", err.Error())
@@ -179,11 +179,11 @@ func (suite *grpcQueryTestSuite) TestGrpcQueryCdp() {
 		{
 			"invalid collateral",
 			types.QueryCdpRequest{
-				CollateralType: "kava-a",
+				CollateralType: "aeth-a",
 				Owner:          suite.addrs[0].String(),
 			},
 			false,
-			"kava-a: invalid collateral for input collateral type",
+			"aeth-a: invalid collateral for input collateral type",
 		},
 		{
 			"missing owner",
@@ -245,12 +245,12 @@ func (suite *grpcQueryTestSuite) TestGrpcQueryDeposits() {
 		{
 			"invalid collateral type",
 			&types.QueryDepositsRequest{
-				CollateralType: "kava-a",
+				CollateralType: "aeth-a",
 				Owner:          suite.addrs[0].String(),
 			},
 			nil,
 			true,
-			"kava-a: invalid collateral for input collateral type",
+			"aeth-a: invalid collateral for input collateral type",
 		},
 		{
 			"missing owner",

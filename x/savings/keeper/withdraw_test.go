@@ -11,8 +11,8 @@ import (
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 	tmtime "github.com/tendermint/tendermint/types/time"
 
-	"github.com/kava-labs/kava/app"
-	"github.com/kava-labs/kava/x/savings/types"
+	"github.com/mokitanetwork/aether/app"
+	"github.com/mokitanetwork/aether/x/savings/types"
 )
 
 func (suite *KeeperTestSuite) TestWithdraw() {
@@ -22,7 +22,7 @@ func (suite *KeeperTestSuite) TestWithdraw() {
 	valAddr := sdk.ValAddress(valAccAddr)
 	initialBalance := sdk.NewInt(1e9)
 
-	bkavaDenom := fmt.Sprintf("bkava-%s", valAddr.String())
+	baethDenom := fmt.Sprintf("baeth-%s", valAddr.String())
 
 	type args struct {
 		allowedDenoms             []string
@@ -48,7 +48,7 @@ func (suite *KeeperTestSuite) TestWithdraw() {
 		{
 			"valid: partial withdraw",
 			args{
-				allowedDenoms:             []string{"bnb", "btcb", "ukava"},
+				allowedDenoms:             []string{"bnb", "btcb", "uaeth"},
 				depositor:                 sdk.AccAddress(crypto.AddressHash([]byte("test"))),
 				initialDepositorBalance:   sdk.NewCoins(sdk.NewCoin("bnb", sdk.NewInt(1000)), sdk.NewCoin("btcb", sdk.NewInt(1000))),
 				depositAmount:             sdk.NewCoins(sdk.NewCoin("bnb", sdk.NewInt(200))),
@@ -64,16 +64,16 @@ func (suite *KeeperTestSuite) TestWithdraw() {
 			},
 		},
 		{
-			"valid: partial bkava",
+			"valid: partial baeth",
 			args{
-				allowedDenoms:             []string{"bnb", "btcb", "ukava", "bkava"},
+				allowedDenoms:             []string{"bnb", "btcb", "uaeth", "baeth"},
 				depositor:                 sdk.AccAddress(crypto.AddressHash([]byte("test"))),
-				initialDepositorBalance:   sdk.NewCoins(sdk.NewCoin(bkavaDenom, sdk.NewInt(1000)), sdk.NewCoin("btcb", sdk.NewInt(1000))),
-				depositAmount:             sdk.NewCoins(sdk.NewCoin(bkavaDenom, sdk.NewInt(200))),
-				withdrawAmount:            sdk.NewCoins(sdk.NewCoin(bkavaDenom, sdk.NewInt(100))),
-				expectedAccountBalance:    sdk.NewCoins(sdk.NewCoin(bkavaDenom, sdk.NewInt(900)), sdk.NewCoin("btcb", sdk.NewInt(1000))),
-				expectedModAccountBalance: sdk.NewCoins(sdk.NewCoin(bkavaDenom, sdk.NewInt(100))),
-				expectedDepositCoins:      sdk.NewCoins(sdk.NewCoin(bkavaDenom, sdk.NewInt(100))),
+				initialDepositorBalance:   sdk.NewCoins(sdk.NewCoin(baethDenom, sdk.NewInt(1000)), sdk.NewCoin("btcb", sdk.NewInt(1000))),
+				depositAmount:             sdk.NewCoins(sdk.NewCoin(baethDenom, sdk.NewInt(200))),
+				withdrawAmount:            sdk.NewCoins(sdk.NewCoin(baethDenom, sdk.NewInt(100))),
+				expectedAccountBalance:    sdk.NewCoins(sdk.NewCoin(baethDenom, sdk.NewInt(900)), sdk.NewCoin("btcb", sdk.NewInt(1000))),
+				expectedModAccountBalance: sdk.NewCoins(sdk.NewCoin(baethDenom, sdk.NewInt(100))),
+				expectedDepositCoins:      sdk.NewCoins(sdk.NewCoin(baethDenom, sdk.NewInt(100))),
 			},
 			errArgs{
 				expectPass:   true,
@@ -84,7 +84,7 @@ func (suite *KeeperTestSuite) TestWithdraw() {
 		{
 			"valid: full withdraw",
 			args{
-				allowedDenoms:             []string{"bnb", "btcb", "ukava"},
+				allowedDenoms:             []string{"bnb", "btcb", "uaeth"},
 				initialDepositorBalance:   sdk.NewCoins(sdk.NewCoin("bnb", sdk.NewInt(1000)), sdk.NewCoin("btcb", sdk.NewInt(1000))),
 				depositor:                 sdk.AccAddress(crypto.AddressHash([]byte("test"))),
 				depositAmount:             sdk.NewCoins(sdk.NewCoin("bnb", sdk.NewInt(200))),
@@ -102,7 +102,7 @@ func (suite *KeeperTestSuite) TestWithdraw() {
 		{
 			"valid: withdraw exceeds deposit but is adjusted to match max deposit",
 			args{
-				allowedDenoms:             []string{"bnb", "btcb", "ukava"},
+				allowedDenoms:             []string{"bnb", "btcb", "uaeth"},
 				initialDepositorBalance:   sdk.NewCoins(sdk.NewCoin("bnb", sdk.NewInt(1000)), sdk.NewCoin("btcb", sdk.NewInt(1000))),
 				depositor:                 sdk.AccAddress(crypto.AddressHash([]byte("test"))),
 				depositAmount:             sdk.NewCoins(sdk.NewCoin("bnb", sdk.NewInt(200))),
@@ -120,7 +120,7 @@ func (suite *KeeperTestSuite) TestWithdraw() {
 		{
 			"invalid: withdraw non-supplied coin type",
 			args{
-				allowedDenoms:             []string{"bnb", "btcb", "ukava"},
+				allowedDenoms:             []string{"bnb", "btcb", "uaeth"},
 				depositor:                 sdk.AccAddress(crypto.AddressHash([]byte("test"))),
 				initialDepositorBalance:   sdk.NewCoins(sdk.NewCoin("bnb", sdk.NewInt(1000)), sdk.NewCoin("btcb", sdk.NewInt(1000))),
 				depositAmount:             sdk.NewCoins(sdk.NewCoin("bnb", sdk.NewInt(200))),
@@ -152,7 +152,7 @@ func (suite *KeeperTestSuite) TestWithdraw() {
 			)
 
 			stakingParams := stakingtypes.DefaultParams()
-			stakingParams.BondDenom = "ukava"
+			stakingParams.BondDenom = "uaeth"
 
 			tApp.InitializeFromGenesisStates(authGS,
 				app.GenesisState{types.ModuleName: tApp.AppCodec().MustMarshalJSON(&savingsGS)},
@@ -164,9 +164,9 @@ func (suite *KeeperTestSuite) TestWithdraw() {
 			suite.keeper = keeper
 			bankKeeper := tApp.GetBankKeeper()
 
-			// Create validator and delegate for bkava
-			suite.CreateAccountWithAddress(valAccAddr, cs(c("ukava", 100e10)))
-			suite.CreateAccountWithAddress(delegator, cs(c("ukava", 100e10)))
+			// Create validator and delegate for baeth
+			suite.CreateAccountWithAddress(valAccAddr, cs(c("uaeth", 100e10)))
+			suite.CreateAccountWithAddress(delegator, cs(c("uaeth", 100e10)))
 
 			suite.CreateNewUnbondedValidator(valAddr, initialBalance)
 			suite.CreateDelegation(valAddr, delegator, initialBalance)

@@ -7,11 +7,11 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/kava-labs/kava/app"
-	earntypes "github.com/kava-labs/kava/x/earn/types"
-	"github.com/kava-labs/kava/x/incentive/testutil"
-	"github.com/kava-labs/kava/x/incentive/types"
-	swaptypes "github.com/kava-labs/kava/x/swap/types"
+	"github.com/mokitanetwork/aether/app"
+	earntypes "github.com/mokitanetwork/aether/x/earn/types"
+	"github.com/mokitanetwork/aether/x/incentive/testutil"
+	"github.com/mokitanetwork/aether/x/incentive/types"
+	swaptypes "github.com/mokitanetwork/aether/x/swap/types"
 )
 
 type BasicAccumulatorTestSuite struct {
@@ -48,24 +48,24 @@ func (suite *BasicAccumulatorTestSuite) SetupTest() {
 	// Setup app with test state
 	authBuilder := app.NewAuthBankGenesisBuilder().
 		WithSimpleAccount(addrs[0], cs(
-			c("ukava", 1e12),
+			c("uaeth", 1e12),
 			c(poolDenomA, 1e12),
 			c(poolDenomB, 1e12),
 		)).
-		WithSimpleAccount(addrs[1], cs(c("ukava", 1e12))).
-		WithSimpleAccount(addrs[2], cs(c("ukava", 1e12))).
-		WithSimpleAccount(addrs[3], cs(c("ukava", 1e12)))
+		WithSimpleAccount(addrs[1], cs(c("uaeth", 1e12))).
+		WithSimpleAccount(addrs[2], cs(c("uaeth", 1e12))).
+		WithSimpleAccount(addrs[3], cs(c("uaeth", 1e12)))
 
 	incentiveBuilder := testutil.NewIncentiveGenesisBuilder().
 		WithGenesisTime(suite.GenesisTime).
-		WithSimpleRewardPeriod(types.CLAIM_TYPE_EARN, "bkava", cs())
+		WithSimpleRewardPeriod(types.CLAIM_TYPE_EARN, "baeth", cs())
 
 	savingsBuilder := testutil.NewSavingsGenesisBuilder().
-		WithSupportedDenoms("bkava")
+		WithSupportedDenoms("baeth")
 
 	earnBuilder := testutil.NewEarnGenesisBuilder().
 		WithAllowedVaults(earntypes.AllowedVault{
-			Denom:             "bkava",
+			Denom:             "baeth",
 			Strategies:        earntypes.StrategyTypes{earntypes.STRATEGY_TYPE_SAVINGS},
 			IsPrivateVault:    false,
 			AllowedDepositors: nil,
@@ -77,7 +77,7 @@ func (suite *BasicAccumulatorTestSuite) SetupTest() {
 		WithInflationMax(sdk.OneDec()).
 		WithInflationMin(sdk.OneDec()).
 		WithMinter(sdk.OneDec(), sdk.ZeroDec()).
-		WithMintDenom("ukava")
+		WithMintDenom("uaeth")
 
 	suite.StartChainWithBuilders(
 		authBuilder,
@@ -122,7 +122,7 @@ func (suite *BasicAccumulatorTestSuite) TestStateUpdatedWhenBlockTimeHasIncrease
 						RewardFactor:   d("0.02"),
 					},
 					{
-						CollateralType: "ukava",
+						CollateralType: "uaeth",
 						RewardFactor:   d("0.04"),
 					},
 				},
@@ -140,7 +140,7 @@ func (suite *BasicAccumulatorTestSuite) TestStateUpdatedWhenBlockTimeHasIncrease
 		pool,
 		time.Unix(0, 0), // ensure the test is within start and end times
 		distantFuture,
-		cs(c("swap", 2000), c("ukava", 1000)), // same denoms as in global indexes
+		cs(c("swap", 2000), c("uaeth", 1000)), // same denoms as in global indexes
 	)
 
 	err = suite.keeper.AccumulateRewards(suite.Ctx, types.CLAIM_TYPE_SWAP, period)
@@ -155,7 +155,7 @@ func (suite *BasicAccumulatorTestSuite) TestStateUpdatedWhenBlockTimeHasIncrease
 			RewardFactor:   d("7.22"),
 		},
 		{
-			CollateralType: "ukava",
+			CollateralType: "uaeth",
 			RewardFactor:   d("3.64"),
 		},
 	})
@@ -176,7 +176,7 @@ func (suite *BasicAccumulatorTestSuite) TestStateUnchangedWhenBlockTimeHasNotInc
 					RewardFactor:   d("0.02"),
 				},
 				{
-					CollateralType: "ukava",
+					CollateralType: "uaeth",
 					RewardFactor:   d("0.04"),
 				},
 			},
@@ -197,7 +197,7 @@ func (suite *BasicAccumulatorTestSuite) TestStateUnchangedWhenBlockTimeHasNotInc
 		pool,
 		time.Unix(0, 0), // ensure the test is within start and end times
 		distantFuture,
-		cs(c("swap", 2000), c("ukava", 1000)), // same denoms as in global indexes
+		cs(c("swap", 2000), c("uaeth", 1000)), // same denoms as in global indexes
 	)
 
 	err = suite.keeper.AccumulateRewards(suite.Ctx, types.CLAIM_TYPE_SWAP, period)
@@ -223,7 +223,7 @@ func (suite *BasicAccumulatorTestSuite) TestNoAccumulationWhenSourceSharesAreZer
 					RewardFactor:   d("0.02"),
 				},
 				{
-					CollateralType: "ukava",
+					CollateralType: "uaeth",
 					RewardFactor:   d("0.04"),
 				},
 			},
@@ -243,7 +243,7 @@ func (suite *BasicAccumulatorTestSuite) TestNoAccumulationWhenSourceSharesAreZer
 		pool,
 		time.Unix(0, 0), // ensure the test is within start and end times
 		distantFuture,
-		cs(c("swap", 2000), c("ukava", 1000)), // same denoms as in global indexes
+		cs(c("swap", 2000), c("uaeth", 1000)), // same denoms as in global indexes
 	)
 
 	err := suite.keeper.AccumulateRewards(suite.Ctx, types.CLAIM_TYPE_SWAP, period)
@@ -268,7 +268,7 @@ func (suite *BasicAccumulatorTestSuite) TestStateAddedWhenStateDoesNotExist() {
 		pool,
 		time.Unix(0, 0), // ensure the test is within start and end times
 		distantFuture,
-		cs(c("swap", 2000), c("ukava", 1000)),
+		cs(c("swap", 2000), c("uaeth", 1000)),
 	)
 
 	firstAccrualTime := time.Date(1998, 1, 1, 0, 0, 0, 0, time.UTC)
@@ -296,7 +296,7 @@ func (suite *BasicAccumulatorTestSuite) TestStateAddedWhenStateDoesNotExist() {
 			RewardFactor:   d("0.02"),
 		},
 		{
-			CollateralType: "ukava",
+			CollateralType: "uaeth",
 			RewardFactor:   d("0.01"),
 		},
 	})
@@ -343,7 +343,7 @@ func (suite *BasicAccumulatorTestSuite) TestNoAccumulationWhenBeforeStartTime() 
 					RewardFactor:   d("0.02"),
 				},
 				{
-					CollateralType: "ukava",
+					CollateralType: "uaeth",
 					RewardFactor:   d("0.04"),
 				},
 			},
@@ -362,7 +362,7 @@ func (suite *BasicAccumulatorTestSuite) TestNoAccumulationWhenBeforeStartTime() 
 		pool,
 		firstAccrualTime.Add(time.Nanosecond), // start time after accrual time
 		distantFuture,
-		cs(c("swap", 2000), c("ukava", 1000)),
+		cs(c("swap", 2000), c("uaeth", 1000)),
 	)
 
 	suite.Ctx = suite.Ctx.WithBlockTime(firstAccrualTime)
@@ -393,7 +393,7 @@ func (suite *BasicAccumulatorTestSuite) TestPanicWhenCurrentTimeLessThanPrevious
 		pool,
 		time.Time{}, // start time after accrual time
 		distantFuture,
-		cs(c("swap", 2000), c("ukava", 1000)),
+		cs(c("swap", 2000), c("uaeth", 1000)),
 	)
 
 	suite.Ctx = suite.Ctx.WithBlockTime(firstAccrualTime)

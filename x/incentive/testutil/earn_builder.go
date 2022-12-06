@@ -2,9 +2,9 @@ package testutil
 
 import (
 	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/kava-labs/kava/app"
+	"github.com/mokitanetwork/aether/app"
 
-	earntypes "github.com/kava-labs/kava/x/earn/types"
+	earntypes "github.com/mokitanetwork/aether/x/earn/types"
 )
 
 // EarnGenesisBuilder is a tool for creating a earn genesis state.

@@ -3,9 +3,9 @@ package accumulators
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/kava-labs/kava/x/incentive/keeper/adapters"
-	"github.com/kava-labs/kava/x/incentive/keeper/store"
-	"github.com/kava-labs/kava/x/incentive/types"
+	"github.com/mokitanetwork/aether/x/incentive/keeper/adapters"
+	"github.com/mokitanetwork/aether/x/incentive/keeper/store"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 )
 
 // BasicAccumulator is a default implementation of the RewardAccumulator

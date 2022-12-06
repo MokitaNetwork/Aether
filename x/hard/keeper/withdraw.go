@@ -4,7 +4,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/kava-labs/kava/x/hard/types"
+	"github.com/mokitanetwork/aether/x/hard/types"
 )
 
 // Withdraw returns some or all of a deposit back to original depositor

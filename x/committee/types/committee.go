@@ -15,19 +15,19 @@ import (
 const MaxCommitteeDescriptionLength int = 512
 
 const (
-	BaseCommitteeType   = "kava/BaseCommittee"
-	MemberCommitteeType = "kava/MemberCommittee" // Committee is composed of member addresses that vote to enact proposals within their permissions
-	TokenCommitteeType  = "kava/TokenCommittee"  // Committee is composed of token holders with voting power determined by total token balance
-	BondDenom           = "ukava"
+	BaseCommitteeType   = "aeth/BaseCommittee"
+	MemberCommitteeType = "aeth/MemberCommittee" // Committee is composed of member addresses that vote to enact proposals within their permissions
+	TokenCommitteeType  = "aeth/TokenCommittee"  // Committee is composed of token holders with voting power determined by total token balance
+	BondDenom           = "uaeth"
 )
 
 func init() {
 	// CommitteeChange/Delete proposals are registered on gov's ModuleCdc (see proposal.go).
 	// But since these proposals contain Committees, these types also need registering:
 	govtypes.ModuleCdc.RegisterInterface((*Committee)(nil), nil)
-	govtypes.RegisterProposalTypeCodec(BaseCommittee{}, "kava/BaseCommittee")
-	govtypes.RegisterProposalTypeCodec(MemberCommittee{}, "kava/MemberCommittee")
-	govtypes.RegisterProposalTypeCodec(TokenCommittee{}, "kava/TokenCommittee")
+	govtypes.RegisterProposalTypeCodec(BaseCommittee{}, "aeth/BaseCommittee")
+	govtypes.RegisterProposalTypeCodec(MemberCommittee{}, "aeth/MemberCommittee")
+	govtypes.RegisterProposalTypeCodec(TokenCommittee{}, "aeth/TokenCommittee")
 }
 
 // Marshal needed for protobuf compatibility.

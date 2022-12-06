@@ -6,8 +6,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	hardtypes "github.com/kava-labs/kava/x/hard/types"
-	"github.com/kava-labs/kava/x/incentive/types"
+	hardtypes "github.com/mokitanetwork/aether/x/hard/types"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 )
 
 // AccumulateHardBorrowRewards calculates new rewards to distribute this block and updates the global indexes to reflect this.

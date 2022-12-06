@@ -3,8 +3,8 @@ package client
 import (
 	govclient "github.com/cosmos/cosmos-sdk/x/gov/client"
 
-	"github.com/kava-labs/kava/x/earn/client/cli"
-	"github.com/kava-labs/kava/x/earn/client/rest"
+	"github.com/mokitanetwork/aether/x/earn/client/cli"
+	"github.com/mokitanetwork/aether/x/earn/client/rest"
 )
 
 // community-pool deposit/withdraw proposal handlers

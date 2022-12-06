@@ -11,8 +11,8 @@ There are two types of migration:
 Genesis migration starts a whole new blockchain (with new chain-id) for the new software version.
 In-Place upgrade keeps the blockchain (and chain-id) the same for the new software version.
 
-We only support migrations between mainnet kava releases.
-We only support migrations from the previous mainnet kava version to the current. We don't support migrating between two old versions, use the old software version for this.
+We only support migrations between mainnet aeth releases.
+We only support migrations from the previous mainnet aeth version to the current. We don't support migrating between two old versions, use the old software version for this.
 We only support migrations from old to new versions, not the other way around.
 
 Genesis Migration
@@ -22,8 +22,8 @@ The process is:
 - marshal it to json (using current codec)
 
 On each release we can delete the previous releases migration and old GenesisState type.
-eg kava-3 migrates `auth.GenesisState` from kava-2 to `auth.GenesisState` from kava-3,
-but for kava-4 we don't need to keep around kava-2's `auth.GenesisState` type.
+eg aeth-3 migrates `auth.GenesisState` from aeth-2 to `auth.GenesisState` from aeth-3,
+but for aeth-4 we don't need to keep around aeth-2's `auth.GenesisState` type.
 
 */
 package migrate

@@ -15,13 +15,13 @@ Then to run stuff you create "jobs" and submit them to a job queue.
 The number of machines running auto-scales to match the number of jobs. When there are no jobs there are no machines, so you don't pay for anything.
 
 Jobs are defined as a docker image (assumed hosted on dockerhub) and a command string.  
->e.g. `kava/kava-sim:version1`, `go test ./app`
+>e.g. `aeth/aeth-sim:version1`, `go test ./app`
 
 This can run sims but doesn't collect the results. This is handled by a custom script.
 
 ## Running sims and uploading to S3
 
-The dockerfile in this repo defines the docker image to run sims. It includes the kava source code, aws cli, and the custom simulation script.
+The dockerfile in this repo defines the docker image to run sims. It includes the aeth source code, aws cli, and the custom simulation script.
 
 The custom script reads some input args, runs a sim and uploads the stdout and stderr to a S3 bucket.
 
@@ -30,12 +30,12 @@ AWS Batch allows for "array jobs" which are a way of specifying many duplicates 
 ### Steps
 
 - create and submit a new array job (based of the job definition) with
-  - image `kava/kava-sim:<some-version>`
+  - image `aeth/aeth-sim:<some-version>`
   - command `run-then-upload.sh TestFullAppSimulation <starting-seed> <num-blocks> <block-size>`
   - array size of how many sims you want to run
 - any changes needed to the code or script necessitates a rebuild:
-  - `docker build -f simulations/Dockerfile -t kava/kava-sim:<some-version> .`
-  - `docker push kava/kava-sim:<some-version>`
+  - `docker build -f simulations/Dockerfile -t aeth/aeth-sim:<some-version> .`
+  - `docker push aeth/aeth-sim:<some-version>`
 
 ### Tips
 

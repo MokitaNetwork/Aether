@@ -5,7 +5,7 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	"github.com/kava-labs/kava/x/liquid/types"
+	"github.com/mokitanetwork/aether/x/liquid/types"
 )
 
 // TransferDelegation moves some delegation shares between addresses, while keeping the same validator.

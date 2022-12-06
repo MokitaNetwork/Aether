@@ -13,17 +13,17 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/staking"
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
-	"github.com/kava-labs/kava/app"
-	liquidtypes "github.com/kava-labs/kava/x/liquid/types"
-	"github.com/kava-labs/kava/x/savings/keeper"
-	"github.com/kava-labs/kava/x/savings/types"
+	"github.com/mokitanetwork/aether/app"
+	liquidtypes "github.com/mokitanetwork/aether/x/liquid/types"
+	"github.com/mokitanetwork/aether/x/savings/keeper"
+	"github.com/mokitanetwork/aether/x/savings/types"
 )
 
 var dep = types.NewDeposit
 
 const (
-	bkava1 = "bkava-kavavaloper15gqc744d05xacn4n6w2furuads9fu4pqn6zxlu"
-	bkava2 = "bkava-kavavaloper15qdefkmwswysgg4qxgqpqr35k3m49pkx8yhpte"
+	baeth1 = "baeth-aethvaloper15gqc744d05xacn4n6w2furuads9fu4pqn6zxlu"
+	baeth2 = "baeth-aethvaloper15qdefkmwswysgg4qxgqpqr35k3m49pkx8yhpte"
 )
 
 type grpcQueryTestSuite struct {
@@ -58,7 +58,7 @@ func (suite *grpcQueryTestSuite) SetupTest() {
 	suite.Require().NoError(err)
 
 	savingsGenesis := types.GenesisState{
-		Params: types.NewParams([]string{"bnb", "busd", bkava1, bkava2}),
+		Params: types.NewParams([]string{"bnb", "busd", baeth1, baeth2}),
 	}
 	savingsGenState := app.GenesisState{types.ModuleName: suite.tApp.AppCodec().MustMarshalJSON(&savingsGenesis)}
 
@@ -81,7 +81,7 @@ func (suite *grpcQueryTestSuite) TestGrpcQueryParams() {
 
 	var expected types.GenesisState
 	savingsGenesis := types.GenesisState{
-		Params: types.NewParams([]string{"bnb", "busd", bkava1, bkava2}),
+		Params: types.NewParams([]string{"bnb", "busd", baeth1, baeth2}),
 	}
 	savingsGenState := app.GenesisState{types.ModuleName: suite.tApp.AppCodec().MustMarshalJSON(&savingsGenesis)}
 	suite.tApp.AppCodec().MustUnmarshalJSON(savingsGenState[types.ModuleName], &expected)
@@ -229,11 +229,11 @@ func (suite *grpcQueryTestSuite) TestGrpcQueryTotalSupply() {
 		})
 	}
 
-	suite.Run("aggregates bkava denoms, accounting for slashing", func() {
+	suite.Run("aggregates baeth denoms, accounting for slashing", func() {
 		suite.SetupTest()
 
-		address1, derivatives1, _ := suite.createAccountWithDerivatives(bkava1, sdk.NewInt(1e9))
-		address2, derivatives2, _ := suite.createAccountWithDerivatives(bkava2, sdk.NewInt(1e9))
+		address1, derivatives1, _ := suite.createAccountWithDerivatives(baeth1, sdk.NewInt(1e9))
+		address2, derivatives2, _ := suite.createAccountWithDerivatives(baeth2, sdk.NewInt(1e9))
 
 		// bond validators
 		staking.EndBlocker(suite.ctx, suite.tApp.GetStakingKeeper())
@@ -250,7 +250,7 @@ func (suite *grpcQueryTestSuite) TestGrpcQueryTotalSupply() {
 
 		expectedSupply := sdk.NewCoins(
 			sdk.NewCoin(
-				"bkava",
+				"baeth",
 				sdk.NewIntFromUint64(1e9). // derivative 1
 								Add(sdk.NewInt(1e9).MulRaw(80).QuoRaw(100))), // derivative 2: original value * 80%
 		)

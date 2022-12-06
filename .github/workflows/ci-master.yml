@@ -1,4 +1,4 @@
-name: Continuous Integration (Kava Master)
+name: Continuous Integration (Aether Master)
 on:
   push:
     # run CI on any push to the master branch
@@ -11,7 +11,7 @@ jobs:
   # run default ci checks against master branch
   default-checks:
     uses: ./.github/workflows/ci-default.yml
-  # build and upload versions of kava for use on internal infrastructure
+  # build and upload versions of aeth for use on internal infrastructure
   # configurations for databases, cpu architectures and operating systems
   publish-internal:
     # only run if all checks pass

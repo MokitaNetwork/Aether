@@ -12,7 +12,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/version"
 
-	"github.com/kava-labs/kava/x/cdp/types"
+	"github.com/mokitanetwork/aether/x/cdp/types"
 )
 
 // GetTxCmd returns the transaction commands for this module
@@ -85,7 +85,7 @@ func GetCmdDeposit() *cobra.Command {
 			fmt.Sprintf(`Add collateral to an existing cdp.
 
 Example:
-$ %s tx %s deposit kava15qdefkmwswysgg4qxgqpqr35k3m49pkx2jdfnw 10000000uatom atom-a --from myKeyName
+$ %s tx %s deposit aeth15qdefkmwswysgg4qxgqpqr35k3m49pkx2jdfnw 10000000uatom atom-a --from myKeyName
 `, version.AppName, types.ModuleName)),
 		Args: cobra.ExactArgs(3),
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -121,7 +121,7 @@ func GetCmdWithdraw() *cobra.Command {
 			fmt.Sprintf(`Remove collateral from an existing cdp.
 
 Example:
-$ %s tx %s withdraw kava15qdefkmwswysgg4qxgqpqr35k3m49pkx2jdfnw 10000000uatom atom-a --from myKeyName
+$ %s tx %s withdraw aeth15qdefkmwswysgg4qxgqpqr35k3m49pkx2jdfnw 10000000uatom atom-a --from myKeyName
 `, version.AppName, types.ModuleName)),
 		Args: cobra.ExactArgs(3),
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -221,7 +221,7 @@ func GetCmdLiquidate() *cobra.Command {
 			fmt.Sprintf(`Liquidate a cdp if it is below the required liquidation ratio
 
 Example:
-$ %s tx %s liquidate kava1y70y90wzmnf00e63efk2lycgqwepthdmyzsfzm  btcb-a --from myKeyName
+$ %s tx %s liquidate aeth1y70y90wzmnf00e63efk2lycgqwepthdmyzsfzm  btcb-a --from myKeyName
 `, version.AppName, types.ModuleName)),
 		Args: cobra.ExactArgs(2),
 		RunE: func(cmd *cobra.Command, args []string) error {

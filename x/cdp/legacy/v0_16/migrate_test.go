@@ -10,9 +10,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/suite"
 
-	app "github.com/kava-labs/kava/app"
-	v015cdp "github.com/kava-labs/kava/x/cdp/legacy/v0_15"
-	v016cdp "github.com/kava-labs/kava/x/cdp/types"
+	app "github.com/mokitanetwork/aether/app"
+	v015cdp "github.com/mokitanetwork/aether/x/cdp/legacy/v0_15"
+	v016cdp "github.com/mokitanetwork/aether/x/cdp/types"
 )
 
 type migrateTestSuite struct {
@@ -33,7 +33,7 @@ func (s *migrateTestSuite) SetupTest() {
 		Deposits:                  v015cdp.Deposits{},
 		StartingCdpID:             1,
 		DebtDenom:                 "usdx",
-		GovDenom:                  "ukava",
+		GovDenom:                  "uaeth",
 		PreviousAccumulationTimes: v015cdp.GenesisAccumulationTimes{},
 		TotalPrincipals:           v015cdp.GenesisTotalPrincipals{},
 	}
@@ -67,7 +67,7 @@ func (s *migrateTestSuite) TestMigrate_GenState() {
 	s.v15genstate = v015cdp.GenesisState{
 		StartingCdpID: 2,
 		DebtDenom:     "usdx",
-		GovDenom:      "ukava",
+		GovDenom:      "uaeth",
 		Params: v015cdp.Params{
 			CollateralParams: v015cdp.CollateralParams{
 				{
@@ -118,7 +118,7 @@ func (s *migrateTestSuite) TestMigrate_GenState() {
 			{
 				CdpID:     2,
 				Depositor: s.addresses[1],
-				Amount:    sdk.NewCoin("ukava", sdk.NewInt(1200)),
+				Amount:    sdk.NewCoin("uaeth", sdk.NewInt(1200)),
 			},
 		},
 		PreviousAccumulationTimes: v015cdp.GenesisAccumulationTimes{
@@ -138,7 +138,7 @@ func (s *migrateTestSuite) TestMigrate_GenState() {
 	expected := v016cdp.GenesisState{
 		StartingCdpID: 2,
 		DebtDenom:     "usdx",
-		GovDenom:      "ukava",
+		GovDenom:      "uaeth",
 		Params: v016cdp.Params{
 			CollateralParams: v016cdp.CollateralParams{
 				{
@@ -189,7 +189,7 @@ func (s *migrateTestSuite) TestMigrate_GenState() {
 			{
 				CdpID:     2,
 				Depositor: s.addresses[1],
-				Amount:    sdk.NewCoin("ukava", sdk.NewInt(1200)),
+				Amount:    sdk.NewCoin("uaeth", sdk.NewInt(1200)),
 			},
 		},
 		PreviousAccumulationTimes: v016cdp.GenesisAccumulationTimes{

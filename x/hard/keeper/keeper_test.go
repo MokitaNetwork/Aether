@@ -13,10 +13,10 @@ import (
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 	tmtime "github.com/tendermint/tendermint/types/time"
 
-	"github.com/kava-labs/kava/app"
-	auctionkeeper "github.com/kava-labs/kava/x/auction/keeper"
-	"github.com/kava-labs/kava/x/hard/keeper"
-	"github.com/kava-labs/kava/x/hard/types"
+	"github.com/mokitanetwork/aether/app"
+	auctionkeeper "github.com/mokitanetwork/aether/x/auction/keeper"
+	"github.com/mokitanetwork/aether/x/hard/keeper"
+	"github.com/mokitanetwork/aether/x/hard/types"
 )
 
 // Test suite used for all keeper tests
@@ -130,12 +130,12 @@ func (suite *KeeperTestSuite) TestIterateInterestRateModels() {
 }
 
 func (suite *KeeperTestSuite) TestGetSetBorrowedCoins() {
-	suite.keeper.SetBorrowedCoins(suite.ctx, sdk.Coins{c("ukava", 123)})
+	suite.keeper.SetBorrowedCoins(suite.ctx, sdk.Coins{c("uaeth", 123)})
 
 	coins, found := suite.keeper.GetBorrowedCoins(suite.ctx)
 	suite.Require().True(found)
 	suite.Require().Len(coins, 1)
-	suite.Require().Equal(coins, cs(c("ukava", 123)))
+	suite.Require().Equal(coins, cs(c("uaeth", 123)))
 }
 
 func (suite *KeeperTestSuite) TestGetSetBorrowedCoins_Empty() {

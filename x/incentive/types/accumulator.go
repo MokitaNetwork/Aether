@@ -75,7 +75,7 @@ func (*Accumulator) getTimeElapsedWithinLimits(start, end, limitMin, limitMax ti
 // calculateNewRewards calculates the amount to increase the global reward indexes by, for a given reward rate, duration, and number of source shares.
 // The total rewards to distribute in this block are given by reward rate * duration. This value divided by the sum of all source shares to give
 // total rewards per source share, which is what the indexes store.
-// Note, duration is rounded to the nearest second to keep rewards calculation consistent with kava-7.
+// Note, duration is rounded to the nearest second to keep rewards calculation consistent with aeth-7.
 func (*Accumulator) calculateNewRewards(rewardsPerSecond sdk.DecCoins, totalSourceShares sdk.Dec, duration time.Duration) RewardIndexes {
 	if totalSourceShares.LTE(sdk.ZeroDec()) {
 		// When there is zero source shares, there is no users with deposits/borrows/delegations to pay out the current block's rewards to.

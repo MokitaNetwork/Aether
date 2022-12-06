@@ -9,10 +9,10 @@ import (
 	"github.com/stretchr/testify/suite"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
-	"github.com/kava-labs/kava/app"
-	"github.com/kava-labs/kava/x/incentive/testutil"
-	"github.com/kava-labs/kava/x/incentive/types"
-	kavadisttypes "github.com/kava-labs/kava/x/kavadist/types"
+	"github.com/mokitanetwork/aether/app"
+	"github.com/mokitanetwork/aether/x/incentive/testutil"
+	"github.com/mokitanetwork/aether/x/incentive/types"
+	aethdisttypes "github.com/mokitanetwork/aether/x/aethdist/types"
 )
 
 const secondsPerDay = 24 * 60 * 60
@@ -65,10 +65,10 @@ func (suite *HandlerTestSuite) SetupWithGenState(builders ...testutil.GenesisBui
 	)
 }
 
-// authBuilder returns a new auth genesis builder with a full kavadist module account.
+// authBuilder returns a new auth genesis builder with a full aethdist module account.
 func (suite *HandlerTestSuite) authBuilder() *app.AuthBankGenesisBuilder {
 	return app.NewAuthBankGenesisBuilder().
-		WithSimpleModuleAccount(kavadisttypes.ModuleName, cs(c(types.USDXMintingRewardDenom, 1e18), c("hard", 1e18), c("swap", 1e18)))
+		WithSimpleModuleAccount(aethdisttypes.ModuleName, cs(c(types.USDXMintingRewardDenom, 1e18), c("hard", 1e18), c("swap", 1e18)))
 }
 
 // incentiveBuilder returns a new incentive genesis builder with a genesis time and multipliers set
@@ -91,7 +91,7 @@ func (suite *HandlerTestSuite) incentiveBuilder() testutil.IncentiveGenesisBuild
 				},
 			},
 			{
-				Denom: "ukava",
+				Denom: "uaeth",
 				Multipliers: types.Multipliers{
 					types.NewMultiplier("small", 1, d("0.2")),
 					types.NewMultiplier("large", 12, d("1.0")),
@@ -104,16 +104,16 @@ func (suite *HandlerTestSuite) TestPayoutSwapClaimMultiDenom() {
 	userAddr := suite.addrs[0]
 
 	authBulder := suite.authBuilder().
-		WithSimpleAccount(userAddr, cs(c("ukava", 1e12), c("busd", 1e12)))
+		WithSimpleAccount(userAddr, cs(c("uaeth", 1e12), c("busd", 1e12)))
 
 	incentBuilder := suite.incentiveBuilder().
-		WithSimpleSwapRewardPeriod("busd:ukava", cs(c("hard", 1e6), c("swap", 1e6)))
+		WithSimpleSwapRewardPeriod("busd:uaeth", cs(c("hard", 1e6), c("swap", 1e6)))
 
 	suite.SetupWithGenState(authBulder, incentBuilder)
 
 	// deposit into a swap pool
 	suite.NoError(
-		suite.DeliverSwapMsgDeposit(userAddr, c("ukava", 1e9), c("busd", 1e9), d("1.0")),
+		suite.DeliverSwapMsgDeposit(userAddr, c("uaeth", 1e9), c("busd", 1e9), d("1.0")),
 	)
 	// accumulate some swap rewards
 	suite.NextBlockAfter(7 * time.Second)
@@ -150,16 +150,16 @@ func (suite *HandlerTestSuite) TestPayoutSwapClaimSingleDenom() {
 	userAddr := suite.addrs[0]
 
 	authBulder := suite.authBuilder().
-		WithSimpleAccount(userAddr, cs(c("ukava", 1e12), c("busd", 1e12)))
+		WithSimpleAccount(userAddr, cs(c("uaeth", 1e12), c("busd", 1e12)))
 
 	incentBuilder := suite.incentiveBuilder().
-		WithSimpleSwapRewardPeriod("busd:ukava", cs(c("hard", 1e6), c("swap", 1e6)))
+		WithSimpleSwapRewardPeriod("busd:uaeth", cs(c("hard", 1e6), c("swap", 1e6)))
 
 	suite.SetupWithGenState(authBulder, incentBuilder)
 
 	// deposit into a swap pool
 	suite.NoError(
-		suite.DeliverSwapMsgDeposit(userAddr, c("ukava", 1e9), c("busd", 1e9), d("1.0")),
+		suite.DeliverSwapMsgDeposit(userAddr, c("uaeth", 1e9), c("busd", 1e9), d("1.0")),
 	)
 
 	// accumulate some swap rewards

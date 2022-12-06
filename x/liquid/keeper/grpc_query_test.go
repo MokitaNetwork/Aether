@@ -9,9 +9,9 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/staking"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/kava-labs/kava/app"
-	"github.com/kava-labs/kava/x/liquid/keeper"
-	"github.com/kava-labs/kava/x/liquid/types"
+	"github.com/mokitanetwork/aether/app"
+	"github.com/mokitanetwork/aether/x/liquid/keeper"
+	"github.com/mokitanetwork/aether/x/liquid/types"
 )
 
 type grpcQueryTestSuite struct {
@@ -93,7 +93,7 @@ func (suite *grpcQueryTestSuite) TestQueryDelegatedBalance() {
 		{
 			name: "no account returns zeros",
 			setup: func() string {
-				return "kava10wlnqzyss4accfqmyxwx5jy5x9nfkwh6qm7n4t"
+				return "aeth10wlnqzyss4accfqmyxwx5jy5x9nfkwh6qm7n4t"
 			},
 			expectedRes: zeroResponse,
 		},
@@ -175,13 +175,13 @@ func (suite *grpcQueryTestSuite) TestQueryTotalSupply() {
 		expectedErr   error
 	}{
 		{
-			name:          "no liquid kava means no tvl",
+			name:          "no liquid aeth means no tvl",
 			setup:         func() {},
 			expectedTotal: sdk.ZeroInt(),
 			expectedErr:   nil,
 		},
 		{
-			name: "returns TVL from one bkava denom",
+			name: "returns TVL from one baeth denom",
 			setup: func() {
 				initBalance := suite.NewBondCoin(i(1e9))
 				valAcc := suite.CreateAccount(sdk.NewCoins(initBalance), 0)
@@ -203,7 +203,7 @@ func (suite *grpcQueryTestSuite) TestQueryTotalSupply() {
 			expectedErr:   nil,
 		},
 		{
-			name: "returns TVL from multiple bkava denoms",
+			name: "returns TVL from multiple baeth denoms",
 			setup: func() {
 				initBalance := suite.NewBondCoin(i(1e9))
 				val1Acc := suite.CreateAccount(sdk.NewCoins(initBalance), 0)

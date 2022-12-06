@@ -9,7 +9,7 @@ import (
 
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/kava-labs/kava/x/hard/types"
+	"github.com/mokitanetwork/aether/x/hard/types"
 )
 
 // NewQuerier is the module level router for state queries

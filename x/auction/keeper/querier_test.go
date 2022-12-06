@@ -12,9 +12,9 @@ import (
 
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/kava-labs/kava/x/auction/keeper"
-	"github.com/kava-labs/kava/x/auction/testutil"
-	"github.com/kava-labs/kava/x/auction/types"
+	"github.com/mokitanetwork/aether/x/auction/keeper"
+	"github.com/mokitanetwork/aether/x/auction/testutil"
+	"github.com/mokitanetwork/aether/x/auction/types"
 )
 
 const (

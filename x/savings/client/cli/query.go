@@ -11,7 +11,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/version"
 
-	"github.com/kava-labs/kava/x/savings/types"
+	"github.com/mokitanetwork/aether/x/savings/types"
 )
 
 // flags for cli queries
@@ -76,8 +76,8 @@ func queryDepositsCmd() *cobra.Command {
 		Short: "query savings module deposits with optional filters",
 		Long:  "query for all savings module deposits or a specific deposit using flags",
 		Example: fmt.Sprintf(`%[1]s q %[2]s deposits
-%[1]s q %[2]s deposits --owner kava1l0xsq2z7gqd7yly0g40y5836g0appumark77ny --denom bnb
-%[1]s q %[2]s deposits --denom ukava
+%[1]s q %[2]s deposits --owner aeth1l0xsq2z7gqd7yly0g40y5836g0appumark77ny --denom bnb
+%[1]s q %[2]s deposits --denom uaeth
 %[1]s q %[2]s deposits --denom btcb`, version.AppName, types.ModuleName),
 		Args: cobra.NoArgs,
 		RunE: func(cmd *cobra.Command, args []string) error {

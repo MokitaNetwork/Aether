@@ -1,0 +1,18 @@
+syntax = "proto3";
+package aeth.aethdist.v1beta1;
+
+import "gogoproto/gogo.proto";
+import "google/protobuf/timestamp.proto";
+import "aeth/aethdist/v1beta1/params.proto";
+
+option go_package = "github.com/mokitanetwork/aether/x/aethdist/types";
+
+// GenesisState defines the aethdist module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+
+  google.protobuf.Timestamp previous_block_time = 2 [
+    (gogoproto.stdtime) = true,
+    (gogoproto.nullable) = false
+  ];
+}

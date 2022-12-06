@@ -8,15 +8,15 @@ import (
 
 	tmtime "github.com/tendermint/tendermint/types/time"
 
-	"github.com/kava-labs/kava/app"
-	"github.com/kava-labs/kava/x/bep3/types"
+	"github.com/mokitanetwork/aether/app"
+	"github.com/mokitanetwork/aether/x/bep3/types"
 )
 
 const (
 	TestSenderOtherChain    = "bnb1uky3me9ggqypmrsvxk7ur6hqkzq7zmv4ed4ng7"
 	TestRecipientOtherChain = "bnb1urfermcg92dwq36572cx4xg84wpk3lfpksr5g7"
-	TestDeputy              = "kava1xy7hrjy9r0algz9w3gzm8u6mrpq97kwta747gj"
-	TestUser                = "kava1vry5lhegzlulehuutcr7nmdlmktw88awp0a39p"
+	TestDeputy              = "aeth1xy7hrjy9r0algz9w3gzm8u6mrpq97kwta747gj"
+	TestUser                = "aeth1vry5lhegzlulehuutcr7nmdlmktw88awp0a39p"
 )
 
 var (

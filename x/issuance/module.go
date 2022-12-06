@@ -16,10 +16,10 @@ import (
 
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/kava-labs/kava/x/issuance/client/cli"
-	"github.com/kava-labs/kava/x/issuance/client/rest"
-	"github.com/kava-labs/kava/x/issuance/keeper"
-	"github.com/kava-labs/kava/x/issuance/types"
+	"github.com/mokitanetwork/aether/x/issuance/client/cli"
+	"github.com/mokitanetwork/aether/x/issuance/client/rest"
+	"github.com/mokitanetwork/aether/x/issuance/keeper"
+	"github.com/mokitanetwork/aether/x/issuance/types"
 )
 
 var (

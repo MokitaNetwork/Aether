@@ -10,11 +10,11 @@ import (
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/kava-labs/kava/app"
-	earntypes "github.com/kava-labs/kava/x/earn/types"
-	"github.com/kava-labs/kava/x/router/keeper"
-	"github.com/kava-labs/kava/x/router/testutil"
-	"github.com/kava-labs/kava/x/router/types"
+	"github.com/mokitanetwork/aether/app"
+	earntypes "github.com/mokitanetwork/aether/x/earn/types"
+	"github.com/mokitanetwork/aether/x/router/keeper"
+	"github.com/mokitanetwork/aether/x/router/testutil"
+	"github.com/mokitanetwork/aether/x/router/types"
 )
 
 type msgServerTestSuite struct {
@@ -176,8 +176,8 @@ func (suite *msgServerTestSuite) TestMintDepositAndWithdrawBurn_TransferEntireBa
 	// Earn vault has all minted derivatives
 	suite.VaultAccountValueEqual(user, sdk.NewInt64Coin(derivativeDenom, 999_999_998)) // 2 lost in conversion
 
-	// Query the full kava balance of the earn deposit and convert all to a delegation
-	deposit := suite.QueryEarn_VaultValue(user, "bkava")
+	// Query the full aeth balance of the earn deposit and convert all to a delegation
+	deposit := suite.QueryEarn_VaultValue(user, "baeth")
 	suite.Equal(suite.NewBondCoins(sdk.NewInt(333_333_332)), deposit.Value) // 1 lost due to lost shares
 
 	msgWithdraw := types.NewMsgWithdrawBurn(
@@ -241,8 +241,8 @@ func (suite *msgServerTestSuite) TestDelegateMintDepositAndWithdrawBurnUndelegat
 
 	suite.VaultAccountValueEqual(user, sdk.NewInt64Coin(derivativeDenom, 166_666_666))
 
-	// Query the full kava balance of the earn deposit and convert all to a delegation
-	deposit := suite.QueryEarn_VaultValue(user, "bkava")
+	// Query the full aeth balance of the earn deposit and convert all to a delegation
+	deposit := suite.QueryEarn_VaultValue(user, "baeth")
 	suite.Equal(suite.NewBondCoins(sdk.NewInt(99_999_999)), deposit.Value) // 1 lost due to truncating shares to derivatives
 
 	msgWithdraw := types.NewMsgWithdrawBurnUndelegate(
@@ -295,8 +295,8 @@ func (suite *msgServerTestSuite) setupValidatorAndDelegation() (sdk.AccAddress, 
 }
 
 func (suite *msgServerTestSuite) setupEarnForDeposits(valAddr sdk.ValAddress) string {
-	suite.CreateVault("bkava", earntypes.StrategyTypes{earntypes.STRATEGY_TYPE_SAVINGS}, false, nil)
-	derivativeDenom := fmt.Sprintf("bkava-%s", valAddr)
+	suite.CreateVault("baeth", earntypes.StrategyTypes{earntypes.STRATEGY_TYPE_SAVINGS}, false, nil)
+	derivativeDenom := fmt.Sprintf("baeth-%s", valAddr)
 	suite.SetSavingsSupportedDenoms([]string{derivativeDenom})
 	return derivativeDenom
 }
@@ -313,7 +313,7 @@ func (suite *msgServerTestSuite) setupDerivatives() (sdk.AccAddress, sdk.ValAddr
 	_, err := suite.msgServer.MintDeposit(sdk.WrapSDKContext(suite.Ctx), msg)
 	suite.Require().NoError(err)
 
-	derivativeDenom := fmt.Sprintf("bkava-%s", valAddr)
+	derivativeDenom := fmt.Sprintf("baeth-%s", valAddr)
 	derivatives, err := suite.EarnKeeper.GetVaultAccountValue(suite.Ctx, derivativeDenom, user)
 	suite.Require().NoError(err)
 

@@ -19,13 +19,13 @@ func c(denom string, amount int64) sdk.Coin { return sdk.NewInt64Coin(denom, amo
 func cs(coins ...sdk.Coin) sdk.Coins { return sdk.NewCoins(coins...) }
 
 func TestClaims_Validate(t *testing.T) {
-	owner := sdk.AccAddress(crypto.AddressHash([]byte("KavaTestUser1")))
+	owner := sdk.AccAddress(crypto.AddressHash([]byte("AetherTestUser1")))
 
 	t.Run("Claims", func(t *testing.T) {
-		validRewardIndexes := RewardIndexes{}.With("ukava", d("0.002"))
-		validMultiRewardIndexes := MultiRewardIndexes{}.With("ukava", validRewardIndexes)
-		invalidRewardIndexes := RewardIndexes{}.With("ukava", d("-0.002"))
-		invalidMultiRewardIndexes := MultiRewardIndexes{}.With("ukava", invalidRewardIndexes)
+		validRewardIndexes := RewardIndexes{}.With("uaeth", d("0.002"))
+		validMultiRewardIndexes := MultiRewardIndexes{}.With("uaeth", validRewardIndexes)
+		invalidRewardIndexes := RewardIndexes{}.With("uaeth", d("-0.002"))
+		invalidMultiRewardIndexes := MultiRewardIndexes{}.With("uaeth", invalidRewardIndexes)
 
 		testCases := []struct {
 			name    string
@@ -190,9 +190,9 @@ func TestClaims_Validate(t *testing.T) {
 	})
 
 	t.Run("SavingsClaims", func(t *testing.T) {
-		validRewardIndexes := RewardIndexes{}.With("ukava", d("0.002"))
+		validRewardIndexes := RewardIndexes{}.With("uaeth", d("0.002"))
 		validMultiRewardIndexes := MultiRewardIndexes{}.With("btcb/usdx", validRewardIndexes)
-		invalidRewardIndexes := RewardIndexes{}.With("ukava", d("-0.002"))
+		invalidRewardIndexes := RewardIndexes{}.With("uaeth", d("-0.002"))
 		invalidMultiRewardIndexes := MultiRewardIndexes{}.With("btcb/usdx", invalidRewardIndexes)
 
 		testCases := []struct {
@@ -808,7 +808,7 @@ func TestMultiRewardIndexes(t *testing.T) {
 
 var normalRewardIndexes = RewardIndexes{
 	NewRewardIndex("hard", sdk.MustNewDecFromStr("0.000001")),
-	NewRewardIndex("ukava", sdk.MustNewDecFromStr("0.1")),
+	NewRewardIndex("uaeth", sdk.MustNewDecFromStr("0.1")),
 }
 
 var invalidRewardIndexes = RewardIndexes{

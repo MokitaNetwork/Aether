@@ -7,12 +7,12 @@ import (
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/kava-labs/kava/app"
-	"github.com/kava-labs/kava/x/incentive/testutil"
-	"github.com/kava-labs/kava/x/incentive/types"
+	"github.com/mokitanetwork/aether/app"
+	"github.com/mokitanetwork/aether/x/incentive/testutil"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 	"github.com/stretchr/testify/suite"
 
-	v3 "github.com/kava-labs/kava/x/incentive/migrations/v3"
+	v3 "github.com/mokitanetwork/aether/x/incentive/migrations/v3"
 )
 
 type StoreMigrateTestSuite struct {
@@ -61,8 +61,8 @@ func (suite *StoreMigrateTestSuite) TestMigrateEarnClaims() {
 		suite.Addrs[1],
 		sdk.NewCoins(sdk.NewCoin("usdx", sdk.NewInt(100))),
 		types.MultiRewardIndexes{
-			types.NewMultiRewardIndex("ukava", types.RewardIndexes{
-				types.NewRewardIndex("ukava", sdk.NewDec(1)),
+			types.NewMultiRewardIndex("uaeth", types.RewardIndexes{
+				types.NewRewardIndex("uaeth", sdk.NewDec(1)),
 			}),
 		},
 	)
@@ -93,7 +93,7 @@ func (suite *StoreMigrateTestSuite) TestMigrateEarnClaims() {
 
 func (suite *StoreMigrateTestSuite) TestMigrateAccrualTimes() {
 	store := suite.Ctx.KVStore(suite.storeKey)
-	vaultDenom1 := "ukava"
+	vaultDenom1 := "uaeth"
 	vaultDenom2 := "usdc"
 
 	// Create v2 accrual times
@@ -124,15 +124,15 @@ func (suite *StoreMigrateTestSuite) TestMigrateAccrualTimes() {
 
 func (suite *StoreMigrateTestSuite) TestMigrateRewardIndexes() {
 	store := suite.Ctx.KVStore(suite.storeKey)
-	vaultDenom1 := "ukava"
+	vaultDenom1 := "uaeth"
 	vaultDenom2 := "usdc"
 
 	rewardIndexes1 := types.RewardIndexes{
-		types.NewRewardIndex("ukava", sdk.NewDec(1)),
+		types.NewRewardIndex("uaeth", sdk.NewDec(1)),
 		types.NewRewardIndex("hard", sdk.NewDec(2)),
 	}
 	rewardIndexes2 := types.RewardIndexes{
-		types.NewRewardIndex("ukava", sdk.NewDec(4)),
+		types.NewRewardIndex("uaeth", sdk.NewDec(4)),
 		types.NewRewardIndex("swp", sdk.NewDec(10)),
 	}
 

@@ -6,8 +6,8 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/kava-labs/kava/x/incentive/keeper"
-	"github.com/kava-labs/kava/x/incentive/types"
+	"github.com/mokitanetwork/aether/x/incentive/keeper"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 )
 
 const year = 365 * 24 * time.Hour

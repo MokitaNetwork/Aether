@@ -8,10 +8,10 @@ import (
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 
-	"github.com/kava-labs/kava/x/validator-vesting/types"
+	"github.com/mokitanetwork/aether/x/validator-vesting/types"
 )
 
-// GetQueryCmd returns the cli query commands for the kavadist module
+// GetQueryCmd returns the cli query commands for the aethdist module
 func GetQueryCmd() *cobra.Command {
 	valVestingQueryCmd := &cobra.Command{
 		Use:   types.QueryPath,
@@ -40,7 +40,7 @@ func queryCirculatingSupply() *cobra.Command {
 	return &cobra.Command{
 		Use:   "circulating-supply",
 		Short: "Get circulating supply",
-		Long:  "Get the current circulating supply of kava tokens",
+		Long:  "Get the current circulating supply of aeth tokens",
 		Args:  cobra.NoArgs,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			cliCtx, err := client.GetClientQueryContext(cmd)
@@ -69,7 +69,7 @@ func queryTotalSupply() *cobra.Command {
 	return &cobra.Command{
 		Use:   "total-supply",
 		Short: "Get total supply",
-		Long:  "Get the current total supply of kava tokens",
+		Long:  "Get the current total supply of aeth tokens",
 		Args:  cobra.NoArgs,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			cliCtx, err := client.GetClientQueryContext(cmd)

@@ -6,9 +6,9 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/ethereum/go-ethereum/common/math"
-	"github.com/kava-labs/kava/x/evmutil/keeper"
-	"github.com/kava-labs/kava/x/evmutil/testutil"
-	"github.com/kava-labs/kava/x/evmutil/types"
+	"github.com/mokitanetwork/aether/x/evmutil/keeper"
+	"github.com/mokitanetwork/aether/x/evmutil/testutil"
+	"github.com/mokitanetwork/aether/x/evmutil/types"
 	"github.com/stretchr/testify/suite"
 )
 
@@ -28,7 +28,7 @@ func TestMsgServerSuite(t *testing.T) {
 }
 
 func (suite *MsgServerSuite) TestConvertCoinToERC20() {
-	invoker, err := sdk.AccAddressFromBech32("kava123fxg0l602etulhhcdm0vt7l57qya5wjcrwhzz")
+	invoker, err := sdk.AccAddressFromBech32("aeth123fxg0l602etulhhcdm0vt7l57qya5wjcrwhzz")
 	suite.Require().NoError(err)
 
 	err = suite.App.FundAccount(suite.Ctx, invoker, sdk.NewCoins(sdk.NewCoin("erc20/usdc", sdk.NewInt(10000))))
@@ -181,7 +181,7 @@ func (suite *MsgServerSuite) TestConvertERC20ToCoin() {
 			types.MsgConvertERC20ToCoin{
 				Initiator:        "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc",
 				Receiver:         invokerCosmosAddr.String(),
-				KavaERC20Address: contractAddr.String(),
+				AetherERC20Address: contractAddr.String(),
 				Amount:           sdk.NewInt(10_000),
 			},
 			math.MaxBig256,

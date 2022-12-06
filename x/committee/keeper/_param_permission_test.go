@@ -11,11 +11,11 @@ import (
 	"github.com/stretchr/testify/suite"
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/kava-labs/kava/app"
-	bep3types "github.com/kava-labs/kava/x/bep3/types"
-	cdptypes "github.com/kava-labs/kava/x/cdp/types"
-	"github.com/kava-labs/kava/x/committee/types"
-	pricefeedtypes "github.com/kava-labs/kava/x/pricefeed/types"
+	"github.com/mokitanetwork/aether/app"
+	bep3types "github.com/mokitanetwork/aether/x/bep3/types"
+	cdptypes "github.com/mokitanetwork/aether/x/cdp/types"
+	"github.com/mokitanetwork/aether/x/committee/types"
+	pricefeedtypes "github.com/mokitanetwork/aether/x/pricefeed/types"
 )
 
 type PermissionTestSuite struct {
@@ -78,7 +78,7 @@ func (suite *PermissionTestSuite) TestSubParamChangePermission_Allows() {
 	testCDPParams.DebtParam = testDP
 	testCDPParams.GlobalDebtLimit = testCPs[0].DebtLimit.Add(testCPs[0].DebtLimit) // correct global debt limit to pass genesis validation
 
-	testDeputy, err := sdk.AccAddressFromBech32("kava1xy7hrjy9r0algz9w3gzm8u6mrpq97kwta747gj")
+	testDeputy, err := sdk.AccAddressFromBech32("aeth1xy7hrjy9r0algz9w3gzm8u6mrpq97kwta747gj")
 	suite.Require().NoError(err)
 	// bep3 Asset Params
 	testAPs := bep3types.AssetParams{

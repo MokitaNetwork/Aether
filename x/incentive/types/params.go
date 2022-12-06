@@ -10,7 +10,7 @@ import (
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 	tmtime "github.com/tendermint/tendermint/types/time"
 
-	kavadistTypes "github.com/kava-labs/kava/x/kavadist/types"
+	aethdistTypes "github.com/mokitanetwork/aether/x/aethdist/types"
 )
 
 // Parameter keys and default values
@@ -33,10 +33,10 @@ var (
 	DefaultTypedMultiRewardPeriods = TypedMultiRewardPeriods{}
 	DefaultClaimEnd                = tmtime.Canonical(time.Unix(1, 0))
 
-	BondDenom              = "ukava"
-	USDXMintingRewardDenom = "ukava"
+	BondDenom              = "uaeth"
+	USDXMintingRewardDenom = "uaeth"
 
-	IncentiveMacc = kavadistTypes.ModuleName
+	IncentiveMacc = aethdistTypes.ModuleName
 )
 
 // NewParams returns a new params object

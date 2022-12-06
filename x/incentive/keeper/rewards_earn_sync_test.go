@@ -5,8 +5,8 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	earntypes "github.com/kava-labs/kava/x/earn/types"
-	"github.com/kava-labs/kava/x/incentive/types"
+	earntypes "github.com/mokitanetwork/aether/x/earn/types"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 )
 
 // SynchronizeEarnRewardTests runs unit tests for the keeper.SynchronizeEarnReward method
@@ -353,7 +353,7 @@ func (suite *SynchronizeEarnRewardTests) TestGetSyncedClaim_ClaimUnchangedWhenNo
 
 func (suite *SynchronizeEarnRewardTests) TestGetSyncedClaim_ClaimUpdatedWhenMissingIndexAndHasNoSourceShares() {
 	vaultDenom_1 := "usdx"
-	vaultDenom_2 := "ukava"
+	vaultDenom_2 := "uaeth"
 	owner := arbitraryAddress()
 
 	// owner has no shares in any vault
@@ -411,7 +411,7 @@ func (suite *SynchronizeEarnRewardTests) TestGetSyncedClaim_ClaimUpdatedWhenMiss
 
 func (suite *SynchronizeEarnRewardTests) TestGetSyncedClaim_ClaimUpdatedWhenMissingIndexButHasSourceShares() {
 	VaultDenom_1 := "usdx"
-	VaultDenom_2 := "ukava"
+	VaultDenom_2 := "uaeth"
 	owner := arbitraryAddress()
 
 	earnKeeper := newFakeEarnKeeper().

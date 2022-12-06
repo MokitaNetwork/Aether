@@ -10,7 +10,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"github.com/kava-labs/kava/x/liquid/types"
+	"github.com/mokitanetwork/aether/x/liquid/types"
 )
 
 type queryServer struct {

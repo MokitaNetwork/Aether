@@ -5,7 +5,7 @@ import (
 	"math/big"
 	"testing"
 
-	types "github.com/kava-labs/kava/x/swap/types"
+	types "github.com/mokitanetwork/aether/x/swap/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/assert"

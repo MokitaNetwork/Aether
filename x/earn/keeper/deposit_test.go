@@ -7,9 +7,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/kava-labs/kava/app"
-	"github.com/kava-labs/kava/x/earn/testutil"
-	"github.com/kava-labs/kava/x/earn/types"
+	"github.com/mokitanetwork/aether/app"
+	"github.com/mokitanetwork/aether/x/earn/testutil"
+	"github.com/mokitanetwork/aether/x/earn/types"
 	"github.com/stretchr/testify/suite"
 )
 
@@ -168,16 +168,16 @@ func (suite *depositTestSuite) TestDeposit_PrivateVault() {
 	suite.Require().NoError(err, "private vault should allow deposits from allowed addresses")
 }
 
-func (suite *depositTestSuite) TestDeposit_bKava() {
-	vaultDenom := "bkava"
-	coinDenom := testutil.TestBkavaDenoms[0]
+func (suite *depositTestSuite) TestDeposit_bAether() {
+	vaultDenom := "baeth"
+	coinDenom := testutil.TestBaethDenoms[0]
 
 	startBalance := sdk.NewInt64Coin(coinDenom, 1000)
 	depositAmount := sdk.NewInt64Coin(coinDenom, 100)
 
 	acc1 := suite.CreateAccount(sdk.NewCoins(startBalance), 0)
 
-	// vault denom is only "bkava" which has it's own special handler
+	// vault denom is only "baeth" which has it's own special handler
 	suite.CreateVault(
 		vaultDenom,
 		types.StrategyTypes{types.STRATEGY_TYPE_SAVINGS},
@@ -188,6 +188,6 @@ func (suite *depositTestSuite) TestDeposit_bKava() {
 	err := suite.Keeper.Deposit(suite.Ctx, acc1.GetAddress(), depositAmount, types.STRATEGY_TYPE_SAVINGS)
 	suite.Require().NoError(
 		err,
-		"should be able to deposit bkava derivative denom in bkava vault",
+		"should be able to deposit baeth derivative denom in baeth vault",
 	)
 }

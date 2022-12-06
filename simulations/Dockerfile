@@ -11,7 +11,7 @@ RUN apk add python py-pip
 RUN pip install awscli
 
 # Set working directory for the build
-WORKDIR /root/kava
+WORKDIR /root/aeth
 # default home directory is /root
 
 # Download dependencies before adding source files to speed up build times

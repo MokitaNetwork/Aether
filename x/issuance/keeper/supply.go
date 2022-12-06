@@ -6,7 +6,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/kava-labs/kava/x/issuance/types"
+	"github.com/mokitanetwork/aether/x/issuance/types"
 )
 
 // CreateNewAssetSupply creates a new AssetSupply in the store for the input denom

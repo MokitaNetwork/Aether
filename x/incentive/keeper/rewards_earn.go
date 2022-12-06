@@ -8,9 +8,9 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	earntypes "github.com/kava-labs/kava/x/earn/types"
-	"github.com/kava-labs/kava/x/incentive/keeper/accumulators"
-	"github.com/kava-labs/kava/x/incentive/types"
+	earntypes "github.com/mokitanetwork/aether/x/earn/types"
+	"github.com/mokitanetwork/aether/x/incentive/keeper/accumulators"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 
 	distrtypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
 )
@@ -18,8 +18,8 @@ import (
 // AccumulateEarnRewards calculates new rewards to distribute this block and updates the global indexes to reflect this.
 // The provided rewardPeriod must be valid to avoid panics in calculating time durations.
 func (k Keeper) AccumulateEarnRewards(ctx sdk.Context, rewardPeriod types.MultiRewardPeriod) error {
-	if rewardPeriod.CollateralType == "bkava" {
-		return k.accumulateEarnBkavaRewards(ctx, rewardPeriod)
+	if rewardPeriod.CollateralType == "baeth" {
+		return k.accumulateEarnBaethRewards(ctx, rewardPeriod)
 	}
 
 	k.accumulateEarnRewards(
@@ -33,61 +33,61 @@ func (k Keeper) AccumulateEarnRewards(ctx sdk.Context, rewardPeriod types.MultiR
 	return nil
 }
 
-// accumulateEarnBkavaRewards does the same as AccumulateEarnRewards but for
-// *all* bkava vaults.
-func (k Keeper) accumulateEarnBkavaRewards(ctx sdk.Context, rewardPeriod types.MultiRewardPeriod) error {
-	// All bkava vault denoms
-	bkavaVaultsDenoms := make(map[string]bool)
+// accumulateEarnBaethRewards does the same as AccumulateEarnRewards but for
+// *all* baeth vaults.
+func (k Keeper) accumulateEarnBaethRewards(ctx sdk.Context, rewardPeriod types.MultiRewardPeriod) error {
+	// All baeth vault denoms
+	baethVaultsDenoms := make(map[string]bool)
 
-	// bkava vault denoms from earn records (non-empty vaults)
+	// baeth vault denoms from earn records (non-empty vaults)
 	k.earnKeeper.IterateVaultRecords(ctx, func(record earntypes.VaultRecord) (stop bool) {
 		if k.liquidKeeper.IsDerivativeDenom(ctx, record.TotalShares.Denom) {
-			bkavaVaultsDenoms[record.TotalShares.Denom] = true
+			baethVaultsDenoms[record.TotalShares.Denom] = true
 		}
 
 		return false
 	})
 
-	// bkava vault denoms from past incentive indexes, may include vaults
+	// baeth vault denoms from past incentive indexes, may include vaults
 	// that were fully withdrawn.
 	k.IterateEarnRewardIndexes(ctx, func(vaultDenom string, indexes types.RewardIndexes) (stop bool) {
 		if k.liquidKeeper.IsDerivativeDenom(ctx, vaultDenom) {
-			bkavaVaultsDenoms[vaultDenom] = true
+			baethVaultsDenoms[vaultDenom] = true
 		}
 
 		return false
 	})
 
-	totalBkavaValue, err := k.liquidKeeper.GetTotalDerivativeValue(ctx)
+	totalBaethValue, err := k.liquidKeeper.GetTotalDerivativeValue(ctx)
 	if err != nil {
 		return err
 	}
 
 	i := 0
-	sortedBkavaVaultsDenoms := make([]string, len(bkavaVaultsDenoms))
-	for vaultDenom := range bkavaVaultsDenoms {
-		sortedBkavaVaultsDenoms[i] = vaultDenom
+	sortedBaethVaultsDenoms := make([]string, len(baethVaultsDenoms))
+	for vaultDenom := range baethVaultsDenoms {
+		sortedBaethVaultsDenoms[i] = vaultDenom
 		i++
 	}
 
 	// Sort the vault denoms to ensure deterministic iteration order.
-	sort.Strings(sortedBkavaVaultsDenoms)
+	sort.Strings(sortedBaethVaultsDenoms)
 
-	// Accumulate rewards for each bkava vault.
-	for _, bkavaDenom := range sortedBkavaVaultsDenoms {
-		derivativeValue, err := k.liquidKeeper.GetDerivativeValue(ctx, bkavaDenom)
+	// Accumulate rewards for each baeth vault.
+	for _, baethDenom := range sortedBaethVaultsDenoms {
+		derivativeValue, err := k.liquidKeeper.GetDerivativeValue(ctx, baethDenom)
 		if err != nil {
 			return err
 		}
 
-		k.accumulateBkavaEarnRewards(
+		k.accumulateBaethEarnRewards(
 			ctx,
-			bkavaDenom,
+			baethDenom,
 			rewardPeriod.Start,
 			rewardPeriod.End,
 			accumulators.GetProportionalRewardsPerSecond(
 				rewardPeriod,
-				totalBkavaValue.Amount,
+				totalBaethValue.Amount,
 				derivativeValue.Amount,
 			),
 		)
@@ -96,7 +96,7 @@ func (k Keeper) accumulateEarnBkavaRewards(ctx sdk.Context, rewardPeriod types.M
 	return nil
 }
 
-func (k Keeper) accumulateBkavaEarnRewards(
+func (k Keeper) accumulateBaethEarnRewards(
 	ctx sdk.Context,
 	collateralType string,
 	periodStart time.Time,

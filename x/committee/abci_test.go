@@ -11,13 +11,13 @@ import (
 	abci "github.com/tendermint/tendermint/abci/types"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
-	"github.com/kava-labs/kava/app"
-	// "github.com/kava-labs/kava/x/cdp"
-	// cdptypes "github.com/kava-labs/kava/x/cdp/types"
-	"github.com/kava-labs/kava/x/committee"
-	"github.com/kava-labs/kava/x/committee/keeper"
-	"github.com/kava-labs/kava/x/committee/testutil"
-	"github.com/kava-labs/kava/x/committee/types"
+	"github.com/mokitanetwork/aether/app"
+	// "github.com/mokitanetwork/aether/x/cdp"
+	// cdptypes "github.com/mokitanetwork/aether/x/cdp/types"
+	"github.com/mokitanetwork/aether/x/committee"
+	"github.com/mokitanetwork/aether/x/committee/keeper"
+	"github.com/mokitanetwork/aether/x/committee/testutil"
+	"github.com/mokitanetwork/aether/x/committee/types"
 )
 
 type ModuleTestSuite struct {

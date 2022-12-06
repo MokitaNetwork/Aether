@@ -11,7 +11,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/rest"
 	"github.com/gorilla/mux"
 
-	"github.com/kava-labs/kava/x/bep3/types"
+	"github.com/mokitanetwork/aether/x/bep3/types"
 )
 
 const (

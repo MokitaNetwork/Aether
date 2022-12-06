@@ -3,7 +3,7 @@ package keeper_test
 import (
 	"time"
 
-	"github.com/kava-labs/kava/x/incentive/types"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 )
 
 func (suite *KeeperTestSuite) TestGetSetDeleteClaims() {
@@ -159,7 +159,7 @@ func (suite *KeeperTestSuite) TestGetSetRewardIndexes() {
 					RewardFactor:   d("0.02"),
 				},
 				{
-					CollateralType: "ukava",
+					CollateralType: "uaeth",
 					RewardFactor:   d("0.04"),
 				},
 			},
@@ -169,7 +169,7 @@ func (suite *KeeperTestSuite) TestGetSetRewardIndexes() {
 					RewardFactor:   d("0.02"),
 				},
 				{
-					CollateralType: "ukava",
+					CollateralType: "uaeth",
 					RewardFactor:   d("0.04"),
 				},
 			},
@@ -183,7 +183,7 @@ func (suite *KeeperTestSuite) TestGetSetRewardIndexes() {
 					RewardFactor:   d("0.02"),
 				},
 				{
-					CollateralType: "ukava",
+					CollateralType: "uaeth",
 					RewardFactor:   d("0.04"),
 				},
 			},
@@ -312,7 +312,7 @@ func (suite *KeeperTestSuite) TestIterateRewardIndexes() {
 					RewardFactor:   d("0.0000002"),
 				},
 				{
-					CollateralType: "ukava",
+					CollateralType: "uaeth",
 					RewardFactor:   d("0.04"),
 				},
 			},
@@ -337,16 +337,16 @@ func (suite *KeeperTestSuite) TestIterateRewardIndexes() {
 					RewardFactor:   d("0.0000002"),
 				},
 				{
-					CollateralType: "ukava",
+					CollateralType: "uaeth",
 					RewardFactor:   d("0.04"),
 				},
 			},
 		},
 		{
-			CollateralType: "ukava",
+			CollateralType: "uaeth",
 			RewardIndexes: types.RewardIndexes{
 				{
-					CollateralType: "ukava",
+					CollateralType: "uaeth",
 					RewardFactor:   d("0.02"),
 				},
 			},
@@ -376,14 +376,14 @@ func (suite *KeeperTestSuite) TestIterateAllRewardIndexes() {
 	suite.SetupApp()
 	multiIndexes := types.MultiRewardIndexes{
 		{
-			CollateralType: "ukava",
+			CollateralType: "uaeth",
 			RewardIndexes: types.RewardIndexes{
 				{
 					CollateralType: "swap",
 					RewardFactor:   d("0.0000002"),
 				},
 				{
-					CollateralType: "ukava",
+					CollateralType: "uaeth",
 					RewardFactor:   d("0.04"),
 				},
 			},

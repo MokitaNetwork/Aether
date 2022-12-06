@@ -4,17 +4,17 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/kava-labs/kava/x/incentive/keeper/accumulators"
-	"github.com/kava-labs/kava/x/incentive/types"
+	"github.com/mokitanetwork/aether/x/incentive/keeper/accumulators"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 )
 
 func (suite *AccumulateEarnRewardsIntegrationTests) TestEarnAccumulator_OnlyEarnClaimType() {
 	period := types.NewMultiRewardPeriod(
 		true,
-		"bkava",
+		"baeth",
 		time.Unix(0, 0), // ensure the test is within start and end times
 		distantFuture,
-		cs(c("earn", 2000), c("ukava", 1000)), // same denoms as in global indexes
+		cs(c("earn", 2000), c("uaeth", 1000)), // same denoms as in global indexes
 	)
 
 	earnKeeper := suite.App.GetEarnKeeper()

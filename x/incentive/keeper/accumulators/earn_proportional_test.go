@@ -5,8 +5,8 @@ import (
 	"time"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/kava-labs/kava/x/incentive/keeper/accumulators"
-	"github.com/kava-labs/kava/x/incentive/types"
+	"github.com/mokitanetwork/aether/x/incentive/keeper/accumulators"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 	"github.com/stretchr/testify/require"
 )
 
@@ -14,8 +14,8 @@ func TestGetProportionalRewardPeriod(t *testing.T) {
 	tests := []struct {
 		name                  string
 		giveRewardPeriod      types.MultiRewardPeriod
-		giveTotalBkavaSupply  sdk.Int
-		giveSingleBkavaSupply sdk.Int
+		giveTotalBaethSupply  sdk.Int
+		giveSingleBaethSupply sdk.Int
 		wantRewardsPerSecond  sdk.DecCoins
 	}{
 		{
@@ -25,11 +25,11 @@ func TestGetProportionalRewardPeriod(t *testing.T) {
 				"",
 				time.Time{},
 				time.Time{},
-				cs(c("ukava", 100), c("hard", 200)),
+				cs(c("uaeth", 100), c("hard", 200)),
 			),
 			i(100),
 			i(100),
-			toDcs(c("ukava", 100), c("hard", 200)),
+			toDcs(c("uaeth", 100), c("hard", 200)),
 		},
 		{
 			"3/4 amount",
@@ -38,11 +38,11 @@ func TestGetProportionalRewardPeriod(t *testing.T) {
 				"",
 				time.Time{},
 				time.Time{},
-				cs(c("ukava", 100), c("hard", 200)),
+				cs(c("uaeth", 100), c("hard", 200)),
 			),
 			i(10_000000),
 			i(7_500000),
-			toDcs(c("ukava", 75), c("hard", 150)),
+			toDcs(c("uaeth", 75), c("hard", 150)),
 		},
 		{
 			"half amount",
@@ -51,11 +51,11 @@ func TestGetProportionalRewardPeriod(t *testing.T) {
 				"",
 				time.Time{},
 				time.Time{},
-				cs(c("ukava", 100), c("hard", 200)),
+				cs(c("uaeth", 100), c("hard", 200)),
 			),
 			i(100),
 			i(50),
-			toDcs(c("ukava", 50), c("hard", 100)),
+			toDcs(c("uaeth", 50), c("hard", 100)),
 		},
 		{
 			"under 1 unit",
@@ -64,11 +64,11 @@ func TestGetProportionalRewardPeriod(t *testing.T) {
 				"",
 				time.Time{},
 				time.Time{},
-				cs(c("ukava", 100), c("hard", 200)),
+				cs(c("uaeth", 100), c("hard", 200)),
 			),
-			i(1000), // total bkava
-			i(1),    // bkava supply of this specific vault
-			dcs(dc("ukava", "0.1"), dc("hard", "0.2")), // rewards per second rounded to 0 if under 1ukava/1hard
+			i(1000), // total baeth
+			i(1),    // baeth supply of this specific vault
+			dcs(dc("uaeth", "0.1"), dc("hard", "0.2")), // rewards per second rounded to 0 if under 1uaeth/1hard
 		},
 	}
 
@@ -76,8 +76,8 @@ func TestGetProportionalRewardPeriod(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			rewardsPerSecond := accumulators.GetProportionalRewardsPerSecond(
 				tt.giveRewardPeriod,
-				tt.giveTotalBkavaSupply,
-				tt.giveSingleBkavaSupply,
+				tt.giveTotalBaethSupply,
+				tt.giveSingleBaethSupply,
 			)
 
 			require.Equal(t, tt.wantRewardsPerSecond, rewardsPerSecond)

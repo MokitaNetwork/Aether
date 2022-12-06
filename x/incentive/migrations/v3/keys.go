@@ -3,7 +3,7 @@ package v3
 import (
 	"fmt"
 
-	"github.com/kava-labs/kava/x/incentive/types"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 )
 
 // Legacy store key prefixes

@@ -18,26 +18,26 @@ import (
 	abcitypes "github.com/tendermint/tendermint/abci/types"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
-	"github.com/kava-labs/kava/app"
-	cdpkeeper "github.com/kava-labs/kava/x/cdp/keeper"
-	cdptypes "github.com/kava-labs/kava/x/cdp/types"
-	committeekeeper "github.com/kava-labs/kava/x/committee/keeper"
-	committeetypes "github.com/kava-labs/kava/x/committee/types"
-	earnkeeper "github.com/kava-labs/kava/x/earn/keeper"
-	earntypes "github.com/kava-labs/kava/x/earn/types"
-	hardkeeper "github.com/kava-labs/kava/x/hard/keeper"
-	hardtypes "github.com/kava-labs/kava/x/hard/types"
-	incentivekeeper "github.com/kava-labs/kava/x/incentive/keeper"
-	"github.com/kava-labs/kava/x/incentive/types"
-	liquidkeeper "github.com/kava-labs/kava/x/liquid/keeper"
-	liquidtypes "github.com/kava-labs/kava/x/liquid/types"
-	routerkeeper "github.com/kava-labs/kava/x/router/keeper"
-	routertypes "github.com/kava-labs/kava/x/router/types"
-	swapkeeper "github.com/kava-labs/kava/x/swap/keeper"
-	swaptypes "github.com/kava-labs/kava/x/swap/types"
+	"github.com/mokitanetwork/aether/app"
+	cdpkeeper "github.com/mokitanetwork/aether/x/cdp/keeper"
+	cdptypes "github.com/mokitanetwork/aether/x/cdp/types"
+	committeekeeper "github.com/mokitanetwork/aether/x/committee/keeper"
+	committeetypes "github.com/mokitanetwork/aether/x/committee/types"
+	earnkeeper "github.com/mokitanetwork/aether/x/earn/keeper"
+	earntypes "github.com/mokitanetwork/aether/x/earn/types"
+	hardkeeper "github.com/mokitanetwork/aether/x/hard/keeper"
+	hardtypes "github.com/mokitanetwork/aether/x/hard/types"
+	incentivekeeper "github.com/mokitanetwork/aether/x/incentive/keeper"
+	"github.com/mokitanetwork/aether/x/incentive/types"
+	liquidkeeper "github.com/mokitanetwork/aether/x/liquid/keeper"
+	liquidtypes "github.com/mokitanetwork/aether/x/liquid/types"
+	routerkeeper "github.com/mokitanetwork/aether/x/router/keeper"
+	routertypes "github.com/mokitanetwork/aether/x/router/types"
+	swapkeeper "github.com/mokitanetwork/aether/x/swap/keeper"
+	swaptypes "github.com/mokitanetwork/aether/x/swap/types"
 )
 
-var testChainID = "kavatest_1-1"
+var testChainID = "aethtest_1-1"
 
 type IntegrationTester struct {
 	suite.Suite
@@ -173,7 +173,7 @@ func (suite *IntegrationTester) MintLiquidAnyValAddr(
 	_, found := suite.App.GetStakingKeeper().GetValidator(suite.Ctx, validator)
 	if !found {
 		// Create validator
-		if err := suite.DeliverMsgCreateValidator(validator, sdk.NewCoin("ukava", sdk.NewInt(1e9))); err != nil {
+		if err := suite.DeliverMsgCreateValidator(validator, sdk.NewCoin("uaeth", sdk.NewInt(1e9))); err != nil {
 			return sdk.Coin{}, err
 		}
 
@@ -621,10 +621,10 @@ func (suite *IntegrationTester) GetBeginBlockClaimedStakingRewards(
 		//
 		// Event: withdraw_rewards
 		// - amount:
-		// - validator: kavavaloper1em2mlkrkx0qsa6327tgvl3g0fh8a95hjnqvrwh
+		// - validator: aethvaloper1em2mlkrkx0qsa6327tgvl3g0fh8a95hjnqvrwh
 		// Event: withdraw_rewards
-		// - amount: 523909ukava
-		// - validator: kavavaloper1nmgpgr8l4t8pw9zqx9cltuymvz85wmw9sy8kjy
+		// - amount: 523909uaeth
+		// - validator: aethvaloper1nmgpgr8l4t8pw9zqx9cltuymvz85wmw9sy8kjy
 		attrsMap := attrsToMap(event.Attributes)
 
 		validator, found := attrsMap[distributiontypes.AttributeKeyValidator]

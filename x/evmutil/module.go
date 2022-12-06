@@ -16,9 +16,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 
-	"github.com/kava-labs/kava/x/evmutil/client/cli"
-	"github.com/kava-labs/kava/x/evmutil/keeper"
-	"github.com/kava-labs/kava/x/evmutil/types"
+	"github.com/mokitanetwork/aether/x/evmutil/client/cli"
+	"github.com/mokitanetwork/aether/x/evmutil/keeper"
+	"github.com/mokitanetwork/aether/x/evmutil/types"
 )
 
 // ConsensusVersion defines the current module consensus version.

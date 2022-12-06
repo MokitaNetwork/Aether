@@ -12,7 +12,7 @@ import (
 
 	"github.com/tendermint/tendermint/libs/kv"
 
-	"github.com/kava-labs/kava/x/incentive/types"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 )
 
 func makeTestCodec() (cdc *codec.Codec) {
@@ -24,8 +24,8 @@ func makeTestCodec() (cdc *codec.Codec) {
 
 func TestDecodeDistributionStore(t *testing.T) {
 	cdc := makeTestCodec()
-	addr, _ := sdk.AccAddressFromBech32("kava15qdefkmwswysgg4qxgqpqr35k3m49pkx2jdfnw")
-	claim := types.NewUSDXMintingClaim(addr, sdk.NewCoin("ukava", sdk.NewInt(1000000)), types.RewardIndexes{types.NewRewardIndex("bnb-a", sdk.ZeroDec())})
+	addr, _ := sdk.AccAddressFromBech32("aeth15qdefkmwswysgg4qxgqpqr35k3m49pkx2jdfnw")
+	claim := types.NewUSDXMintingClaim(addr, sdk.NewCoin("uaeth", sdk.NewInt(1000000)), types.RewardIndexes{types.NewRewardIndex("bnb-a", sdk.ZeroDec())})
 	prevBlockTime := time.Now().Add(time.Hour * -1).UTC()
 	factor := sdk.ZeroDec()
 

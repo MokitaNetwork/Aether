@@ -17,10 +17,10 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 
-	"github.com/kava-labs/kava/x/committee/client/cli"
-	"github.com/kava-labs/kava/x/committee/client/rest"
-	"github.com/kava-labs/kava/x/committee/keeper"
-	"github.com/kava-labs/kava/x/committee/types"
+	"github.com/mokitanetwork/aether/x/committee/client/cli"
+	"github.com/mokitanetwork/aether/x/committee/client/rest"
+	"github.com/mokitanetwork/aether/x/committee/keeper"
+	"github.com/mokitanetwork/aether/x/committee/types"
 )
 
 // ConsensusVersion defines the current module consensus version.

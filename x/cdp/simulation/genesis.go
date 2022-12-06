@@ -12,7 +12,7 @@ package simulation
 // 	"github.com/cosmos/cosmos-sdk/x/supply"
 // 	supplyexported "github.com/cosmos/cosmos-sdk/x/supply/exported"
 
-// 	"github.com/kava-labs/kava/x/cdp/types"
+// 	"github.com/mokitanetwork/aether/x/cdp/types"
 // )
 
 // // RandomizedGenState generates a random GenesisState for cdp
@@ -34,7 +34,7 @@ package simulation
 // 			sdk.NewCoin("xrp", sdk.NewInt(int64(simState.Rand.Intn(100000000000)))),
 // 			sdk.NewCoin("btc", sdk.NewInt(int64(simState.Rand.Intn(500000000)))),
 // 			sdk.NewCoin("usdx", sdk.NewInt(int64(simState.Rand.Intn(1000000000)))),
-// 			sdk.NewCoin("ukava", sdk.NewInt(int64(simState.Rand.Intn(500000000000)))),
+// 			sdk.NewCoin("uaeth", sdk.NewInt(int64(simState.Rand.Intn(500000000000)))),
 // 		)
 // 		err := acc.SetCoins(acc.GetCoins().Add(coinsToAdd...))
 // 		if err != nil {

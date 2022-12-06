@@ -3,8 +3,8 @@ package swap_test
 import (
 	"testing"
 
-	"github.com/kava-labs/kava/x/swap/testutil"
-	"github.com/kava-labs/kava/x/swap/types"
+	"github.com/mokitanetwork/aether/x/swap/testutil"
+	"github.com/mokitanetwork/aether/x/swap/types"
 
 	crisiskeeper "github.com/cosmos/cosmos-sdk/x/crisis/keeper"
 	"github.com/stretchr/testify/suite"

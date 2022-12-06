@@ -6,16 +6,16 @@ import (
 	"time"
 
 	"github.com/cosmos/cosmos-sdk/crypto/keys/ed25519"
-	"github.com/kava-labs/kava/app"
-	"github.com/kava-labs/kava/x/earn/keeper"
-	"github.com/kava-labs/kava/x/earn/types"
-	"github.com/kava-labs/kava/x/hard"
+	"github.com/mokitanetwork/aether/app"
+	"github.com/mokitanetwork/aether/x/earn/keeper"
+	"github.com/mokitanetwork/aether/x/earn/types"
+	"github.com/mokitanetwork/aether/x/hard"
 
-	hardkeeper "github.com/kava-labs/kava/x/hard/keeper"
-	hardtypes "github.com/kava-labs/kava/x/hard/types"
-	pricefeedtypes "github.com/kava-labs/kava/x/pricefeed/types"
-	savingskeeper "github.com/kava-labs/kava/x/savings/keeper"
-	savingstypes "github.com/kava-labs/kava/x/savings/types"
+	hardkeeper "github.com/mokitanetwork/aether/x/hard/keeper"
+	hardtypes "github.com/mokitanetwork/aether/x/hard/types"
+	pricefeedtypes "github.com/mokitanetwork/aether/x/pricefeed/types"
+	savingskeeper "github.com/mokitanetwork/aether/x/savings/keeper"
+	savingstypes "github.com/mokitanetwork/aether/x/savings/types"
 
 	"github.com/cosmos/cosmos-sdk/simapp"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -31,10 +31,10 @@ import (
 	tmtime "github.com/tendermint/tendermint/types/time"
 )
 
-var TestBkavaDenoms = []string{
-	"bkava-kavavaloper15gqc744d05xacn4n6w2furuads9fu4pqn6zxlu",
-	"bkava-kavavaloper15qdefkmwswysgg4qxgqpqr35k3m49pkx8yhpte",
-	"bkava-kavavaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42",
+var TestBaethDenoms = []string{
+	"baeth-aethvaloper15gqc744d05xacn4n6w2furuads9fu4pqn6zxlu",
+	"baeth-aethvaloper15qdefkmwswysgg4qxgqpqr35k3m49pkx8yhpte",
+	"baeth-aethvaloper1ypjp0m04pyp73hwgtc0dgkx0e9rrydeckewa42",
 }
 
 // Suite implements a test suite for the earn module integration tests
@@ -58,7 +58,7 @@ func (suite *Suite) SetupTest() {
 		Params: pricefeedtypes.Params{
 			Markets: []pricefeedtypes.Market{
 				{MarketID: "usdx:usd", BaseAsset: "usdx", QuoteAsset: "usd", Oracles: []sdk.AccAddress{}, Active: true},
-				{MarketID: "kava:usd", BaseAsset: "kava", QuoteAsset: "usd", Oracles: []sdk.AccAddress{}, Active: true},
+				{MarketID: "aeth:usd", BaseAsset: "aeth", QuoteAsset: "usd", Oracles: []sdk.AccAddress{}, Active: true},
 				{MarketID: "bnb:usd", BaseAsset: "bnb", QuoteAsset: "usd", Oracles: []sdk.AccAddress{}, Active: true},
 			},
 		},
@@ -70,7 +70,7 @@ func (suite *Suite) SetupTest() {
 				Expiry:        time.Now().Add(100 * time.Hour),
 			},
 			{
-				MarketID:      "kava:usd",
+				MarketID:      "aeth:usd",
 				OracleAddress: sdk.AccAddress{},
 				Price:         sdk.MustNewDecFromStr("2.00"),
 				Expiry:        time.Now().Add(100 * time.Hour),
@@ -123,13 +123,13 @@ func (suite *Suite) SetupTest() {
 				sdk.ZeroDec(),
 			),
 			hardtypes.NewMoneyMarket(
-				"kava",
+				"aeth",
 				hardtypes.NewBorrowLimit(
 					true,
 					sdk.MustNewDecFromStr("20000000"),
 					sdk.MustNewDecFromStr("1"),
 				),
-				"kava:usd",
+				"aeth:usd",
 				sdk.NewInt(1000000),
 				hardtypes.NewInterestRateModel(
 					sdk.MustNewDecFromStr("0.05"),
@@ -154,19 +154,19 @@ func (suite *Suite) SetupTest() {
 	savingsGS := savingstypes.NewGenesisState(
 		savingstypes.NewParams(
 			[]string{
-				"ukava",
+				"uaeth",
 				"busd",
 				"usdx",
-				TestBkavaDenoms[0],
-				TestBkavaDenoms[1],
-				TestBkavaDenoms[2],
+				TestBaethDenoms[0],
+				TestBaethDenoms[1],
+				TestBaethDenoms[2],
 			},
 		),
 		nil,
 	)
 
 	stakingParams := stakingtypes.DefaultParams()
-	stakingParams.BondDenom = "ukava"
+	stakingParams.BondDenom = "uaeth"
 
 	stakingGs := stakingtypes.GenesisState{
 		Params: stakingParams,

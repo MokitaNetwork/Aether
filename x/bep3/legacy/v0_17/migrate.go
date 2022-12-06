@@ -3,7 +3,7 @@ package v0_16
 import (
 	"fmt"
 
-	"github.com/kava-labs/kava/x/bep3/types"
+	"github.com/mokitanetwork/aether/x/bep3/types"
 )
 
 // resetSwapForZeroHeight updates swap expiry/close heights to work when the chain height is reset to zero.
@@ -22,7 +22,7 @@ func resetSwapForZeroHeight(swap types.AtomicSwap) types.AtomicSwap {
 		case types.SWAP_DIRECTION_OUTGOING:
 			// Open outgoing swaps should be extended to allow enough time to claim after the chain launches.
 			// They cannot be expired as there could be an open/claimed bnb swap.
-			swap.ExpireHeight = 1 + 24686 // default timeout used when sending swaps from kava
+			swap.ExpireHeight = 1 + 24686 // default timeout used when sending swaps from aeth
 		case types.SWAP_DIRECTION_UNSPECIFIED:
 		default:
 			panic(fmt.Sprintf("unknown bep3 swap direction '%s'", dir))

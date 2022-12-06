@@ -15,10 +15,10 @@ import (
 
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/kava-labs/kava/x/incentive/client/cli"
-	"github.com/kava-labs/kava/x/incentive/client/rest"
-	"github.com/kava-labs/kava/x/incentive/keeper"
-	"github.com/kava-labs/kava/x/incentive/types"
+	"github.com/mokitanetwork/aether/x/incentive/client/cli"
+	"github.com/mokitanetwork/aether/x/incentive/client/rest"
+	"github.com/mokitanetwork/aether/x/incentive/keeper"
+	"github.com/mokitanetwork/aether/x/incentive/types"
 )
 
 // ConsensusVersion defines the current module consensus version.

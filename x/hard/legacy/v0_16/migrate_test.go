@@ -10,9 +10,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/suite"
 
-	app "github.com/kava-labs/kava/app"
-	v015hard "github.com/kava-labs/kava/x/hard/legacy/v0_15"
-	v016hard "github.com/kava-labs/kava/x/hard/types"
+	app "github.com/mokitanetwork/aether/app"
+	v015hard "github.com/mokitanetwork/aether/x/hard/legacy/v0_15"
+	v016hard "github.com/mokitanetwork/aether/x/hard/types"
 )
 
 type migrateTestSuite struct {
@@ -56,7 +56,7 @@ func (s *migrateTestSuite) TestMigrate_GenState() {
 		Params: v015hard.Params{
 			MoneyMarkets: v015hard.MoneyMarkets{
 				{
-					Denom: "kava",
+					Denom: "aeth",
 					BorrowLimit: v015hard.BorrowLimit{
 						HasMaxLimit:  true,
 						MaximumLimit: sdk.MustNewDecFromStr("0.1"),
@@ -77,7 +77,7 @@ func (s *migrateTestSuite) TestMigrate_GenState() {
 		},
 		PreviousAccumulationTimes: v015hard.GenesisAccumulationTimes{
 			{
-				CollateralType:           "kava",
+				CollateralType:           "aeth",
 				PreviousAccumulationTime: time.Date(1998, time.January, 1, 12, 0, 0, 1, time.UTC),
 				SupplyInterestFactor:     sdk.MustNewDecFromStr("0.1"),
 				BorrowInterestFactor:     sdk.MustNewDecFromStr("0.2"),
@@ -86,10 +86,10 @@ func (s *migrateTestSuite) TestMigrate_GenState() {
 		Deposits: v015hard.Deposits{
 			{
 				Depositor: s.addresses[0],
-				Amount:    sdk.NewCoins(sdk.NewCoin("kava", sdk.NewInt(100))),
+				Amount:    sdk.NewCoins(sdk.NewCoin("aeth", sdk.NewInt(100))),
 				Index: v015hard.SupplyInterestFactors{
 					{
-						Denom: "kava",
+						Denom: "aeth",
 						Value: sdk.MustNewDecFromStr("1.12"),
 					},
 				},
@@ -98,16 +98,16 @@ func (s *migrateTestSuite) TestMigrate_GenState() {
 		Borrows: v015hard.Borrows{
 			{
 				Borrower: s.addresses[1],
-				Amount:   sdk.NewCoins(sdk.NewCoin("kava", sdk.NewInt(100))),
+				Amount:   sdk.NewCoins(sdk.NewCoin("aeth", sdk.NewInt(100))),
 				Index: v015hard.BorrowInterestFactors{
 					{
-						Denom: "kava",
+						Denom: "aeth",
 						Value: sdk.MustNewDecFromStr("1.12"),
 					},
 				},
 			},
 		},
-		TotalSupplied: sdk.NewCoins(sdk.NewCoin("kava", sdk.NewInt(100))),
+		TotalSupplied: sdk.NewCoins(sdk.NewCoin("aeth", sdk.NewInt(100))),
 		TotalBorrowed: sdk.NewCoins(sdk.NewCoin("bnb", sdk.NewInt(200))),
 		TotalReserves: sdk.NewCoins(sdk.NewCoin("xrp", sdk.NewInt(300))),
 	}
@@ -115,7 +115,7 @@ func (s *migrateTestSuite) TestMigrate_GenState() {
 		Params: v016hard.Params{
 			MoneyMarkets: v016hard.MoneyMarkets{
 				{
-					Denom: "kava",
+					Denom: "aeth",
 					BorrowLimit: v016hard.BorrowLimit{
 						HasMaxLimit:  true,
 						MaximumLimit: sdk.MustNewDecFromStr("0.1"),
@@ -154,7 +154,7 @@ func (s *migrateTestSuite) TestMigrate_GenState() {
 		},
 		PreviousAccumulationTimes: v016hard.GenesisAccumulationTimes{
 			{
-				CollateralType:           "kava",
+				CollateralType:           "aeth",
 				PreviousAccumulationTime: time.Date(1998, time.January, 1, 12, 0, 0, 1, time.UTC),
 				SupplyInterestFactor:     sdk.MustNewDecFromStr("0.1"),
 				BorrowInterestFactor:     sdk.MustNewDecFromStr("0.2"),
@@ -163,10 +163,10 @@ func (s *migrateTestSuite) TestMigrate_GenState() {
 		Deposits: v016hard.Deposits{
 			{
 				Depositor: s.addresses[0],
-				Amount:    sdk.NewCoins(sdk.NewCoin("kava", sdk.NewInt(100))),
+				Amount:    sdk.NewCoins(sdk.NewCoin("aeth", sdk.NewInt(100))),
 				Index: v016hard.SupplyInterestFactors{
 					{
-						Denom: "kava",
+						Denom: "aeth",
 						Value: sdk.MustNewDecFromStr("1.12"),
 					},
 				},
@@ -175,16 +175,16 @@ func (s *migrateTestSuite) TestMigrate_GenState() {
 		Borrows: v016hard.Borrows{
 			{
 				Borrower: s.addresses[1],
-				Amount:   sdk.NewCoins(sdk.NewCoin("kava", sdk.NewInt(100))),
+				Amount:   sdk.NewCoins(sdk.NewCoin("aeth", sdk.NewInt(100))),
 				Index: v016hard.BorrowInterestFactors{
 					{
-						Denom: "kava",
+						Denom: "aeth",
 						Value: sdk.MustNewDecFromStr("1.12"),
 					},
 				},
 			},
 		},
-		TotalSupplied: sdk.NewCoins(sdk.NewCoin("kava", sdk.NewInt(100))),
+		TotalSupplied: sdk.NewCoins(sdk.NewCoin("aeth", sdk.NewInt(100))),
 		TotalBorrowed: sdk.NewCoins(sdk.NewCoin("bnb", sdk.NewInt(200))),
 		TotalReserves: sdk.NewCoins(sdk.NewCoin("xrp", sdk.NewInt(300))),
 	}

@@ -5,8 +5,8 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/kava-labs/kava/x/auction/keeper"
-	"github.com/kava-labs/kava/x/auction/types"
+	"github.com/mokitanetwork/aether/x/auction/keeper"
+	"github.com/mokitanetwork/aether/x/auction/types"
 )
 
 // InitGenesis initializes the store state from a genesis state.

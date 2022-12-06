@@ -5,7 +5,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/kava-labs/kava/x/incentive/keeper"
+	"github.com/mokitanetwork/aether/x/incentive/keeper"
 )
 
 // BeginBlocker runs at the start of every block

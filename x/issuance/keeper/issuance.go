@@ -7,7 +7,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
-	"github.com/kava-labs/kava/x/issuance/types"
+	"github.com/mokitanetwork/aether/x/issuance/types"
 )
 
 // IssueTokens mints new tokens and sends them to the receiver address

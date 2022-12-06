@@ -19,9 +19,9 @@ import (
 	tmdb "github.com/tendermint/tm-db"
 	evmtypes "github.com/tharsis/ethermint/x/evm/types"
 
-	"github.com/kava-labs/kava/app"
-	bep3types "github.com/kava-labs/kava/x/bep3/types"
-	pricefeedtypes "github.com/kava-labs/kava/x/pricefeed/types"
+	"github.com/mokitanetwork/aether/app"
+	bep3types "github.com/mokitanetwork/aether/x/bep3/types"
+	pricefeedtypes "github.com/mokitanetwork/aether/x/pricefeed/types"
 )
 
 func TestMain(m *testing.M) {
@@ -57,13 +57,13 @@ func TestAppAnteHandler_AuthorizedMempool(t *testing.T) {
 		),
 	}
 
-	chainID := "kavatest_1-1"
+	chainID := "aethtest_1-1"
 	tApp = tApp.InitializeFromGenesisStatesWithTimeAndChainID(
 		time.Date(1998, 1, 1, 0, 0, 0, 0, time.UTC),
 		chainID,
 		app.NewFundedGenStateWithSameCoins(
 			tApp.AppCodec(),
-			sdk.NewCoins(sdk.NewInt64Coin("ukava", 1e9)),
+			sdk.NewCoins(sdk.NewInt64Coin("uaeth", 1e9)),
 			testAddresses,
 		),
 		newBep3GenStateMulti(tApp.AppCodec(), deputy),
@@ -110,7 +110,7 @@ func TestAppAnteHandler_AuthorizedMempool(t *testing.T) {
 					banktypes.NewMsgSend(
 						tc.address,
 						testAddresses[0],
-						sdk.NewCoins(sdk.NewInt64Coin("ukava", 1_000_000)),
+						sdk.NewCoins(sdk.NewInt64Coin("uaeth", 1_000_000)),
 					),
 				},
 				sdk.NewCoins(), // no fee
@@ -204,7 +204,7 @@ func TestAppAnteHandler_RejectMsgsInAuthz(t *testing.T) {
 		return msg
 	}
 
-	chainID := "kavatest_1-1"
+	chainID := "aethtest_1-1"
 	encodingConfig := app.MakeEncodingConfig()
 
 	testcases := []struct {

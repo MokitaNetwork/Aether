@@ -4,14 +4,14 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/kava-labs/kava/x/earn/types"
+	"github.com/mokitanetwork/aether/x/earn/types"
 	"github.com/stretchr/testify/suite"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
 var (
-	testDenom1 = "ukava"
+	testDenom1 = "uaeth"
 	testDenom2 = "usdx"
 )
 

@@ -7,7 +7,7 @@ import (
 )
 
 // InternalEVMAddress is a type alias of common.Address to represent an address
-// on the Kava EVM.
+// on the Aether EVM.
 type InternalEVMAddress struct {
 	common.Address
 }

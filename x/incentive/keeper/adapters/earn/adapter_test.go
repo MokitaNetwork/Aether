@@ -8,10 +8,10 @@ import (
 
 	tmprototypes "github.com/tendermint/tendermint/proto/tendermint/types"
 
-	"github.com/kava-labs/kava/app"
-	earntypes "github.com/kava-labs/kava/x/earn/types"
-	"github.com/kava-labs/kava/x/incentive/keeper/adapters/earn"
-	savingstypes "github.com/kava-labs/kava/x/savings/types"
+	"github.com/mokitanetwork/aether/app"
+	earntypes "github.com/mokitanetwork/aether/x/earn/types"
+	"github.com/mokitanetwork/aether/x/incentive/keeper/adapters/earn"
+	savingstypes "github.com/mokitanetwork/aether/x/savings/types"
 	"github.com/stretchr/testify/suite"
 )
 
@@ -83,7 +83,7 @@ func (suite *EarnAdapterTestSuite) TestEarnAdapter_OwnerSharesBySource_Empty() {
 }
 
 func (suite *EarnAdapterTestSuite) TestEarnAdapter_OwnerSharesBySource() {
-	vaultDenomA := "ukava"
+	vaultDenomA := "uaeth"
 	vaultDenomB := "usdx"
 
 	savingsKeeper := suite.app.GetSavingsKeeper()
@@ -93,7 +93,7 @@ func (suite *EarnAdapterTestSuite) TestEarnAdapter_OwnerSharesBySource() {
 	earnKeeper.SetParams(suite.ctx, earntypes.NewParams(
 		earntypes.AllowedVaults{
 			earntypes.NewAllowedVault(
-				"ukava",
+				"uaeth",
 				earntypes.StrategyTypes{earntypes.STRATEGY_TYPE_SAVINGS},
 				false,
 				nil,
@@ -217,7 +217,7 @@ func (suite *EarnAdapterTestSuite) TestEarnAdapter_TotalSharesBySource_Empty() {
 }
 
 func (suite *EarnAdapterTestSuite) TestEarnAdapter_TotalSharesBySource() {
-	vaultDenomA := "ukava"
+	vaultDenomA := "uaeth"
 	vaultDenomB := "usdx"
 
 	savingsKeeper := suite.app.GetSavingsKeeper()

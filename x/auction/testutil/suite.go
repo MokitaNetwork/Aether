@@ -13,12 +13,12 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
 
-	"github.com/kava-labs/kava/app"
-	"github.com/kava-labs/kava/x/auction/keeper"
-	"github.com/kava-labs/kava/x/auction/types"
+	"github.com/mokitanetwork/aether/app"
+	"github.com/mokitanetwork/aether/x/auction/keeper"
+	"github.com/mokitanetwork/aether/x/auction/types"
 )
 
-// Suite implements a test suite for the kavadist module integration tests
+// Suite implements a test suite for the aethdist module integration tests
 type Suite struct {
 	suite.Suite
 

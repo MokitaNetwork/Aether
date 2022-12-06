@@ -10,7 +10,7 @@ import (
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	paramsproposal "github.com/cosmos/cosmos-sdk/x/params/types/proposal"
 
-	"github.com/kava-labs/kava/x/committee/types"
+	"github.com/mokitanetwork/aether/x/committee/types"
 )
 
 func TestPackPermissions_Success(t *testing.T) {
@@ -88,7 +88,7 @@ func TestParamsChangePermission_SimpleParamsChange_Allows(t *testing.T) {
 			pubProposal: newTestParamsChangeProposalWithChanges(
 				[]paramsproposal.ParamChange{
 					{
-						Subspace: "kavadist",
+						Subspace: "aethdist",
 						Key:      "TestKey",
 						Value:    `100`,
 					},

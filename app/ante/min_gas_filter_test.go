@@ -11,8 +11,8 @@ import (
 	tmtime "github.com/tendermint/tendermint/types/time"
 	evmtypes "github.com/tharsis/ethermint/x/evm/types"
 
-	"github.com/kava-labs/kava/app"
-	"github.com/kava-labs/kava/app/ante"
+	"github.com/mokitanetwork/aether/app"
+	"github.com/mokitanetwork/aether/app/ante"
 )
 
 func mustParseDecCoins(value string) sdk.DecCoins {
@@ -30,7 +30,7 @@ func TestEvmMinGasFilter(t *testing.T) {
 
 	ctx := tApp.NewContext(true, tmproto.Header{Height: 1, Time: tmtime.Now()})
 	tApp.GetEvmKeeper().SetParams(ctx, evmtypes.Params{
-		EvmDenom: "akava",
+		EvmDenom: "aaeth",
 	})
 
 	testCases := []struct {
@@ -44,29 +44,29 @@ func TestEvmMinGasFilter(t *testing.T) {
 			mustParseDecCoins(""),
 		},
 		{
-			"zero ukava gas price",
-			mustParseDecCoins("0ukava"),
-			mustParseDecCoins("0ukava"),
+			"zero uaeth gas price",
+			mustParseDecCoins("0uaeth"),
+			mustParseDecCoins("0uaeth"),
 		},
 		{
-			"non-zero ukava gas price",
-			mustParseDecCoins("0.001ukava"),
-			mustParseDecCoins("0.001ukava"),
+			"non-zero uaeth gas price",
+			mustParseDecCoins("0.001uaeth"),
+			mustParseDecCoins("0.001uaeth"),
 		},
 		{
-			"zero ukava gas price, min akava price",
-			mustParseDecCoins("0ukava;100000akava"),
-			mustParseDecCoins("0ukava"), // akava is removed
+			"zero uaeth gas price, min aaeth price",
+			mustParseDecCoins("0uaeth;100000aaeth"),
+			mustParseDecCoins("0uaeth"), // aaeth is removed
 		},
 		{
-			"zero ukava gas price, min akava price, other token",
-			mustParseDecCoins("0ukava;100000akava;0.001other"),
-			mustParseDecCoins("0ukava;0.001other"), // akava is removed
+			"zero uaeth gas price, min aaeth price, other token",
+			mustParseDecCoins("0uaeth;100000aaeth;0.001other"),
+			mustParseDecCoins("0uaeth;0.001other"), // aaeth is removed
 		},
 		{
-			"non-zero ukava gas price, min akava price",
-			mustParseDecCoins("0.25ukava;100000akava;0.001other"),
-			mustParseDecCoins("0.25ukava;0.001other"), // akava is removed
+			"non-zero uaeth gas price, min aaeth price",
+			mustParseDecCoins("0.25uaeth;100000aaeth;0.001other"),
+			mustParseDecCoins("0.25uaeth;0.001other"), // aaeth is removed
 		},
 	}
 

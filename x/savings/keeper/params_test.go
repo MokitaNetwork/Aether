@@ -1,7 +1,7 @@
 package keeper_test
 
 import (
-	"github.com/kava-labs/kava/x/savings/types"
+	"github.com/mokitanetwork/aether/x/savings/types"
 )
 
 func (suite *KeeperTestSuite) TestGetSetParams() {

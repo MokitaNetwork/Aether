@@ -14,11 +14,11 @@ import (
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 	tmtime "github.com/tendermint/tendermint/types/time"
 
-	"github.com/kava-labs/kava/app"
-	auctiontypes "github.com/kava-labs/kava/x/auction/types"
-	"github.com/kava-labs/kava/x/cdp"
-	"github.com/kava-labs/kava/x/cdp/keeper"
-	"github.com/kava-labs/kava/x/cdp/types"
+	"github.com/mokitanetwork/aether/app"
+	auctiontypes "github.com/mokitanetwork/aether/x/auction/types"
+	"github.com/mokitanetwork/aether/x/cdp"
+	"github.com/mokitanetwork/aether/x/cdp/keeper"
+	"github.com/mokitanetwork/aether/x/cdp/types"
 )
 
 type ModuleTestSuite struct {

@@ -21,13 +21,13 @@
         "keeper_reward_percentage": "0.05"
       },
       {
-        "denom": "ukava",
+        "denom": "uaeth",
         "borrow_limit": {
           "has_max_limit": false,
           "maximum_limit": "100000000000",
           "loan_to_value": "0.80"
         },
-        "spot_market_id": "kava:usd",
+        "spot_market_id": "aeth:usd",
         "conversion_factor": "1000000",
         "interest_rate_model": {
           "base_rate_apy": "0.05",
@@ -52,7 +52,7 @@
           "denom": "btcb"
         }
       ],
-      "depositor": "kava1qq9ustlc0nv4aew275w93g4qy5zahqgxf5mwv9",
+      "depositor": "aeth1qq9ustlc0nv4aew275w93g4qy5zahqgxf5mwv9",
       "index": [
         {
           "denom": "bnb",
@@ -73,7 +73,7 @@
           "denom": "xrpb"
         }
       ],
-      "borrower": "kava1qq9ustlc0nv4aew275w93g4qy5zahqgxf5mwv9",
+      "borrower": "aeth1qq9ustlc0nv4aew275w93g4qy5zahqgxf5mwv9",
       "index": [
         {
           "denom": "usdx",

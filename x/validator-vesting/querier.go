@@ -7,7 +7,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/kava-labs/kava/x/validator-vesting/types"
+	"github.com/mokitanetwork/aether/x/validator-vesting/types"
 
 	abci "github.com/tendermint/tendermint/abci/types"
 )
@@ -39,7 +39,7 @@ func NewQuerier(bk types.BankKeeper, legacyQuerierCdc *codec.LegacyAmino) sdk.Qu
 }
 
 func queryGetTotalSupply(ctx sdk.Context, req abci.RequestQuery, bk types.BankKeeper, legacyQuerierCdc *codec.LegacyAmino) ([]byte, error) {
-	totalSupply := bk.GetSupply(ctx, "ukava").Amount
+	totalSupply := bk.GetSupply(ctx, "uaeth").Amount
 	supplyInt := sdk.NewDecFromInt(totalSupply).Mul(sdk.MustNewDecFromStr("0.000001")).TruncateInt64()
 	bz, err := legacyQuerierCdc.MarshalJSON(supplyInt)
 	if err != nil {
@@ -49,7 +49,7 @@ func queryGetTotalSupply(ctx sdk.Context, req abci.RequestQuery, bk types.BankKe
 }
 
 func queryGetCirculatingSupply(ctx sdk.Context, req abci.RequestQuery, bk types.BankKeeper, legacyQuerierCdc *codec.LegacyAmino) ([]byte, error) {
-	totalSupply := bk.GetSupply(ctx, "ukava").Amount
+	totalSupply := bk.GetSupply(ctx, "uaeth").Amount
 	supplyInt := getCirculatingSupply(ctx.BlockTime(), totalSupply)
 	bz, err := legacyQuerierCdc.MarshalJSON(supplyInt)
 	if err != nil {
@@ -287,7 +287,7 @@ func getCirculatingSupplySWP(ctx sdk.Context, req abci.RequestQuery, legacyQueri
 	monthlyStakersSwp := int64(520_833)
 	monthlyLPIncentivesSwp := int64(2_343_750)
 
-	// []{Ecosystem, Team, Treasury, Kava Stakers, LP Incentives}
+	// []{Ecosystem, Team, Treasury, Aether Stakers, LP Incentives}
 	scheduleAmounts := [][]int64{
 		{12_500_000, 0, 15_625_000, monthlyStakersSwp, monthlyLPIncentivesSwp},  // *** Year ONE ***
 		{0, 0, 0, monthlyStakersSwp, monthlyLPIncentivesSwp},                    // 1

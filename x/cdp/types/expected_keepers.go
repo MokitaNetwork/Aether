@@ -7,7 +7,7 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
-	pftypes "github.com/kava-labs/kava/x/pricefeed/types"
+	pftypes "github.com/mokitanetwork/aether/x/pricefeed/types"
 )
 
 // BankKeeper defines the expected bank keeper for module accounts

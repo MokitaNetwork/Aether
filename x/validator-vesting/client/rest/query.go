@@ -10,7 +10,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/types/rest"
 
-	"github.com/kava-labs/kava/x/validator-vesting/types"
+	"github.com/mokitanetwork/aether/x/validator-vesting/types"
 )
 
 func registerQueryRoutes(cliCtx client.Context, r *mux.Router) {

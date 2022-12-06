@@ -2,12 +2,12 @@ package types_test
 
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/kava-labs/kava/app"
+	"github.com/mokitanetwork/aether/app"
 )
 
 func init() {
-	kavaConfig := sdk.GetConfig()
-	app.SetBech32AddressPrefixes(kavaConfig)
-	app.SetBip44CoinType(kavaConfig)
-	kavaConfig.Seal()
+	aethConfig := sdk.GetConfig()
+	app.SetBech32AddressPrefixes(aethConfig)
+	app.SetBip44CoinType(aethConfig)
+	aethConfig.Seal()
 }

@@ -8,9 +8,9 @@ import (
 
 	tmprototypes "github.com/tendermint/tendermint/proto/tendermint/types"
 
-	"github.com/kava-labs/kava/app"
-	"github.com/kava-labs/kava/x/incentive/keeper/adapters/swap"
-	swaptypes "github.com/kava-labs/kava/x/swap/types"
+	"github.com/mokitanetwork/aether/app"
+	"github.com/mokitanetwork/aether/x/incentive/keeper/adapters/swap"
+	swaptypes "github.com/mokitanetwork/aether/x/swap/types"
 	"github.com/stretchr/testify/suite"
 )
 
@@ -81,7 +81,7 @@ func (suite *SwapAdapterTestSuite) TestSwapAdapter_OwnerSharesBySource_Empty() {
 }
 
 func (suite *SwapAdapterTestSuite) TestSwapAdapter_OwnerSharesBySource() {
-	poolDenomA := "ukava"
+	poolDenomA := "uaeth"
 	poolDenomB := "usdx"
 
 	swapKeeper := suite.app.GetSwapKeeper()
@@ -211,7 +211,7 @@ func (suite *SwapAdapterTestSuite) TestSwapAdapter_TotalSharesBySource_Empty() {
 }
 
 func (suite *SwapAdapterTestSuite) TestSwapAdapter_TotalSharesBySource() {
-	poolDenomA := "ukava"
+	poolDenomA := "uaeth"
 	poolDenomB := "usdx"
 
 	swapKeeper := suite.app.GetSwapKeeper()

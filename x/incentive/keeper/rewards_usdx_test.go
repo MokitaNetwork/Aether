@@ -9,13 +9,13 @@ import (
 	"github.com/stretchr/testify/suite"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
-	"github.com/kava-labs/kava/app"
-	cdpkeeper "github.com/kava-labs/kava/x/cdp/keeper"
-	cdptypes "github.com/kava-labs/kava/x/cdp/types"
-	"github.com/kava-labs/kava/x/incentive/keeper"
-	"github.com/kava-labs/kava/x/incentive/testutil"
-	"github.com/kava-labs/kava/x/incentive/types"
-	kavadisttypes "github.com/kava-labs/kava/x/kavadist/types"
+	"github.com/mokitanetwork/aether/app"
+	cdpkeeper "github.com/mokitanetwork/aether/x/cdp/keeper"
+	cdptypes "github.com/mokitanetwork/aether/x/cdp/types"
+	"github.com/mokitanetwork/aether/x/incentive/keeper"
+	"github.com/mokitanetwork/aether/x/incentive/testutil"
+	"github.com/mokitanetwork/aether/x/incentive/types"
+	aethdisttypes "github.com/mokitanetwork/aether/x/aethdist/types"
 )
 
 type USDXIntegrationTests struct {
@@ -51,7 +51,7 @@ func (suite *USDXIntegrationTests) TestSingleUserAccumulatesRewardsAfterSyncing(
 	userA := suite.addrs[0]
 
 	authBulder := app.NewAuthBankGenesisBuilder().
-		WithSimpleModuleAccount(kavadisttypes.ModuleName, cs(c(types.USDXMintingRewardDenom, 1e18))). // Fill kavadist with enough coins to pay out any reward
+		WithSimpleModuleAccount(aethdisttypes.ModuleName, cs(c(types.USDXMintingRewardDenom, 1e18))). // Fill aethdist with enough coins to pay out any reward
 		WithSimpleAccount(userA, cs(c("bnb", 1e12)))                                                  // give the user some coins
 
 	incentBuilder := testutil.NewIncentiveGenesisBuilder().
@@ -107,7 +107,7 @@ func (suite *USDXIntegrationTests) TestSingleUserAccumulatesRewardsWithoutSyncin
 	initialCollateral := c("bnb", 1e9)
 
 	authBuilder := app.NewAuthBankGenesisBuilder().
-		WithSimpleModuleAccount(kavadisttypes.ModuleName, cs(c(types.USDXMintingRewardDenom, 1e18))). // Fill kavadist with enough coins to pay out any reward
+		WithSimpleModuleAccount(aethdisttypes.ModuleName, cs(c(types.USDXMintingRewardDenom, 1e18))). // Fill aethdist with enough coins to pay out any reward
 		WithSimpleAccount(user, cs(initialCollateral))
 
 	collateralType := "bnb-a"
@@ -154,7 +154,7 @@ func (suite *USDXIntegrationTests) TestReinstatingRewardParamsDoesNotTriggerOver
 	userB := suite.addrs[1]
 
 	authBuilder := app.NewAuthBankGenesisBuilder().
-		WithSimpleModuleAccount(kavadisttypes.ModuleName, cs(c(types.USDXMintingRewardDenom, 1e18))). // Fill kavadist with enough coins to pay out any reward
+		WithSimpleModuleAccount(aethdisttypes.ModuleName, cs(c(types.USDXMintingRewardDenom, 1e18))). // Fill aethdist with enough coins to pay out any reward
 		WithSimpleAccount(userA, cs(c("bnb", 1e10))).
 		WithSimpleAccount(userB, cs(c("bnb", 1e10)))
 
@@ -289,7 +289,7 @@ func (suite *USDXRewardsTestSuite) TestAccumulateUSDXMintingRewards() {
 			"7 seconds",
 			args{
 				ctype:                 "bnb-a",
-				rewardsPerSecond:      c("ukava", 122354),
+				rewardsPerSecond:      c("uaeth", 122354),
 				initialTotalPrincipal: c("usdx", 1000000000000),
 				timeElapsed:           7,
 				expectedRewardFactor:  d("0.000000856478000000"),
@@ -299,7 +299,7 @@ func (suite *USDXRewardsTestSuite) TestAccumulateUSDXMintingRewards() {
 			"1 day",
 			args{
 				ctype:                 "bnb-a",
-				rewardsPerSecond:      c("ukava", 122354),
+				rewardsPerSecond:      c("uaeth", 122354),
 				initialTotalPrincipal: c("usdx", 1000000000000),
 				timeElapsed:           86400,
 				expectedRewardFactor:  d("0.0105713856"),
@@ -309,7 +309,7 @@ func (suite *USDXRewardsTestSuite) TestAccumulateUSDXMintingRewards() {
 			"0 seconds",
 			args{
 				ctype:                 "bnb-a",
-				rewardsPerSecond:      c("ukava", 122354),
+				rewardsPerSecond:      c("uaeth", 122354),
 				initialTotalPrincipal: c("usdx", 1000000000000),
 				timeElapsed:           0,
 				expectedRewardFactor:  d("0.0"),
@@ -357,24 +357,24 @@ func (suite *USDXRewardsTestSuite) TestSynchronizeUSDXMintingReward() {
 			"10 blocks",
 			args{
 				ctype:                "bnb-a",
-				rewardsPerSecond:     c("ukava", 122354),
+				rewardsPerSecond:     c("uaeth", 122354),
 				initialCollateral:    c("bnb", 1000000000000),
 				initialPrincipal:     c("usdx", 10000000000),
 				blockTimes:           []int{10, 10, 10, 10, 10, 10, 10, 10, 10, 10},
 				expectedRewardFactor: d("0.001223540000000000"),
-				expectedRewards:      c("ukava", 12235400),
+				expectedRewards:      c("uaeth", 12235400),
 			},
 		},
 		{
 			"10 blocks - long block time",
 			args{
 				ctype:                "bnb-a",
-				rewardsPerSecond:     c("ukava", 122354),
+				rewardsPerSecond:     c("uaeth", 122354),
 				initialCollateral:    c("bnb", 1000000000000),
 				initialPrincipal:     c("usdx", 10000000000),
 				blockTimes:           []int{86400, 86400, 86400, 86400, 86400, 86400, 86400, 86400, 86400, 86400},
 				expectedRewardFactor: d("10.57138560000000000"),
-				expectedRewards:      c("ukava", 105713856000),
+				expectedRewards:      c("uaeth", 105713856000),
 			},
 		},
 	}
@@ -443,24 +443,24 @@ func (suite *USDXRewardsTestSuite) TestSimulateUSDXMintingRewardSynchronization(
 			"10 blocks",
 			args{
 				ctype:                "bnb-a",
-				rewardsPerSecond:     c("ukava", 122354),
+				rewardsPerSecond:     c("uaeth", 122354),
 				initialCollateral:    c("bnb", 1000000000000),
 				initialPrincipal:     c("usdx", 10000000000),
 				blockTimes:           []int{10, 10, 10, 10, 10, 10, 10, 10, 10, 10},
 				expectedRewardFactor: d("0.001223540000000000"),
-				expectedRewards:      c("ukava", 12235400),
+				expectedRewards:      c("uaeth", 12235400),
 			},
 		},
 		{
 			"10 blocks - long block time",
 			args{
 				ctype:                "bnb-a",
-				rewardsPerSecond:     c("ukava", 122354),
+				rewardsPerSecond:     c("uaeth", 122354),
 				initialCollateral:    c("bnb", 1000000000000),
 				initialPrincipal:     c("usdx", 10000000000),
 				blockTimes:           []int{86400, 86400, 86400, 86400, 86400, 86400, 86400, 86400, 86400, 86400},
 				expectedRewardFactor: d("10.57138560000000000"),
-				expectedRewards:      c("ukava", 105713856000),
+				expectedRewards:      c("uaeth", 105713856000),
 			},
 		},
 	}
@@ -496,7 +496,7 @@ func (suite *USDXRewardsTestSuite) TestSimulateUSDXMintingRewardSynchronization(
 			claim, found = suite.keeper.GetUSDXMintingClaim(suite.ctx, suite.addrs[0])
 			suite.Require().True(found)
 			suite.Require().Equal(claim.RewardIndexes[0].RewardFactor, sdk.ZeroDec())
-			suite.Require().Equal(claim.Reward, sdk.NewCoin("ukava", sdk.ZeroInt()))
+			suite.Require().Equal(claim.Reward, sdk.NewCoin("uaeth", sdk.ZeroInt()))
 
 			updatedClaim := suite.keeper.SimulateUSDXMintingSynchronization(suite.ctx, claim)
 			suite.Require().Equal(tc.args.expectedRewardFactor, updatedClaim.RewardIndexes[0].RewardFactor)

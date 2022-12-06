@@ -3,7 +3,7 @@ package testutil
 import (
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/kava-labs/kava/app"
+	"github.com/mokitanetwork/aether/app"
 
 	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
 )
@@ -19,7 +19,7 @@ var _ GenesisBuilder = (*MintGenesisBuilder)(nil)
 
 func NewMintGenesisBuilder() MintGenesisBuilder {
 	gen := minttypes.DefaultGenesisState()
-	gen.Params.MintDenom = "ukava"
+	gen.Params.MintDenom = "uaeth"
 
 	return MintGenesisBuilder{
 		GenesisState: *gen,

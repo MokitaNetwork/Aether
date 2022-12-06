@@ -14,10 +14,10 @@ import (
 	"github.com/spf13/cobra"
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/kava-labs/kava/x/swap/client/cli"
-	"github.com/kava-labs/kava/x/swap/client/rest"
-	"github.com/kava-labs/kava/x/swap/keeper"
-	"github.com/kava-labs/kava/x/swap/types"
+	"github.com/mokitanetwork/aether/x/swap/client/cli"
+	"github.com/mokitanetwork/aether/x/swap/client/rest"
+	"github.com/mokitanetwork/aether/x/swap/keeper"
+	"github.com/mokitanetwork/aether/x/swap/types"
 )
 
 var (

@@ -9,11 +9,11 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/distribution"
 	distrtypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
 	"github.com/cosmos/cosmos-sdk/x/mint"
-	earntypes "github.com/kava-labs/kava/x/earn/types"
-	"github.com/kava-labs/kava/x/incentive"
-	"github.com/kava-labs/kava/x/incentive/testutil"
-	"github.com/kava-labs/kava/x/incentive/types"
-	liquidtypes "github.com/kava-labs/kava/x/liquid/types"
+	earntypes "github.com/mokitanetwork/aether/x/earn/types"
+	"github.com/mokitanetwork/aether/x/incentive"
+	"github.com/mokitanetwork/aether/x/incentive/testutil"
+	"github.com/mokitanetwork/aether/x/incentive/types"
+	liquidtypes "github.com/mokitanetwork/aether/x/liquid/types"
 )
 
 func (suite *HandlerTestSuite) TestEarnLiquidClaim() {
@@ -23,20 +23,20 @@ func (suite *HandlerTestSuite) TestEarnLiquidClaim() {
 	valAddr2 := sdk.ValAddress(validatorAddr2)
 
 	authBuilder := suite.authBuilder().
-		WithSimpleAccount(userAddr1, cs(c("ukava", 1e12))).
-		WithSimpleAccount(userAddr2, cs(c("ukava", 1e12))).
-		WithSimpleAccount(validatorAddr1, cs(c("ukava", 1e12))).
-		WithSimpleAccount(validatorAddr2, cs(c("ukava", 1e12)))
+		WithSimpleAccount(userAddr1, cs(c("uaeth", 1e12))).
+		WithSimpleAccount(userAddr2, cs(c("uaeth", 1e12))).
+		WithSimpleAccount(validatorAddr1, cs(c("uaeth", 1e12))).
+		WithSimpleAccount(validatorAddr2, cs(c("uaeth", 1e12)))
 
 	incentBuilder := suite.incentiveBuilder().
-		WithSimpleEarnRewardPeriod("bkava", cs())
+		WithSimpleEarnRewardPeriod("baeth", cs())
 
 	savingsBuilder := testutil.NewSavingsGenesisBuilder().
-		WithSupportedDenoms("bkava")
+		WithSupportedDenoms("baeth")
 
 	earnBuilder := testutil.NewEarnGenesisBuilder().
 		WithAllowedVaults(earntypes.AllowedVault{
-			Denom:             "bkava",
+			Denom:             "baeth",
 			Strategies:        earntypes.StrategyTypes{earntypes.STRATEGY_TYPE_SAVINGS},
 			IsPrivateVault:    false,
 			AllowedDepositors: nil,
@@ -58,26 +58,26 @@ func (suite *HandlerTestSuite) TestEarnLiquidClaim() {
 	ik := suite.App.GetIncentiveKeeper()
 
 	iParams := ik.GetParams(suite.Ctx)
-	period, found := iParams.EarnRewardPeriods.GetMultiRewardPeriod("bkava")
+	period, found := iParams.EarnRewardPeriods.GetMultiRewardPeriod("baeth")
 	suite.Require().True(found)
-	suite.Require().Equal("bkava", period.CollateralType)
+	suite.Require().Equal("baeth", period.CollateralType)
 
-	// Use ukava for mint denom
+	// Use uaeth for mint denom
 	mParams := mk.GetParams(suite.Ctx)
-	mParams.MintDenom = "ukava"
+	mParams.MintDenom = "uaeth"
 	mk.SetParams(suite.Ctx, mParams)
 
-	bkavaDenom1 := lq.GetLiquidStakingTokenDenom(valAddr1)
-	bkavaDenom2 := lq.GetLiquidStakingTokenDenom(valAddr2)
+	baethDenom1 := lq.GetLiquidStakingTokenDenom(valAddr1)
+	baethDenom2 := lq.GetLiquidStakingTokenDenom(valAddr2)
 
-	err := suite.App.FundModuleAccount(suite.Ctx, distrtypes.ModuleName, cs(c("ukava", 1e12)))
+	err := suite.App.FundModuleAccount(suite.Ctx, distrtypes.ModuleName, cs(c("uaeth", 1e12)))
 	suite.NoError(err)
 
 	// Create validators
-	err = suite.DeliverMsgCreateValidator(valAddr1, c("ukava", 1e9))
+	err = suite.DeliverMsgCreateValidator(valAddr1, c("uaeth", 1e9))
 	suite.Require().NoError(err)
 
-	err = suite.DeliverMsgCreateValidator(valAddr2, c("ukava", 1e9))
+	err = suite.DeliverMsgCreateValidator(valAddr2, c("uaeth", 1e9))
 	suite.Require().NoError(err)
 
 	// new block required to bond validator
@@ -86,34 +86,34 @@ func (suite *HandlerTestSuite) TestEarnLiquidClaim() {
 	suite.NextBlockAfter(7 * time.Second)
 
 	// Create delegations from users
-	// User 1: 1e9 ukava to validator 1
-	// User 2: 99e9 ukava to validator 1 AND 2
-	err = suite.DeliverMsgDelegate(userAddr1, valAddr1, c("ukava", 1e9))
+	// User 1: 1e9 uaeth to validator 1
+	// User 2: 99e9 uaeth to validator 1 AND 2
+	err = suite.DeliverMsgDelegate(userAddr1, valAddr1, c("uaeth", 1e9))
 	suite.Require().NoError(err)
 
-	err = suite.DeliverMsgDelegate(userAddr2, valAddr1, c("ukava", 99e9))
+	err = suite.DeliverMsgDelegate(userAddr2, valAddr1, c("uaeth", 99e9))
 	suite.Require().NoError(err)
 
-	err = suite.DeliverMsgDelegate(userAddr2, valAddr2, c("ukava", 99e9))
+	err = suite.DeliverMsgDelegate(userAddr2, valAddr2, c("uaeth", 99e9))
 	suite.Require().NoError(err)
 
 	// Mint liquid tokens
-	_, err = suite.DeliverMsgMintDerivative(userAddr1, valAddr1, c("ukava", 1e9))
+	_, err = suite.DeliverMsgMintDerivative(userAddr1, valAddr1, c("uaeth", 1e9))
 	suite.Require().NoError(err)
 
-	_, err = suite.DeliverMsgMintDerivative(userAddr2, valAddr1, c("ukava", 99e9))
+	_, err = suite.DeliverMsgMintDerivative(userAddr2, valAddr1, c("uaeth", 99e9))
 	suite.Require().NoError(err)
 
-	_, err = suite.DeliverMsgMintDerivative(userAddr2, valAddr2, c("ukava", 99e9))
+	_, err = suite.DeliverMsgMintDerivative(userAddr2, valAddr2, c("uaeth", 99e9))
 	suite.Require().NoError(err)
 
 	// Deposit liquid tokens to earn
-	err = suite.DeliverEarnMsgDeposit(userAddr1, c(bkavaDenom1, 1e9), earntypes.STRATEGY_TYPE_SAVINGS)
+	err = suite.DeliverEarnMsgDeposit(userAddr1, c(baethDenom1, 1e9), earntypes.STRATEGY_TYPE_SAVINGS)
 	suite.Require().NoError(err)
 
-	err = suite.DeliverEarnMsgDeposit(userAddr2, c(bkavaDenom1, 99e9), earntypes.STRATEGY_TYPE_SAVINGS)
+	err = suite.DeliverEarnMsgDeposit(userAddr2, c(baethDenom1, 99e9), earntypes.STRATEGY_TYPE_SAVINGS)
 	suite.Require().NoError(err)
-	err = suite.DeliverEarnMsgDeposit(userAddr2, c(bkavaDenom2, 99e9), earntypes.STRATEGY_TYPE_SAVINGS)
+	err = suite.DeliverEarnMsgDeposit(userAddr2, c(baethDenom2, 99e9), earntypes.STRATEGY_TYPE_SAVINGS)
 	suite.Require().NoError(err)
 
 	// BeginBlocker to update minter annual provisions as it starts at 0 which results in no minted coins
@@ -185,8 +185,8 @@ func (suite *HandlerTestSuite) TestEarnLiquidClaim() {
 	preClaimBal1 := suite.GetBalance(userAddr1)
 	preClaimBal2 := suite.GetBalance(userAddr2)
 
-	// Claim ukava staking rewards
-	denomsToClaim := map[string]string{"ukava": "large"}
+	// Claim uaeth staking rewards
+	denomsToClaim := map[string]string{"uaeth": "large"}
 	selections := types.NewSelectionsFromMap(denomsToClaim)
 
 	msg1 := types.NewMsgClaimEarnReward(userAddr1.String(), selections)
@@ -202,20 +202,20 @@ func (suite *HandlerTestSuite) TestEarnLiquidClaim() {
 	// User 1 gets 1% of rewards
 	// User 2 gets 99% of rewards
 	stakingRewards1 := delegationRewards.
-		AmountOf("ukava").
+		AmountOf("uaeth").
 		Quo(sdk.NewDec(100)).
 		RoundInt()
-	suite.BalanceEquals(userAddr1, preClaimBal1.Add(sdk.NewCoin("ukava", stakingRewards1)))
+	suite.BalanceEquals(userAddr1, preClaimBal1.Add(sdk.NewCoin("uaeth", stakingRewards1)))
 
 	// Total * 99 / 100
 	stakingRewards2 := delegationRewards.
-		AmountOf("ukava").
+		AmountOf("uaeth").
 		Mul(sdk.NewDec(99)).
 		Quo(sdk.NewDec(100)).
 		TruncateInt()
-	suite.BalanceEquals(userAddr2, preClaimBal2.Add(sdk.NewCoin("ukava", stakingRewards2)))
+	suite.BalanceEquals(userAddr2, preClaimBal2.Add(sdk.NewCoin("uaeth", stakingRewards2)))
 
-	suite.Equal(delegationRewards.AmountOf("ukava").TruncateInt(), stakingRewards1.Add(stakingRewards2))
+	suite.Equal(delegationRewards.AmountOf("uaeth").TruncateInt(), stakingRewards1.Add(stakingRewards2))
 
 	// Check that claimed coins have been removed from a claim's reward
 	suite.EarnRewardEquals(userAddr1, cs())

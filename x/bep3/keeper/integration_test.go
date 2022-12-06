@@ -10,20 +10,20 @@ import (
 	"github.com/tendermint/tendermint/crypto"
 	tmtime "github.com/tendermint/tendermint/types/time"
 
-	"github.com/kava-labs/kava/app"
-	"github.com/kava-labs/kava/x/bep3/types"
+	"github.com/mokitanetwork/aether/app"
+	"github.com/mokitanetwork/aether/x/bep3/types"
 )
 
 const (
 	TestSenderOtherChain    = "bnb1uky3me9ggqypmrsvxk7ur6hqkzq7zmv4ed4ng7"
 	TestRecipientOtherChain = "bnb1urfermcg92dwq36572cx4xg84wpk3lfpksr5g7"
-	TestDeputy              = "kava1xy7hrjy9r0algz9w3gzm8u6mrpq97kwta747gj"
+	TestDeputy              = "aeth1xy7hrjy9r0algz9w3gzm8u6mrpq97kwta747gj"
 )
 
 var (
 	DenomMap  = map[int]string{0: "btc", 1: "eth", 2: "bnb", 3: "xrp", 4: "dai"}
-	TestUser1 = sdk.AccAddress(crypto.AddressHash([]byte("KavaTestUser1")))
-	TestUser2 = sdk.AccAddress(crypto.AddressHash([]byte("KavaTestUser2")))
+	TestUser1 = sdk.AccAddress(crypto.AddressHash([]byte("AetherTestUser1")))
+	TestUser2 = sdk.AccAddress(crypto.AddressHash([]byte("AetherTestUser2")))
 )
 
 func c(denom string, amount int64) sdk.Coin { return sdk.NewInt64Coin(denom, amount) }

@@ -5,10 +5,10 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/kava-labs/kava/app"
-	auctiontypes "github.com/kava-labs/kava/x/auction/types"
-	"github.com/kava-labs/kava/x/cdp/keeper"
-	"github.com/kava-labs/kava/x/cdp/types"
+	"github.com/mokitanetwork/aether/app"
+	auctiontypes "github.com/mokitanetwork/aether/x/auction/types"
+	"github.com/mokitanetwork/aether/x/cdp/keeper"
+	"github.com/mokitanetwork/aether/x/cdp/types"
 
 	"github.com/stretchr/testify/suite"
 
@@ -30,7 +30,7 @@ func (suite *AuctionTestSuite) SetupTest() {
 	config := sdk.GetConfig()
 	app.SetBech32AddressPrefixes(config)
 	tApp := app.NewTestApp()
-	taddr := sdk.AccAddress(crypto.AddressHash([]byte("KavaTestUser1")))
+	taddr := sdk.AccAddress(crypto.AddressHash([]byte("AetherTestUser1")))
 	ctx := tApp.NewContext(true, tmproto.Header{Height: 1, Time: tmtime.Now()})
 	authGS := app.NewFundedGenStateWithSameCoins(tApp.AppCodec(), cs(c("usdx", 21000000000)), []sdk.AccAddress{taddr})
 	tApp.InitializeFromGenesisStates(

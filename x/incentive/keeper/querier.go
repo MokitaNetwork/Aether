@@ -9,9 +9,9 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	earntypes "github.com/kava-labs/kava/x/earn/types"
-	"github.com/kava-labs/kava/x/incentive/types"
-	liquidtypes "github.com/kava-labs/kava/x/liquid/types"
+	earntypes "github.com/mokitanetwork/aether/x/earn/types"
+	"github.com/mokitanetwork/aether/x/incentive/types"
+	liquidtypes "github.com/mokitanetwork/aether/x/liquid/types"
 )
 
 const (
@@ -383,7 +383,7 @@ func queryGetAPYs(ctx sdk.Context, req abci.RequestQuery, k Keeper, legacyQuerie
 	params := k.GetParams(ctx)
 	var apys types.APYs
 
-	// bkava APY (staking + incentive rewards)
+	// baeth APY (staking + incentive rewards)
 	stakingAPR, err := GetStakingAPR(ctx, k, params)
 	if err != nil {
 		return nil, err
@@ -393,7 +393,7 @@ func queryGetAPYs(ctx sdk.Context, req abci.RequestQuery, k Keeper, legacyQuerie
 
 	// Incentive only APYs
 	for _, param := range params.EarnRewardPeriods {
-		// Skip bkava as it's calculated earlier with staking rewards
+		// Skip baeth as it's calculated earlier with staking rewards
 		if param.CollateralType == liquidtypes.DefaultDerivativeDenom {
 			continue
 		}
@@ -436,15 +436,15 @@ func GetStakingAPR(ctx sdk.Context, k Keeper, params types.Params) (sdk.Dec, err
 			Quo(circulatingSupply.Amount.ToDec()))
 
 	// Get incentive APR
-	bkavaRewardPeriod, found := params.EarnRewardPeriods.GetMultiRewardPeriod(liquidtypes.DefaultDerivativeDenom)
+	baethRewardPeriod, found := params.EarnRewardPeriods.GetMultiRewardPeriod(liquidtypes.DefaultDerivativeDenom)
 	if !found {
-		// No incentive rewards for bkava, only staking rewards
+		// No incentive rewards for baeth, only staking rewards
 		return stakingAPR, nil
 	}
 
-	// Total amount of bkava in earn vaults, this may be lower than total bank
-	// supply of bkava as some bkava may not be deposited in earn vaults
-	totalEarnBkavaDeposited := sdk.ZeroInt()
+	// Total amount of baeth in earn vaults, this may be lower than total bank
+	// supply of baeth as some baeth may not be deposited in earn vaults
+	totalEarnBaethDeposited := sdk.ZeroInt()
 
 	var iterErr error
 	k.earnKeeper.IterateVaultRecords(ctx, func(record earntypes.VaultRecord) (stop bool) {
@@ -458,7 +458,7 @@ func GetStakingAPR(ctx sdk.Context, k Keeper, params types.Params) (sdk.Dec, err
 			return false
 		}
 
-		totalEarnBkavaDeposited = totalEarnBkavaDeposited.Add(vaultValue.Amount)
+		totalEarnBaethDeposited = totalEarnBaethDeposited.Add(vaultValue.Amount)
 
 		return false
 	})
@@ -468,8 +468,8 @@ func GetStakingAPR(ctx sdk.Context, k Keeper, params types.Params) (sdk.Dec, err
 	}
 
 	// Incentive APR = rewards per second * seconds per year / total supplied to earn vaults
-	// Override collateral type to use "kava" instead of "bkava" when fetching
-	incentiveAPY, err := GetAPYFromMultiRewardPeriod(ctx, k, types.BondDenom, bkavaRewardPeriod, totalEarnBkavaDeposited)
+	// Override collateral type to use "aeth" instead of "baeth" when fetching
+	incentiveAPY, err := GetAPYFromMultiRewardPeriod(ctx, k, types.BondDenom, baethRewardPeriod, totalEarnBaethDeposited)
 	if err != nil {
 		return sdk.ZeroDec(), err
 	}
@@ -528,15 +528,15 @@ func GetAPYFromMultiRewardPeriod(
 
 func getMarketID(denom string) string {
 	// Rewrite denoms as pricefeed has different names for some assets,
-	// e.g. "ukava" -> "kava", "erc20/multichain/usdc" -> "usdc"
-	// bkava is not included as it is handled separately
+	// e.g. "uaeth" -> "aeth", "erc20/multichain/usdc" -> "usdc"
+	// baeth is not included as it is handled separately
 
 	// TODO: Replace hardcoded conversion with possible params set somewhere
 	// to be more flexible. E.g. a map of denoms to pricefeed market denoms in
 	// pricefeed params.
 	switch denom {
 	case types.BondDenom:
-		denom = "kava"
+		denom = "aeth"
 	case "erc20/multichain/usdc":
 		denom = "usdc"
 	case "erc20/multichain/usdt":
