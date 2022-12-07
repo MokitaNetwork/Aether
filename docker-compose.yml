@@ -3,7 +3,7 @@ version: '3'
 services:
   aethnode0:
     container_name: aethnode0
-    image: "aeth/aethnode"
+    image: "networks/local/aethnode"
     ports:
       - "26656-26657:26656-26657"
     environment:
@@ -17,7 +17,7 @@ services:
 
   aethnode1:
     container_name: aethnode1
-    image: "aeth/aethnode"
+    image: "networks/local/aethnode"
     ports:
       - "26659-26660:26656-26657"
     environment:
@@ -31,7 +31,7 @@ services:
 
   aethnode2:
     container_name: aethnode2
-    image: "aeth/aethnode"
+    image: "networks/local/aethnode"
     environment:
       - ID=2
       - LOG=${LOG:-aeth.log}
@@ -45,7 +45,7 @@ services:
 
   aethnode3:
     container_name: aethnode3
-    image: "aeth/aethnode"
+    image: "networks/local/aethnode"
     environment:
       - ID=3
       - LOG=${LOG:-aeth.log}
