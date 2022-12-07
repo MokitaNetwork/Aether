@@ -3,22 +3,22 @@ set -e
 
 validatorMnemonic="equip town gesture square tomorrow volume nephew minute witness beef rich gadget actress egg sing secret pole winter alarm law today check violin uncover"
 #        aeth1ffv7nhd3z6sych2qpqkk03ec6hzkmufy0r2s4c
-# aethvaloper1ffv7nhd3z6sych2qpqkk03ec6hzkmufyz4scd0
+# aeth1ffv7nhd3z6sych2qpqkk03ec6hzkmufyhnk5h0
 
 faucetMnemonic="crash sort dwarf disease change advice attract clump avoid mobile clump right junior axis book fresh mask tube front require until face effort vault"
-# aeth1adkm6svtzjsxxvg7g6rshg6kj9qwej8gwqadqd
+# aeth1adkm6svtzjsxxvg7g6rshg6kj9qwej8gkspfz6
 
 evmFaucetMnemonic="hundred flash cattle inquiry gorilla quick enact lazy galaxy apple bitter liberty print sun hurdle oak town cash because round chalk marriage response success"
 # 0x3C854F92F726A7897C8B23F55B2D6E2C482EF3E0
-# aeth18jz5lyhhy6ncjlyty064kttw93yzaulq7rlptu
+# aeth18jz5lyhhy6ncjlyty064kttw93yzaulqxnr9ft
 
 userMnemonic="news tornado sponsor drastic dolphin awful plastic select true lizard width idle ability pigeon runway lift oppose isolate maple aspect safe jungle author hole"
 # 0x7Bbf300890857b8c241b219C6a489431669b3aFA
-# aeth10wlnqzyss4accfqmyxwx5jy5x9nfkwh6qm7n4t
+# aeth10wlnqzyss4accfqmyxwx5jy5x9nfkwh6ctzhhu
 
 relayerMnemonic="never reject sniff east arctic funny twin feed upper series stay shoot vivid adapt defense economy pledge fetch invite approve ceiling admit gloom exit"
 # 0xa2F728F997f62F47D4262a70947F6c36885dF9fa
-# aeth15tmj37vh7ch504px9fcfglmvx6y9m70646ev8t
+# aeth15tmj37vh7ch504px9fcfglmvx6y9m706d29g9u
 
 DATA=~/.aeth
 # remove any old state and config
