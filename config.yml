@@ -8,22 +8,22 @@ build:
 accounts:
 - name: alice
   coins:
-  - 2000000000bnb
+  - 1000000000usdx
   - 200000000uaeth
   mnemonic: wine rich chunk that swim afford found auction travel dentist razor furnace
     fluid hidden happy enroll pilot dragon market broom bus merry salad assume
 - name: bob
   coins:
-  - 10000bnb
-  - 100000000uaeth
+  - 1000000000uaeth
+  - 1000000000usdx
   mnemonic: major spatial spoil earn capable receive tourist bronze call coral mango
     betray demand size certain strike decline pluck baby eight maple pyramid cage
     cabbage
 faucet:
   name: bob
   coins:
-  - 5bnb
-  - 100000uaeth
+  - 1000000000uaeth
+  - 1000000000usdx
   host: 0.0.0.0:4500
 client:
   typescript:
@@ -51,4 +51,7 @@ genesis:
 validators:
 - name: alice
   bonded: 100000000uaeth
+  coins:
+  - 2000000000uaeth
+  - 100000000000bnb
   home: ./.aeth
