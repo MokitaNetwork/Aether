@@ -54,4 +54,3 @@ validators:
   coins:
   - 2000000000uaeth
   - 100000000000bnb
-  home: ./.aeth
