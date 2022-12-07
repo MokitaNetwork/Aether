@@ -6,41 +6,49 @@ build:
     - third_party/proto
     - proto_vendor
 accounts:
-- name: validator
+- name: alice
   coins:
-  - 2000000000uaeth
-  - 100000000000uatom
-  - 100000000000bnb
-  staked: 1000000000uaeth
-  address: aeth1ffv7nhd3z6sych2qpqkk03ec6hzkmufyhnk5h0
-  mnemonic: equip town gesture square tomorrow volume nephew minute witness beef rich 
-  gadget actress egg sing secret pole winter alarm law today check violin uncover
-- name: evmfaucet
+  - 2000000000bnb
+  - 200000000uaeth
+  mnemonic: wine rich chunk that swim afford found auction travel dentist razor furnace
+    fluid hidden happy enroll pilot dragon market broom bus merry salad assume
+- name: bob
   coins:
-  - 1000000000uaeth
-  address: aeth18jz5lyhhy6ncjlyty064kttw93yzaulqxnr9ft
-  mnemonic: hundred flash cattle inquiry gorilla quick enact lazy galaxy apple 
-  bitter liberty print sun hurdle oak town cash because round chalk marriage 
-  response success
-- name: user
-  coins:
-  - 1000000000uaeth
-  - 1000000000usdx
-  address: aeth10wlnqzyss4accfqmyxwx5jy5x9nfkwh6ctzhhu
-  mnemonic: news tornado sponsor drastic dolphin awful plastic select true 
-  lizard width idle ability pigeon runway lift oppose isolate maple aspect safe 
-  jungle author hole
-- name: relayer
-  coins: 
-  - 1000000000uaeth 
-  address: aeth15tmj37vh7ch504px9fcfglmvx6y9m706d29g9u
-  mnemonic: never reject sniff east arctic funny twin feed upper series stay shoot
-   vivid adapt defense economy pledge fetch invite approve ceiling admit gloom exit
+  - 10000bnb
+  - 100000000uaeth
+  mnemonic: major spatial spoil earn capable receive tourist bronze call coral mango
+    betray demand size certain strike decline pluck baby eight maple pyramid cage
+    cabbage
 faucet:
-  name: faucet
-  coins: 
-  - 1000000000uaeth
-  - 100000000000uatom
-  - 100000000000bnb
+  name: bob
+  coins:
+  - 5bnb
+  - 100000uaeth
   host: 0.0.0.0:4500
-
+client:
+  typescript:
+    path: ts-client
+  vuex:
+    path: vue/src/store
+  openapi:
+    path: docs/static/openapi.yml
+genesis:
+  app_state:
+    alliance:
+      assets:
+      - denom: uaeth
+        reward_weight: "0.5"
+        take_rate: "0.000005"
+      - denom: baeth
+        reward_weight: "0.9"
+        take_rate: "0.0000009"
+      - denom: bnb
+        reward_weight: "5"
+        take_rate: "0.0000009"
+      params:
+        take_rate_claim_interval: 10s
+        reward_delay_time: 60s
+validators:
+- name: alice
+  bonded: 100000000uaeth
+  home: ./.aeth
